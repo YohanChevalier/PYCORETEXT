@@ -27,7 +27,8 @@ You should have received a copy of the GNU General Public License along with thi
 DÉTAILS TECHNIQUES
 ...................
 
-Se reporter au fichier "specifications_techniques.rst" dans le dossier docs\
+Se reporter au fichier "specifications_techniques.rst" dans le dossier \\docs
+
 https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techniques.rst
 
 ..............
@@ -175,7 +176,8 @@ Nous ne pouvons donc ni filtrer, ni supprimer, ni modifier le contenu des décis
 Toutefois, il est à noter que certaines métadonnées proposées en résulats de recherche par l'API n'ont pas été retenues dans l'application.
 L'objectif n'est pas l'occultation de certaines informations mais au contraire la simplification de l'accès à l'information.
 Les détails dans le fichier suivant :
-:doc:'<.\docs\specifications_techniques.rst'
+
+https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techniques.rst
 
 =======================================================
 Conditions d'utilisation à respecter par l'utilisateur

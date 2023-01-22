@@ -443,22 +443,22 @@ pyinstaller : comment créer l'exécutable
   * Ouvrir le fichier pycoretext.spec et ajouter les éléments suvants dans l'attribut "datas" :
       - 'LICENCE.txt'
       - 'REAMDME.rst'
-      - '.\docs\demo.gif'
-      - '.\docs\schema_pycoretext.jpg'
-      - '.\docs\CGU_open_data_V8.pdf'
+      - '.\\docs\\demo.gif'
+      - '.\\docs\\schema_pycoretext.jpg'
+      - '.\\docs\\CGU_open_data_V8.pdf'
       - '.\\pycoretext\\views\\image_login.png'
       - '.\\pycoretext\\views\\origine_donnees.txt'
-      - '.\docs\specifications_techniques.rst'
+      - '.\\docs\\specifications_techniques.rst'
       - '.\\pycoretext\\pycoretext.ico'
       - 'pycoretext.spec'
   * Ajouter aussi l'icône dans la partie "exe"
-      "icon='.\pycoretext\pycoretext.ico'"
+      "icon='.\\pycoretext\\pycoretext.ico'"
   * Lancer la création du bundle :
       ``pyinstaller pycoretext.spec``
   * Vérifier le contenu du dossier "dist" créé
   * Vérifier le bon fonctionnement de l'exécutable
-  * Changer le nom du dossier \dist\pycoretext en \dist\pycoretext_v_xx_xx
-  * Compresser le dossier \pycoretext_v_xx_xx et le placer dans \bin 
+  * Changer le nom du dossier \\dist\\pycoretext en \\dist\\pycoretext_v_xx_xx
+  * Compresser le dossier \\pycoretext_v_xx_xx et le placer dans \\bin 
 
 ==================================================================
 Git et GitHub
