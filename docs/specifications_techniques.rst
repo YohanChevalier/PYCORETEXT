@@ -133,8 +133,10 @@ Résultats Taxonomy
 cf. fichier "diff_taxo_ca_cc.docx"
 => on remarque que les critères donnés par Taxonomy peuvent variés selon
 le contexte. Mais au 07/10/2022, seuls deux diffèrent vraiment :
+
 * location
 * theme
+
 "type" varie aussi mais "cc" contient les types de "ca" qui sont moins nombreux.
 
 
@@ -217,22 +219,22 @@ L'application est exécutée grâce au fichier source **pycoretexte.py**
 Liste des informations générées à chaque connexion dans la homepage
 =====================================================================
 
-* Infos de connexion
-  * "Environnement"
-  * "Clé d'auth avec masque"
-  * "État du réseau"
+* Infos de connexion :
+    - "Environnement"
+    - "Clé d'auth avec masque"
+    - "État du réseau"
 
-* Statistiques Judilibre
-  * "Date de création la plus récente" 
-  * "Total textes"
-  * "Nb textes - cour de cassation"
-  * "Créés hier - cour de cassation"
-  * "Créés [mois en cours] - cour de cassation"
-  * "Créés [mois en passé] - cour de cassation"
-  * "Nb textes - cours d'appel"
-  * "Créés hier - cours d'appel"
-  * "Créés [mois en cours] - cours d'appel"
-  * "Créés [mois en passé] - cours d'appel"
+* Statistiques Judilibre :
+    - "Date de création la plus récente" 
+    - "Total textes"
+    - "Nb textes - cour de cassation"
+    - "Créés hier - cour de cassation"
+    - "Créés [mois en cours] - cour de cassation"
+    - "Créés [mois en passé] - cour de cassation"
+    - "Nb textes - cours d'appel"
+    - "Créés hier - cours d'appel"
+    - "Créés [mois en cours] - cours d'appel"
+    - "Créés [mois en passé] - cours d'appel"
 
 =========================================================
 Liste des champs pour le formulaire de recherche
@@ -291,7 +293,8 @@ https://stackoverflow.com/questions/34549752/how-do-i-enable-multiple-selection-
 Colonnes de la liste de résultats
 ==================================================================
 
-La list de résultats est conçue grâce au widget tkinter "treeview"
+La list de résultats est conçue grâce au widget tkinter "treeview" :
+
 +------------------------+---------------+-------+----------------+---------+----------+--------------+
 | Id decision (interne)  | jurisdiction  | type  | decision_date  | number  | chamber  | publication  |
 +------------------------+---------------+-------+----------------+---------+----------+--------------+
