@@ -6,8 +6,10 @@ PYCORE·TEXT
 
 Une interface simple pour effectuer des requêtes avec l'API publique française JUDILIBRE.
 L'utilisateur peut utiliser les critères de recherche de l'API afin d'accéder aux décisions de justice :
+
 * Cours d'appel
 * Cour de cassation
+
 Les résultats correspondent aux métadonnées et aux textes des décisions.
 
 
