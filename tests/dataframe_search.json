@@ -1,0 +1,451 @@
+{
+    "page": 0,
+    "page_size": 10,
+    "query": {
+        "query": "boulangerie",
+        "type": [
+            "arret"
+        ],
+        "publication": [
+            "b"
+        ],
+        "field": [],
+        "theme": [],
+        "chamber": [],
+        "formation": [],
+        "jurisdiction": [],
+        "location": [],
+        "solution": []
+    },
+    "total": 245,
+    "previous_page": null,
+    "next_page": "query=boulangerie&type=arret&publication=b&field=&theme=&chamber=&formation=&jurisdiction=&location=&solution=&page=1",
+    "took": 19,
+    "max_score": 2585.2932,
+    "results": [
+        {
+            "score": 1,
+            "highlights": {
+                "text": [
+                    "ET <em>BOULANGERIE</em>-PATISSERIE DE LA HAUTE-GARONNE\" DONT L'ACCORD EN DATE DU 27 JUIN 1973 AVEC LE SYNDICAT",
+                    "<em>BOULANGERIES</em>-PATISSERIES ET DEPOTS DE PAIN, …",
+                    "ET DE LA <em>BOULANGERIE</em>-PATISSERIE FRANCAISE\", AVAIT ETE IMPROPREMENT DESIGNE DANS LE TE…TE DE L'ACCORD",
+                    "SOUS LA DENOMINATION DE \"SYNDICAT DEPARTEMENTAL DES PATRONS <em>BOULANGERS</em> ET <em>BOULANGERS</em>-PATISSIERS DE LA",
+                    "AUQUEL N'AVAIT PAS ENCORE ETE SUBSTITUE LE SYNDICAT DES PATRONS <em>BOULANGERS</em> ET <em>BOULANGERS</em>-PATISSIERS"
+                ]
+            },
+            "id": "6079a89f9ba5988459c4e457",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "74-93.553",
+            "numbers": [
+                "74-93.553"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1975-07-18",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Un syndicat professionnel constitué pour la défense des intérêts d'une profession déterminée, qui, par une transformation de ses statuts, s'est chargé en outre de la défense des intérêts d'une autre profession, ne peut prétendre à la personnalité civile en cette dernière qualité s'il n'a pas effectué le dépôt de ses nouveaux statuts. En revanche, ce syndicat conserve en pareil cas, le pouvoir de représenter les intérêts de la profession pour laquelle il a été initialement constitué aux termes de ses statuts régulièrement déposés (1).",
+            "themes": [
+                "syndicats",
+                "capacité",
+                "représentation de la profession pour laquelle le syndicat a été constitué",
+                "transformation des statuts",
+                "statuts nouveaux non régulièrement déposés",
+                "portée"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9994349963864834,
+            "highlights": {
+                "text": [
+                    "DU CHEF D'INFRACTION A LA REGLEMENTATION RELATIVE A LA FERMETURE HEBDOMADAIRE DES <em>BOULANGERIES</em>\nLA",
+                    "QU'UN ARRETE DU PREFET DU CHER, LEGALEMENT PRIS, EN DATE DU 26 MAI 1932 DISPOSE : ARTICLE 1ER, LES <em>BOULANGERIES</em>",
+                    "A VENDU DU PAIN UN DIMANCHE DANS UN MAGASIN DE VENTE AU DETAIL D'ARTICLES DE <em>BOULANGERIE</em> ET DE PATISSERIE",
+                    "SUCCURSALE DE LA <em>BOULANGERIE</em> INDUSTRIELLE QU'IL E…PLOITE A BOURGES ET D'OU LE PAIN E…POSE ET VENDU",
+                    "ARTISANALES\nQUE LES <em>BOULANGERIES</em> INDUSTRIELLES SONT ADMISES DE DROIT, PAR APPLICATION DE L'ARTICLE"
+                ]
+            },
+            "id": "6079a8809ba5988459c4da4f",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "65-91.676",
+            "numbers": [
+                "65-91.676"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1965-12-15",
+            "solution": "cassation",
+            "type": "arret",
+            "summary": "L'arrêté préfectoral, pris en application de l'article 43 a du livre II du Code du travail, qui interdit la vente et le colportage du pain le dimanche, est applicable à la succursale de vente d'une boulangerie industrielle (1).\n Il n'y a aucune analogie, du point de vue de l'application du repos hebdomadaire entre une telle succursale et une succursale des magasins à commerces multiples (2).\n Il n'importe que le prévenu ne soit pas membre des syndicats qui ont été consultés par le préfet à l'occasion de la préparation de son arrêté (3).",
+            "themes": [
+                "travail",
+                "repos hebdomadaire",
+                "fermeture des établissements",
+                "arrêté préfectoral",
+                "portée",
+                "succursale de vente",
+                "boulangerie industrielle",
+                "application",
+                "appartenance aux syndicats consultés",
+                "nécessité (non)"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9978678627244291,
+            "highlights": {
+                "text": [
+                    "d'Angers, en date du 23 octobre 1991, ordonnant la cessation immédiate de la publicité en faveur du <em>boulanger</em>",
+                    "authentique et la saisie de ses supports\naux motifs que si la dénomination <em>boulanger</em> authentique",
+                    "ne doit s'appliquer qu'au véritable <em>boulanger</em>, c'est-à-dire à celui qui fabrique sa pâte ou ses pâtes",
+                    "authentiques \", affichant dans leurs vitrines la Charte du <em>boulanger</em> authentique, et s'engageant",
+                    "du département signataires de la Charte ; que ce prospectus, intitulé \" les <em>boulangers</em> authentiques"
+                ]
+            },
+            "id": "6079a8579ba5988459c4cd37",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "92-81.489",
+            "numbers": [
+                "92-81.489"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1992-12-15",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Le juge d'instruction tient des dispositions de l'article 44-II de la loi du 27 décembre 1973 le pouvoir d'ordonner la cessation (provisoire) d'une publicité, dès lors que la sincérité et l'exactitude des allégations publicitaires sont sérieusement contestées (1).",
+            "themes": [
+                "publicite de nature a induire en erreur",
+                "cessation de la publicité",
+                "instruction",
+                "juge d'instruction",
+                "pouvoirs",
+                "pouvoir de suspension",
+                "condition"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9892066400824479,
+            "highlights": {
+                "text": [
+                    "Tribunal de Commerce de Marmande, a décidé que les frais de portage des sacs de farine du seuil de la <em>boulangerie</em>",
+                    "au fournil ou à la chambre spéciale des farines incombaient au <em>boulanger</em> …..., le meunier Y... étant",
+                    "d'avoir faussement appliqué l'article 1608 du Code Civil, faussement interprété les termes \"rendu en <em>boulangerie</em>",
+                    "la farine, faussement interprété les circulaires ministérielles relatives au portage des farines de <em>boulangerie</em>",
+                    "devaient incomber les frais de portage des sacs de farine à l'intérieur de la <em>boulangerie</em> ; qu'elle"
+                ]
+            },
+            "id": "6079d63f9ba5988459c5a045",
+            "jurisdiction": "cc",
+            "chamber": "comm",
+            "number": "53-39.210",
+            "numbers": [
+                "53-39.210"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1953-02-09",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Les usages locaux ne sauraient prévaloir contre les dispositions réglementaires et d'ordre public.\n Spécialement c'est à bon droit que les juges du fond décident que, sont à la charge du boulanger et non à celle du meunier, les frais de portage des sacs de farine du seuil de la boulangerie au fournil, dès lors que les règlements administratifs qui fixent le prix de la farine font entrer dans le charges de la panification les frais de déchargement.",
+            "themes": [
+                "usages",
+                "portée",
+                "existence de dispositions réglementaires",
+                "meunerie",
+                "farine",
+                "frais de déchargement"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9877408102106174,
+            "highlights": {
+                "text": [
+                    "CASSATION PARTIELLE SUR LE POURVOI DU SYNDICAT DEPARTEMENTAL DES MAITRES ARTISANS <em>BOULANGERS</em> ET <em>BOULANGERS</em>-PATISSIERS",
+                    "ET <em>BOULANGERS</em>-PATISSIERS ET LE SYNDICAT DEPARTEMENTAL DES OUVRIERS <em>BOULANGERS</em> DU GARD, CE VISA NE PRECISE",
+                    "ET DES <em>BOULANGERS</em>-PATISSIERS ET DES OUVRIERS <em>BOULANGERS</em> LE PREFET DU DEPARTEMENT DU GARD A PRESCRIT",
+                    "LA FERMETURE OBLIGATOIRE LE DIMANCHE DES <em>BOULANGERIES</em> DANS LE DEPARTEMENT\nATTENDU QUE CET ARRETE",
+                    "DISPOSE QUE : \"LES <em>BOULANGERIES</em>, FABRIQUES DE PAIN ORDINAIRE, PAIN DE GRUAU, PAIN VIENNOIS, PAIN DIT"
+                ]
+            },
+            "id": "6079a87f9ba5988459c4d924",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "63-93.246",
+            "numbers": [
+                "63-93.246"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1964-12-15",
+            "solution": "cassation",
+            "type": "arret",
+            "summary": "L'ARTICLE 43A DU LIVRE II DU CODE DU TRAVAIL RELATIF A L'ORGANISATION DU REPOS HEBDOMADAIRE N'EXIGE PAS QUE L'ACCORD ENTRE LES SYNDICATS PATRONAUX ET OUVRIERS, QU'IL PREVOIT SOIT CONSTATE PAR ECRIT.",
+            "themes": [
+                "travail",
+                "repos hebdomadaire",
+                "fermeture des etablissements",
+                "arrete prefectoral",
+                "accord des syndicats interesses",
+                "forme",
+                "application",
+                "notification individuelle (non)"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9822489766344491,
+            "highlights": {
+                "text": [
+                    "Z..., en qualité d'ouvrier <em>boulanger</em>, le 10 avril 1978 et l'avait licencié le 27 décembre 1979, fait",
+                    "n'était pas titulaire de ce diplôme, qu'il ne justifiait avoir régulièrement travaillé comme ouvrier <em>boulanger</em>",
+                    "des dispositions conventionnelles visées par le moyen que l'ouvrier <em>boulanger</em> sortant d'apprentissage",
+                    "Z... avait travaillé plus d'un an comme ouvrier <em>boulanger</em> après la fin de son apprentissage avant d'entrer",
+                    "…... ; qu'ils ont pu déduire qu'il avait déjà exercé le métier d'ouvrier <em>boulanger</em> dans la 2e catégorie"
+                ]
+            },
+            "id": "6079b1349ba5988459c5161b",
+            "jurisdiction": "cc",
+            "chamber": "soc",
+            "number": "86-41.438",
+            "numbers": [
+                "86-41.438"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1988-07-13",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Il résulte de l'article 9 de la convention collective de la boulangerie et de la boulangerie-pâtisserie de la région d'Ile-de-France que : \n 1° l'ouvrier boulanger sortant d'apprentissage sans avoir obtenu le diplôme complet de fin d'apprentissage doit être classé en deuxième catégorie au bout d'un an de pratique professionnelle ; \n 2° l'ouvrier boulanger ayant exercé le métier dans le cadre de la deuxième catégorie et pouvant tenir tous les postes et assurer, avec ou sans le concours du chef d'entreprise, l'ensemble de la fabrication, doit être classé en quatrième catégorie",
+            "themes": [
+                "conventions collectives",
+                "boulangerie",
+                "convention régionale de la boulangerie et de la boulangerie",
+                "pâtisserie",
+                "région d'ile",
+                "de",
+                "france",
+                "contrat de travail",
+                "catégorie professionnelle",
+                "classement",
+                "ouvrier boulanger de deuxième catégorie",
+                "conditions",
+                "contrat de travail, formation",
+                "convention collective",
+                "convention collective de la boulangerie",
+                "pâtisserie de la région d'ile",
+                "ouvrier boulanger de quatrième catégorie"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.981226268649142,
+            "highlights": {
+                "text": [
+                    "<em>boulangeries</em> pâtisseries, dépôts de pain, ce, dans un délai d'un mois à compter de la signification",
+                    "<em>boulangeries</em> pâtisseries, dépôts de pain, ce dans le délai d'un mois à compter de la signification",
+                    "<em>boulangeries</em> pâtisseries, dépôts de pain, ce dans le délai d'un mois à compter de la signification",
+                    "habilitée à signer un tel accord au nom de la profession de la <em>boulangerie</em> pâtisserie",
+                    "Il sera en conséquence fait droit à la demande principale de la Maison de <em>boulangerie</em>\nALORS QUE"
+                ]
+            },
+            "id": "6079bc059ba5988459c5707f",
+            "jurisdiction": "cc",
+            "chamber": "soc",
+            "number": "09-14.418",
+            "numbers": [
+                "09-14.418"
+            ],
+            "ecli": "ECLI:FR:CCASS:2010:SO01921",
+            "publication": [
+                "b"
+            ],
+            "decision_date": "2010-10-13",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Les syndicats ou associations professionnels qui regroupent des personnes exerçant la même profession, des métiers similaires ou connexes, qui ont pour objet exclusif l'étude et la défense des droits ainsi que des intérêts matériels et moraux tant collectifs qu'individuels des personnes mentionnées dans leurs statuts, ont la capacité d'ester en justice, dès lors qu'ils ont satisfait à l'obligation de dépôt de leurs statuts en mairie.\nDoit être en conséquence approuvé l'arrêt qui, après avoir vérifié que l'objet d'un organisme professionnel correspondait bien à celui d'un syndicat ou association professionnel et que cet organisme avait régulièrement déposé ses statuts en mairie, décide qu'il avait la capacité d'ester en justice, peu important qu'ayant la forme d'une association régie par la loi du 1er juillet 1901, il ne justifie pas, en plus, de la déclaration prévue à l'article 5 de ladite loi",
+            "themes": [
+                "action en justice",
+                "capacité",
+                "syndicat ou association professionnelle",
+                "condition",
+                "détermination",
+                "portée",
+                "syndicat professionnel",
+                "statuts",
+                "objet",
+                "etude et défense des droits et intérêts matériels et moraux des personnes mentionnées dans les statuts",
+                "objet exclusif",
+                "nécessité",
+                "travail reglementation, duree du travail",
+                "repos et congés",
+                "repos hebdomadaire",
+                "repos dominical",
+                "dérogations",
+                "accord intervenu entre les organisations syndicales de salariés et les organisations d'employeurs",
+                "arrêté préfectoral de fermeture au public",
+                "etablissements visés",
+                "validité",
+                "accord signé par un organisme habilité à le signer",
+                "portée separation des pouvoirs",
+                "acte administratif",
+                "appréciation de la légalité, de la régularité ou de la validité",
+                "question préjudicielle",
+                "sursis à statuer",
+                "contestation sérieuse",
+                "arrêté préfectoral",
+                "violation"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9775347724583037,
+            "highlights": {
+                "text": [
+                    "L'ARRETE PREFECTORAL DU 10 AOUT 1945, A DECLARE RECEVABLE L'ACTION CIVILE DU SYNDICAT DEPARTEMENTAL DE LA <em>BOULANGERIE</em>",
+                    "L'ARRET ATTAQUE A CONDAMNE LE DEMANDEUR A DES DOMMAGES-INTERETS ENVERS LE SYNDICAT DEPARTEMENTAL DE LA <em>BOULANGERIE</em>",
+                    "POUR AVOIR OUVERT SA <em>BOULANGERIE</em> LE DIMANCHE AU COURS DE L'ANNEE 1964 ET COMMIS AINSI UNE PRETENDUE",
+                    "A CREE UNE INEGALITE ENTRE LUI-MEME ET LES AUTRES <em>BOULANGERS</em> QUI, EU…, ONT RESPECTE L'ARRETE PREFECTORAL",
+                    "A ROMPU L'EGALITE QUE LA LOI A ENTENDU ETABLIR ENTRE TOUS LES <em>BOULANGERS</em> EMPLOYANT OU NON UN TEL PERSONNEL"
+                ]
+            },
+            "id": "6079a89a9ba5988459c4e3c0",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "67-90.116",
+            "numbers": [
+                "67-90.116"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1967-10-10",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Un boulanger qui ouvre sa boulangerie un jour où la fermeture de toutes les boulangeries est prescrite par un arrêté préfectoral pris en application de l'article 43 a du Livre II du Code du travail, rompt l'égalité voulue par la loi entre tous les établissements, et porte préjudice à l'ensemble des boulangers représenté par le syndicat patronal, qui est recevable à se constituer partie civile.",
+            "themes": [
+                "action civile",
+                "recevabilité",
+                "syndicat",
+                "syndicat patronal",
+                "repos hebdomadaire",
+                "fermeture des établissements",
+                "infraction",
+                "préjudice",
+                "travail"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9764714501241097,
+            "highlights": {
+                "text": [
+                    "PROCEDANT A LA FABRICATION DE PRODUITS ALIMENTAIRES DESTINES A LA CONSOMMATION IMMEDIATE TELS QUE LES <em>BOULANGERIES</em>",
+                    "APPERT DE L'ARRET ATTAQUE ET DU JUGEMENT DONT LA COUR D'APPEL S'EST APPROPRIE LES MOTIFS, QUE …..., <em>BOULANGER</em>",
+                    "DE LA MAIN-D'OEUVRE AU SUJET DU PROJET DE MODIFICATIONS SOUMIS PAR LE SYNDICAT DEPARTEMENTAL DE LA <em>BOULANGERIE</em>",
+                    "AVEC L'ACCORD DU SYNDICAT DES OUVRIERS <em>BOULANGERS</em> DE LA CHARENTE, CE QUI IMPLIQUERAIT LA DEMANDE ET",
+                    "AVEC L'ACCORD DU SYNDICAT DES OUVRIERS <em>BOULANGERS</em> DE LA CHARENTE\nQUE C'EST A BON DROIT QUE LA"
+                ]
+            },
+            "id": "6079a8af9ba5988459c4e77a",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "65-92.585",
+            "numbers": [
+                "65-92.585"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1966-06-03",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "La fermeture dominicale des boulangeries peut être déclarée obligatoire par le préfet, dans les conditions de l'article 43a du livre II du Code du travail, pour les établissements que l'article 38 du même livre autorise de plein droit à donner le repos hebdomadaire par roulement.",
+            "themes": [
+                "1) travail",
+                "repos hebdomadaire",
+                "fermeture des établissements",
+                "arrêté préfectoral",
+                "jour de fermeture",
+                "dimanche",
+                "etablissements autorisés à donner le repos hebdomadaire par roulement",
+                "boulangerie",
+                "lois et reglements",
+                "travail",
+                "fermeture dominicale",
+                "2) travail",
+                "dérogation",
+                "interdiction de la panification",
+                "liberte du commerce",
+                "fermeture",
+                "3) travail",
+                "modification",
+                "demande des syndicats",
+                "portée"
+            ],
+            "files": []
+        },
+        {
+            "score": 0.9747008579142976,
+            "highlights": {
+                "text": [
+                    "QU'EN CONSEQUENCE, S'AGISSANT D'UNE MESURE DESTINEE A GARANTIR LE REPOS HEBDOMADAIRE DU PERSONNEL DES <em>BOULANGERIES</em>",
+                    "LE PREFET NE POUVAIT, SANS E…CES DE POUVOIR, AUTORISER L'ACTIVITE DE CERTAINES <em>BOULANGERIES</em>\nALORS",
+                    "L'INDUSTRIE EDICTEE PAR LA LOI DES 2 ET 17 MARS\nATTENDU QU'IL APPERT DE L'ARRET ATTAQUE QUE LE <em>BOULANGER</em>",
+                    "A CAUSE UN PREJUDICE AU MOINS INDIRECT A L'INTERET COLLECTIF DE LA PROFESSION DE LA <em>BOULANGERIE</em> EN CREANT",
+                    "ILLICITEMENT, AU PROFIT DU DEMANDEUR, UNE INEGALITE PAR RAPPORT A L'ENSEMBLE DES AUTRES <em>BOULANGERS</em>"
+                ]
+            },
+            "id": "6079a8999ba5988459c4e2d5",
+            "jurisdiction": "cc",
+            "chamber": "cr",
+            "number": "72-91.039",
+            "numbers": [
+                "72-91.039"
+            ],
+            "publication": [
+                "b"
+            ],
+            "decision_date": "1972-11-21",
+            "solution": "rejet",
+            "type": "arret",
+            "summary": "Le préfet, qui tient de l'article 43-a du Livre II du Code du travail le droit d'ordonner la fermeture au public des boulangeries pendant la durée du repos hebdomadaire, n'excède pas ses pourvoirs en autorisant ce jour-là l'ouverture des boulangeries sous les conditions qu'alors les patrons y travaillent seuls ou avec les membres de leur famille, et s'abstiennent de fabriquer du pain, d'en vendre sur la voie publique, ainsi que d'en distribuer à domicile (1).",
+            "themes": [
+                "1) travail",
+                "repos hebdomadaire",
+                "fermeture des établissements",
+                "arrêté préfectoral",
+                "article 43",
+                "a du livre ii du code du travail",
+                "boulangerie",
+                "ouverture autorisée mais assortie d'interdictions partielles",
+                "légalité",
+                "lois et reglements",
+                "travail",
+                "2) action civile",
+                "recevabilité",
+                "syndicats",
+                "intérêts collectifs de la profession",
+                "syndicat patronal",
+                "infraction",
+                "action civile",
+                "préjudice"
+            ],
+            "files": []
+        }
+    ],
+    "relaxed": false
+}

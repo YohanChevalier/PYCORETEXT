@@ -1,0 +1,20 @@
+L’application PYCORETEXT facilite l’utilisation de l’API JUDILIBRE grâce à une interface graphique simplifiée.
+Son fonctionnement est détaillé dans le fichier « specifications_techniques.rst » mis à disposition avec l’application.
+
+La clé d’authenfication fournie par l’utilisateur n’est pas stockée.
+L’utilisation de la clé est réduite au temps d’exécution du programme.
+
+Les données et métadonnées collectées par l’utilisateur ne sont pas altérées et sont transmises sans traitement intermédiaire.
+Elles sont échangées directement entre l’API et l’application, aucune base de données n’est utilisée.
+PYCORETEXT n'est donc ni réutilisateur, ni rediffuseur, ni responsable de traitement au sens du RGPD.
+Nous ne pouvons donc ni filtrer, ni supprimer, ni modifier le contenu des décisions de justice.
+
+Les données proviennent des serveurs suivants :
+Serveur Production : https://api.piste.gouv.fr/cassation/judilibre/v1.0
+Serveur Sandbox : https://sandbox-api.piste.gouv.fr/cassation/judilibre/v1.0
+
+Le réutilisateur est invité à signaler à la Cour de cassation (anonymisation.sder.courdecassation@justice.fr) la persistance, dans une décision de justice, d’éléments de réidentification manifest des personnes physiques qui y sont mentionnées.
+
+Pour toute réutilisation des données issues de la base Open Data, veuillez vous reporter aux documents suivants :
+- https://www.etalab.gouv.fr/licence-ouverte-open-licence
+- https://piste.gouv.fr/images/cgu/CGU_open_data_V8.pdf

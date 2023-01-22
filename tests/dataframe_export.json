@@ -1,0 +1,723 @@
+{
+    "batch": 0,
+    "batch_size": 10,
+    "query": {
+        "type": [
+            "ordonnance"
+        ],
+        "date_start": "2022-10-15",
+        "date_end": "2022-10-20",
+        "date_type": "creation",
+        "batch": 0,
+        "theme": [],
+        "chamber": [],
+        "formation": [],
+        "jurisdiction": [],
+        "location": [],
+        "publication": [],
+        "solution": [],
+        "withFileOfType": []
+    },
+    "total": 118,
+    "previous_batch": null,
+    "next_batch": "type=ordonnance&date_start=2022-10-15&date_end=2022-10-20&date_type=creation&batch=1&theme=&chamber=&formation=&jurisdiction=&location=&publication=&solution=&withFileOfType=",
+    "took": 11,
+    "results": [
+        {
+            "id": "6350f59ffad421adffeefcd6",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [L]\n \n \n \n Pourvoi n°\n : S 22-14.087\n \n \n Demandeur(s)\n : la société 4SH\n \n \n Avocat(s)\n : la SCP Melka-Prigent-Drusch\n \n \n Défendeur(s)\n : la société VIGIE ports et autre\n \n \n Avocat(s)\n : la SARL Cabinet Rousseau et Tapie, \n la SCP Piwnica et Molinié\n \n \n \n \n \n \n Ordonnance\n : 50911\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n La société 4SH, société par actions simplifiée, dont le siège est [Adresse 2], a formé un pourvoi le 30 mars 2022 contre le jugement rendu le 10 janvier 2022 par le tribunal judiciaire de Bordeaux, dans le litige l'opposant :\n \n 1°/ à la société VIGIE ports, groupement d'intérêt économique, dont le siège est [Adresse 1],\n \n 2°/ à la société Marseille Gyptis international (MGI), société anonyme à directoire, dont le siège est [Adresse 3].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer la demanderesse déchue de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 4], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "22-14.087",
+            "numbers": [
+                "22-14.087"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50911",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:39:32.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1229
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1229,
+                        "end": 1363
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2022-01-10",
+                "title": "Tribunal judiciaire de Bordeaux",
+                "jurisdiction": "Tribunal judiciaire de Bordeaux",
+                "number": "21/02099"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2022-01-10",
+                    "title": "Tribunal judiciaire de Bordeaux",
+                    "jurisdiction": "Tribunal judiciaire de Bordeaux",
+                    "number": "21/02099"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f59ffad421adffeefcd6",
+                    "number": "S2214087"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f59dfad421adffeefcd4",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [X]\n \n \n \n Pourvoi n°\n : M 22-14.082\n \n \n Demandeur(s)\n : M. [E]\n \n \n Avocat(s)\n : la SCP Duhamel-Rameix-Gury-Maitre\n \n \n Défendeur(s)\n : la société Star Lease\n \n \n Avocat(s)\n : la SCP Marc Lévis\n \n \n \n \n \n \n Ordonnance\n : 50910\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n M. [N] [E], domicilié [Adresse 3], a formé un pourvoi le 30 mars 2022 contre l'arrêt rendu le 13 janvier 2022 par la cour d'appel de Douai (2e chambre civile, section 1), dans le litige l'opposant à la société Star Lease, société anonyme, dont le siège est [Adresse 1].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer le demandeur déchu de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 2], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "22-14.082",
+            "numbers": [
+                "22-14.082"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50910",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:39:33.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 996
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 996,
+                        "end": 1130
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2022-01-13",
+                "title": "Cour d'appel de Douai\n21",
+                "jurisdiction": "Cour d'appel de Douai",
+                "chamber": "21",
+                "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                "number": "19/06368"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2022-01-13",
+                    "title": "Cour d'appel de Douai\n21",
+                    "jurisdiction": "Cour d'appel de Douai",
+                    "chamber": "21",
+                    "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                    "number": "19/06368"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f59dfad421adffeefcd4",
+                    "number": "M2214082"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f626fad421adffeefd66",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [E]\n \n \n \n Pourvoi n°\n : F 21-11.819\n \n \n Demandeur(s)\n : M. [R] et autre\n \n \n Avocat(s)\n : la SARL Cabinet Rousseau et Tapie\n \n \n Défendeur(s)\n : Mme [G] et autres\n \n \n Avocat(s)\n : la SARL Boré, Salve de Bruneton et Mégret,\n la SCP Piwnica et Molinié\n \n \n \n \n \n \n Ordonnance\n : 50983\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n 1°/ M. [J] [R],\n \n 2°/ Mme [V] [L], \n \n tous deux domiciliés [Adresse 1],\n \n ont formé un pourvoi le 8 février 2021 contre l'arrêt rendu le 13 octobre 2020 par la cour d'appel de Reims (chambre civile, 1re section), dans le litige les opposant :\n \n 1°/ à Mme [Z] [G], domiciliée [Adresse 2],\n \n 2°/ à la société [T] [D], société civile professionnelle, dont le siège est [Adresse 6], pris en la personne de M. [B] [D],\n \n 3°/ à la société [N] [X] Briand-Duffour Olivier Terrat, société civile professionnelle, dont le siège est [Adresse 4], \n prise en la personne de M. [N] [X],\n \n 4°/ à la société A2I, dont le siège est [Adresse 3], \n [Localité 5], exerçant sous l'enseigne Century 21 Lemaire immobilier.\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer les demandeurs déchus de leur pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n \n \n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 7], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "21-11.819",
+            "numbers": [
+                "21-11.819"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50983",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:39.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1500
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1500,
+                        "end": 1634
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2020-10-13",
+                "title": "Cour d'appel de Reims",
+                "jurisdiction": "Cour d'appel de Reims",
+                "number": "19/01361"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2020-10-13",
+                    "title": "Cour d'appel de Reims",
+                    "jurisdiction": "Cour d'appel de Reims",
+                    "number": "19/01361"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f626fad421adffeefd66",
+                    "number": "F2111819"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f622fad421adffeefd62",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [R]\n \n \n \n Pourvoi n°\n : W 21-20.389\n \n \n Demandeur(s)\n : M. [L] [K] et autre\n \n \n Avocat(s)\n : la SARL Boré, Salve de Bruneton et Mégret\n \n \n Défendeur(s)\n : la caisse régionale de Crédit agricole mutuel \n (CRCAM) Pyrénées Gascogne \n \n \n Avocat(s)\n : la SCP Yves et Blaise Capron\n \n \n \n \n \n \n Ordonnance\n : 50981\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n 1°/ M. [B] [S],\n \n 2°/ Mme [F] [J] épouse [S], \n \n tous deux domiciliés [Adresse 2],\n \n ont formé un pourvoi le 29 juillet 2021 contre l'arrêt rendu le 18 mai 2021 par la cour d'appel de Pau (1re chambre), dans le litige les opposant à la caisse régionale de Crédit agricole mutuel (CRCAM) Pyrénées Gascogne, dont le siège est [Adresse 1].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer les demandeurs déchus de leur pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 3], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "21-20.389",
+            "numbers": [
+                "21-20.389"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50981",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:41.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1155
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1155,
+                        "end": 1289
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2021-05-18",
+                "title": "Cour d'appel de Pau\n01",
+                "jurisdiction": "Cour d'appel de Pau",
+                "chamber": "01",
+                "solution": "Déclare la demande ou le recours irrecevable",
+                "number": "19/02641"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2021-05-18",
+                    "title": "Cour d'appel de Pau\n01",
+                    "jurisdiction": "Cour d'appel de Pau",
+                    "chamber": "01",
+                    "solution": "Déclare la demande ou le recours irrecevable",
+                    "number": "19/02641"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f622fad421adffeefd62",
+                    "number": "W2120389"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f620fad421adffeefd60",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [B]\n \n \n \n Pourvoi n°\n : T 21-21.996\n \n \n Demandeur(s)\n : M. [M]\n \n \n Avocat(s)\n : la SCP Thomas-Raquin, Le Guerer, Bouniol-Brochier\n \n \n Défendeur(s)\n : la caisse régionale de Crédit agricole mutuel (CRCAM) \n Centre Ouest \n \n \n Avocat(s)\n : la SCP Yves et Blaise Capron\n \n \n \n \n \n \n Ordonnance\n : 50980\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n M. [I] [M], domicilié [Adresse 2], a formé un pourvoi le 1er septembre 2021 contre l'arrêt rendu le 9 juin 2021 par la cour d'appel de Paris (pôle 5, chambre 6), dans le litige l'opposant à la caisse régionale de Crédit agricole mutuel (CRCAM) Centre Ouest, caisse de crédit agricole mutuel), dont le siège est [Adresse 1].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer le demandeur déchu de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 3], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "21-21.996",
+            "numbers": [
+                "21-21.996"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50980",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:42.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1125
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1125,
+                        "end": 1259
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2021-06-09",
+                "title": "Cour d'appel de Paris",
+                "jurisdiction": "Cour d'appel de Paris",
+                "number": "19/09873"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2021-06-09",
+                    "title": "Cour d'appel de Paris",
+                    "jurisdiction": "Cour d'appel de Paris",
+                    "number": "19/09873"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f620fad421adffeefd60",
+                    "number": "T2121996"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f618fad421adffeefd56",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [J]\n \n \n \n Pourvoi n°\n : E 22-15.134\n \n \n Demandeur(s)\n : la société M.I.Prom\n \n \n Avocat(s)\n : la SARL Matuchansky, Poupot et Valdelièvre\n \n \n Défendeur(s)\n : la société Sonauto Lyon et autres\n \n \n \n \n \n \n Ordonnance\n : 50975\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n La société M.I.Prom société par actions simplifiée, dont le siège est [Adresse 6], anciennement domiciliée [Adresse 3], a formé un pourvoi le 15 avril 2022 contre l'arrêt rendu le 17 février 2022 par la cour d'appel de Lyon (3e chambre A), dans le litige l'opposant :\n \n 1°/ à la société Sonauto Lyon, société par actions simplifiée, dont le siège est [Adresse 5],\n \n 2°/ à la société Opteven assurances, société anonyme, dont le siège est \n [Adresse 1], anciennement domiciliée \n [Adresse 4],\n \n 3°/ à la société Sogessur, société anonyme, dont le siège est [Adresse 8], \n [Adresse 2].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer la demanderesse déchue de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 7], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "22-15.134",
+            "numbers": [
+                "22-15.134"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50975",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:45.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1315
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1315,
+                        "end": 1449
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2022-02-17",
+                "title": "Cour d'appel de Lyon\n3A",
+                "jurisdiction": "Cour d'appel de Lyon",
+                "chamber": "3A",
+                "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                "number": "18/08794"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2022-02-17",
+                    "title": "Cour d'appel de Lyon\n3A",
+                    "jurisdiction": "Cour d'appel de Lyon",
+                    "chamber": "3A",
+                    "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                    "number": "18/08794"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f618fad421adffeefd56",
+                    "number": "E2215134"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f60afad421adffeefd48",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [L]\n \n \n Pourvoi n°\n : Y 22-14.346\n \n \n Demandeur(s)\n : le syndicat des copropriétaires de l'immeuble [Adresse 6]\n \n \n Avocat(s)\n : la SCP Gadiou et Chevallier\n \n \n Défendeur(s)\n : Mme [F] et autres\n \n \n Avocat(s)\n : la SARL Le Prado - Gilbert\n \n \n \n \n \n \n Ordonnance\n : 50968\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n Le syndicat des copropriétaires de l'immeuble [Adresse 6], dont le siège est [Adresse 5], représenté par son syndic en exercice, la société immobilière d'Agostino, dont le siège est [Adresse 2], a formé un pourvoi le 1er avril 2022 contre l'arrêt rendu le 9 décembre 2021 par la cour d'appel d'Aix-en-Provence \n (chambre 1-5), dans le litige l'opposant :\n \n 1°/ à Mme [G] [F], domiciliée [Adresse 4], \n [Localité 3],\n \n 2°/ à M. [X] [F], domicilié [Adresse 1], \n [Adresse 7],\n \n 3°/ à M. [N] [F], domicilié [Adresse 8].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer le demandeur déchu de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 9], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "22-14.346",
+            "numbers": [
+                "22-14.346"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50968",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:51.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1294
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1294,
+                        "end": 1428
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2021-12-09",
+                "title": "Cour d'appel d'Aix-en-Provence\n4A",
+                "jurisdiction": "Cour d'appel d'Aix-en-Provence",
+                "chamber": "4A",
+                "solution": "Confirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                "number": "19/01755"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2021-12-09",
+                    "title": "Cour d'appel d'Aix-en-Provence\n4A",
+                    "jurisdiction": "Cour d'appel d'Aix-en-Provence",
+                    "chamber": "4A",
+                    "solution": "Confirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                    "number": "19/01755"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f60afad421adffeefd48",
+                    "number": "Y2214346"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f605fad421adffeefd42",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [W]\n \n \n \n Pourvoi n°\n : Q 22-50.011\n \n \n Demandeur(s)\n : le procureur général près la cour d'appel de Douai\n \n \n Défendeur(s)\n : M. [F]\n \n \n Avocat(s)\n : la SCP Doumic-Seiller\n \n \n \n \n \n \n Ordonnance\n : 50965\n \n \n Aide juridictionnelle totale en défense\n au profit de M. [V] [F].\n Décision du bureau d'aide juridictionnelle\n près la Cour de cassation en date du 5 mai 2022.\n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n Le procureur général près la cour d'appel de Douai, domicilié [Adresse 3], a formé un pourvoi le 30 mars 2022 contre l'arrêt rendu le 3 mars 2022 par la cour d'appel de Douai (chambre 1, section 1), dans le litige l'opposant à M. [V] [F], domicilié [Adresse 1], \n [Localité 2].\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer le demandeur déchu de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 4], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "22-50.011",
+            "numbers": [
+                "22-50.011"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50965",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:53.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1148
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1148,
+                        "end": 1282
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2022-03-03",
+                "title": "Cour d'appel de Douai\n1A",
+                "jurisdiction": "Cour d'appel de Douai",
+                "chamber": "1A",
+                "solution": "Infirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                "number": "20/01992"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2022-03-03",
+                    "title": "Cour d'appel de Douai\n1A",
+                    "jurisdiction": "Cour d'appel de Douai",
+                    "chamber": "1A",
+                    "solution": "Infirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                    "number": "20/01992"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f605fad421adffeefd42",
+                    "number": "Q2250011"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f635fad421adffeefd78",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n OPerOff\n \n Pourvoi n°: N 18-17.678\n Demandeur: M. [Z]\n Défendeur: Mme [O]\n Relevé d'office de la péremption n° : 539/22\n Ordonnance n° : 88245 du 20 octobre 2022\n \n \n \n ORDONNANCE\n _______________\n \n \n \n \n Annie Antoine, conseiller délégué par le premier président de la Cour de cassation, assistée de Vénusia Ismail, greffier lors des débats du 29 septembre 2022, a rendu l'ordonnance suivante :\n \n Vu l'ordonnance du 14 février 2019 prononçant la radiation du pourvoi enregistré sous le numéro N 18-17.678 formé à l'encontre de l'arrêt rendu le 29 mars 2018 par la cour d'appel d'Aix-en-Provence dans l'instance opposant M. [S] [Z] à Mme [T] [O] ;\n \n Vu l'article 1009-2 du code de procédure civile, dans sa rédaction résultant du décret n°2008-464 du 22 mai 2008, et notamment son deuxième alinéa ;\n \n Vu les avis d'audience adressés aux parties le 6 mai 2022, les informant de la date de l'audience au cours de laquelle sera examinée par le premier président ou son délégué la péremption, relevée d'office, de l'instance afférente au pourvoi susvisé, et les invitant à formuler des observations ;\n \n Vu les observations présentées par la SCP Alain Bénabent ;\n \n Vu l'avis de Fabrice Burgaud, avocat général, recueilli lors des débats ;\n \n L'ordonnance de radiation du pourvoi a été notifiée le 5 mars 2019 à M. [S] [Z].\n \n Il n'est justifié d'aucun acte manifestant sans équivoque sa volonté d'exécuter la décision attaquée, accompli pendant le délai biennal de la péremption qui, ayant commencé à courir à compter de la notification de la décision ordonnant la radiation du rôle, est acquise.\n \n Dès lors, il y a lieu de constater la péremption de l'instance\n \n EN CONSÉQUENCE \n \n La péremption de l'instance ouverte sur la déclaration de pourvoi enregistrée sous le numéro N 18-17.678 est constatée.\n \n \n \n \n \n Fait à Paris, le 20 octobre 2022\n \n \n Le greffier,\n Le conseiller délégué,\n \n \n \n \n \n \n \n Vénusia Ismail \n Annie Antoine",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "18-17.678",
+            "numbers": [
+                "18-17.678"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR88245",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:25.000Z",
+            "solution": "other",
+            "solution_alt": "1009-1 ordonnance de péremption",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1719
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1719,
+                        "end": 1990
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2018-03-29",
+                "title": "Cour d'appel d'Aix-en-Provence\n6C",
+                "jurisdiction": "Cour d'appel d'Aix-en-Provence",
+                "chamber": "6C",
+                "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                "number": "17/18260"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2018-03-29",
+                    "title": "Cour d'appel d'Aix-en-Provence\n6C",
+                    "jurisdiction": "Cour d'appel d'Aix-en-Provence",
+                    "chamber": "6C",
+                    "solution": "Infirme partiellement, réforme ou modifie certaines dispositions de la décision déférée",
+                    "number": "17/18260"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Autre",
+                    "id": "6350f635fad421adffeefd78",
+                    "number": "N1817678"
+                }
+            ],
+            "partial": false,
+            "visa": [
+                {
+                    "title": "Article l'ordonnance du 14 fevrier 2019 prononcant la radiation du pourvoi enregistre sous le numero N 18-17.678 forme a l'encontre de l'arret rendu le 29 mars 2018 par la cour d'appel d'Aix-en-Provence dans l'instance opposant M. [S] [Z] a Mme [T] [O]."
+                },
+                {
+                    "title": "Article <a href=\"https://www.legifrance.gouv.fr/search/code?tab_selection=code&searchField=ALL&query=1009-2+code+de+procedure+civile&page=1&init=true\" target=\"_blank\">1009-2</a> du code de procedure civile, dans sa redaction resultant du decret n°2008-464 du 22 mai 2008, et notamment son deuxieme alinea."
+                }
+            ],
+            "rapprochements": [],
+            "legacy": {}
+        },
+        {
+            "id": "6350f62cfad421adffeefd6e",
+            "source": "jurinet",
+            "text": "COUR DE CASSATION\n Première présidence\n __________\n [S]\n \n \n \n Pourvoi n°\n : K 21-17.757\n \n \n Demandeur(s)\n : la société Cathay Pacific Airways limited\n \n \n Avocat(s)\n : la SCP Foussard et Froger\n \n \n Défendeur(s)\n : la société Entretien exploitation maintenance et autres\n \n \n Avocat(s)\n : la SARL Cabinet Munier-Apaire, \n la SCP Piwnica et Molinié\n \n \n \n \n \n \n Ordonnance\n : 50987\n \n \n \n ORDONNANCE DE DÉCHÉANCE\n \n \n Mme Caroline Azar, conseillère référendaire, déléguée par le premier président de la Cour de cassation, a rendu la présente ordonnance.\n \n La société Cathay Pacific Airways limited, dont le siège est [Adresse 5]), pris en son établissement en France sis [Adresse 4], a formé un pourvoi le 7 juin 2021 contre l'arrêt rendu le 11 mars 2021 par la cour d'appel de Versailles (12e chambre), dans le litige l'opposant :\n \n 1°/ à la société Entretien exploitation maintenance, société par actions simplifiée, dont le siège est [Adresse 3], exerçant sous le nom commercial SEEM,\n \n 2°/ à la société Arcadis ESG, société par actions simplifiée, dont le siège est [Adresse 2],\n \n 3°/ à la société Artelia, société par actions simplifiée, dont le siège est [Adresse 1], venant aux droits de la société Artelia bâtiment et industrie, anciennement dénommée Coteba.\n \n Aucun mémoire contenant les moyens de droit invoqués contre la décision attaquée n'a été produit dans le délai légal ;\n \n Il y a lieu, dès lors, de déclarer la demanderesse déchue de son pourvoi par application de l'article 978 alinéa 1er du code de procédure civile.\n \n EN CONSÉQUENCE, la conseillère référendaire déléguée,\n \n Constate la déchéance du pourvoi.\n \n Fait à [Localité 6], le 20 octobre 2022",
+            "jurisdiction": "cc",
+            "chamber": "ordo",
+            "number": "21-17.757",
+            "numbers": [
+                "21-17.757"
+            ],
+            "ecli": "ECLI:FR:CCASS:2022:OR50987",
+            "publication": [
+                "n"
+            ],
+            "decision_date": "2022-10-20",
+            "decision_datetime": "2022-10-19T22:00:00.000Z",
+            "update_date": "2022-10-24",
+            "update_datetime": "2022-10-24T17:38:35.000Z",
+            "solution": "decheance",
+            "type": "ordonnance",
+            "nac": null,
+            "portalis": null,
+            "files": [],
+            "zones": {
+                "motivations": [
+                    {
+                        "start": 0,
+                        "end": 1546
+                    }
+                ],
+                "dispositif": [
+                    {
+                        "start": 1546,
+                        "end": 1680
+                    }
+                ]
+            },
+            "contested": {
+                "date": "2021-03-11",
+                "title": "Cour d'appel de Versailles\n12",
+                "jurisdiction": "Cour d'appel de Versailles",
+                "chamber": "12",
+                "solution": "Confirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                "number": "19/03590"
+            },
+            "forward": null,
+            "timeline": [
+                {
+                    "date": "2021-03-11",
+                    "title": "Cour d'appel de Versailles\n12",
+                    "jurisdiction": "Cour d'appel de Versailles",
+                    "chamber": "12",
+                    "solution": "Confirme la décision déférée dans toutes ses dispositions, à l'égard de toutes les parties au recours",
+                    "number": "19/03590"
+                },
+                {
+                    "date": "2022-10-20",
+                    "title": "Cour de cassation\nPremière présidence (Ordonnance)",
+                    "jurisdiction": "Cour de cassation",
+                    "chamber": "Première présidence (Ordonnance)",
+                    "solution": "Déchéance",
+                    "id": "6350f62cfad421adffeefd6e",
+                    "number": "K2117757"
+                }
+            ],
+            "partial": false,
+            "visa": [],
+            "rapprochements": [],
+            "legacy": {}
+        }
+    ]
+}
