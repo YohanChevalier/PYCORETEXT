@@ -23,6 +23,13 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.
 
+...................
+DÉTAILS TECHNIQUES
+...................
+
+Se reporter au fichier "specifications_techniques.rst" dans le dossier docs\
+https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techniques.rst
+
 ..............
 INSTALLATION
 ..............
@@ -32,6 +39,7 @@ Systèmes d'exploitation supportés
 =================================
 
 Windows uniquement
+
 Compatibilité UNIX à venir
 
 ========================================
@@ -56,7 +64,7 @@ Directement via l'interprétateur Python
 6. Activer votre environnement virtuel
     ``.venv\Scripts\activate``
 
-7. Installer les librairies nécessaires grâce au fichier requirements.TEXT
+7. Installer les librairies nécessaires grâce au fichier requirements.txt
     ``pip install -r requirements.txt``
 
 8. Exécuter le fichier source nommé : "pycoretext.py"
