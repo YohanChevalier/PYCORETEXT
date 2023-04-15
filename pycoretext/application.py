@@ -20,12 +20,14 @@ Module contenant la classe principale de l'application, l'objet Tk
 
 import tkinter as tk
 from tkinter import BooleanVar, messagebox
+from tkinter import ttk
 from .api_controller import api_connexion as co, api_url
 from .views import login_page as l_pg, homepage as h, result_page
 from .widgets import CustomNotebook
 from . import exceptions as exc
 from pathlib import Path
 import sys
+import threading
 
 
 class Application(tk.Tk):
@@ -127,15 +129,24 @@ class Application(tk.Tk):
 
     def _on_search(self, *_):
         """
-        Méthode qui récupère les données du formulaire
-        """
+        1- création d'une fenêtre pop-up avec label et progress bar
+        2- instanciation d'un thread dont la cible est _start_api_request
+        3- fermeture de la pop-up une fois le thread terminé (observateur sur
+        variable) """
+        # placement de la fenêtre d'attente au centre de la page login
         # affichage d'une fenêtre d'attente
         self.waiting_dialog = tk.Toplevel(
             self,
         )
-        # placement de la fenêtre d'attente au centre de la page login
-        waiting_dialog_width = 150
-        waiting_dialog_heigth = 20
+        # Désactiver l'utilisation de la croix rouge pour fermer
+        self.waiting_dialog.protocol("WM_DELETE_WINDOW",
+                                     self._close_waiting_dialog)
+        self.waiting_dialog.grab_set()
+        self.waiting_dialog.columnconfigure(0, weight=1)
+        self.waiting_dialog.resizable(False, False)
+
+        waiting_dialog_width = 200
+        waiting_dialog_heigth = 60
         diff_x = self._app_width // 2 - waiting_dialog_width // 2
         diff_y = self._app_height // 2 - waiting_dialog_heigth // 2
         waiting_dialog_x = self.winfo_rootx() + diff_x
@@ -143,11 +154,39 @@ class Application(tk.Tk):
         self.waiting_dialog.geometry(
             f'{waiting_dialog_width}x{waiting_dialog_heigth}' +
             f'+{waiting_dialog_x}+{waiting_dialog_y}')
-        # création du message d'attente
-        tk.Label(self.waiting_dialog,
-                 text="Recherche en cours...").grid(sticky=("we"))
-        # rafraîchir la main loop afin d'afficher la page d'attente
-        self.update()
+
+        # Label d'attente
+        waiting_label = ttk.Label(self.waiting_dialog,
+                                  text='Requêtes Judilibre en cours...')
+        waiting_label.grid(column=0, row=0, sticky=tk.W + tk.E)
+
+        # Barre de progression
+        pbar = ttk.Progressbar(self.waiting_dialog, orient='horizontal',
+                               length=200, mode='indeterminate')
+        pbar.grid(column=0, row=1, sticky=tk.W + tk.E)
+        pbar.start(5)
+
+        # Variable d'état pour la recherche
+        self._search_done = tk.BooleanVar()
+
+        # Définie la function qui prendra en charge les exceptions
+        # levées dans le thread
+        threading.excepthook = self._custom_hook
+
+        # Ouvre un thread et exécute la fonction cible
+        main_thread = threading.Thread(target=self._start_api_request)
+        main_thread.start()
+
+        # Attend que le thread ait modifié l'état de la recherche
+        self.wait_variable(self._search_done)
+
+        # Suppression de la fenêtre d'attente
+        self.waiting_dialog.destroy()
+
+    def _start_api_request(self):
+        """
+        Méthode qui récupère les données du formulaire
+        """
         # appel de la fonction get() de SearchBloc afin de récolter les
         # informations données par l'utilisateur dans le formulaire
         data_from_dict = self._homepage.search.get()
@@ -169,7 +208,7 @@ class Application(tk.Tk):
                 title="Aucun résultat",
                 message=e.message)
             return
-        except ValueError as e:
+        except exc.ERRORS as e:
             self.waiting_dialog.destroy()
             messagebox.showinfo(
                 title="Communication API",
@@ -194,7 +233,21 @@ class Application(tk.Tk):
             self._notebook.add(self._result_page,
                                text=f"Recherche {last_answer.id_answer}")
             self._notebook.select(self._result_page)
-            self.waiting_dialog.destroy()
+            # mise à jour de la variable qui indique
+            # la fin du traitement dans le thread
+            self._search_done.set(True)
+
+    def _custom_hook(self, args: threading.ExceptHookArgs):
+        """
+        Fonction pour gérer les exceptions qui ne sont pas déjà gérées
+        dans le code exécuté dans le thread
+        """
+        messagebox.showerror(
+            title="Erreur technique observé dans un thread",
+            message=(f"Type erreur = {args.exc_type}"
+                     + "\n"
+                     + f"identité thread = {args.thread}"))
+        self.waiting_dialog.destroy()
 
     def _create_url(self, data_from_dict: dict):
         """
@@ -272,3 +325,8 @@ class Application(tk.Tk):
             )
             state = 0
         return state
+
+    def _close_waiting_dialog(self):
+        """
+        Action attendue lors du clic sur la croix rouge"""
+        pass
