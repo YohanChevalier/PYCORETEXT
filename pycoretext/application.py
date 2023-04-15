@@ -45,7 +45,6 @@ class Application(tk.Tk):
         # variables de gestion de la connexion
         self.connexion = None
         self.__connexion_exists = BooleanVar()
-        self.__connexion_exists.trace_add("write", self._once_co_up)
         # paramétrage de la fenêtre principale Tk
         self.title("PYCORETEXT")
         self.iconbitmap(default=self._c_dir / "pycoretext.ico")
@@ -74,9 +73,67 @@ class Application(tk.Tk):
 
     def _on_connexion(self, *_):
         """
-        Vérification de la connexion avec les identifiants collectés
-        dans la login page.
+        1- création d'une fenêtre pop-up avec label et progress bar
+        2- instanciation d'un thread dont la cible est _start_login_connexion
+        3- fermeture de la pop-up une fois le thread terminé (observateur sur
+        variable) """
+        # placement de la fenêtre d'attente au centre de la page login
+        # affichage d'une fenêtre d'attente
+        self.waiting_login_dialog = tk.Toplevel(
+            self._login,
+        )
+        # Désactiver l'utilisation de la croix rouge pour fermer
+        self.waiting_login_dialog.protocol("WM_DELETE_WINDOW",
+                                           self._close_waiting_dialog)
+        self.waiting_login_dialog.grab_set()
+        self.waiting_login_dialog.columnconfigure(0, weight=1)
+        self.waiting_login_dialog.resizable(False, False)
+
+        waiting_login_dialog_width = 200
+        waiting_login_dialog_heigth = 60
+        diff_x = self._app_width // 2 - waiting_login_dialog_width // 2
+        diff_y = self._app_height // 2 - waiting_login_dialog_heigth // 2
+        waiting_login_dialog_x = self.winfo_rootx() + diff_x
+        waiting_login_dialog_y = self.winfo_rooty() + diff_y
+        self.waiting_login_dialog.geometry(
+            f'{waiting_login_dialog_width}x{waiting_login_dialog_heigth}' +
+            f'+{waiting_login_dialog_x}+{waiting_login_dialog_y}')
+
+        # Label d'attente
+        waiting_login_label = ttk.Label(
+                                self.waiting_login_dialog,
+                                text='Mise en place de l\'application...')
+        waiting_login_label.grid(column=0, row=0, sticky=tk.W + tk.E)
+
+        # Barre de progression
+        pbar = ttk.Progressbar(self.waiting_login_dialog, orient='horizontal',
+                               length=100, mode='indeterminate')
+        pbar.grid(column=0, row=1, sticky=tk.W + tk.E)
+        pbar.start(5)
+
+        # Variable d'état pour la mise en place de l'application
+        self._login_ready = tk.BooleanVar()
+
+        # Définie la function qui prendra en charge les exceptions
+        # levées dans le thread
+        threading.excepthook = self._custom_hook_login
+
+        # Ouvre un thread et exécute la fonction cible
+        login_thread = threading.Thread(target=self._start_main_window_setup)
+        login_thread.start()
+
+        # Attend que le thread ait mis en place la fenêtre principale
+        self.wait_variable(self._login_ready)
+
+        # Suppression de la fenêtre d'attente
+        self.waiting_login_dialog.destroy()
+
+    def _start_main_window_setup(self):
         """
+        1- Vérification de la connexion avec les identifiants collectés
+        dans la login page
+        2- si ok = construction de la homepage et fermeture de la login page
+        3- si ko = envoi de l'erreur dans la login page et nettoyage"""
         self.connexion = co.Connexion(
             env=self._login.var["environment"].get(),
             key_user=self._login.var["key"].get()
@@ -85,19 +142,24 @@ class Application(tk.Tk):
         if isinstance(test_result, bool):
             # si le test est correct alors c'est parti !
             self.__connexion_exists.set(True)
+            self._build_homepage()
+            self._login_ready.set(True)
+            # On supprime la page de login lorsque tout est initialisé
+            self.deiconify()
+            self._login.destroy()
         else:
             # On envoie le message de l'exception à la page login
             self._login.var["error_message"].set(
                 f"Erreur de connexion : {test_result}")
             # On retire l'objet connexion s'il n'est pas valide
             self.connexion = None
-            # Suppression de la fenêtre d'attente
-            self._login.waiting_dialog.destroy()
+            # suppression de la fenêtre d'attente
+            self.waiting_login_dialog.destroy()
 
-    def _once_co_up(self, *args, **kwargs):
+    def _build_homepage(self):
         """
-        Si la variable self.__connexion_exists est modifiée
-        alors on initialise la page principale (homepage)
+        Création de la page d'accueil.
+        Envoid e l'éventuelle erreur à la login page
         """
         # création du notebook d'après la classe personnalisée
         # qui offre des onglets avec croix pour fermer
@@ -114,19 +176,25 @@ class Application(tk.Tk):
             # suppression de l'objet connexion s'il n'est pas valide
             self.connexion = None
             # suppression de la fenêtre d'attente
-            self._login.waiting_dialog.destroy()
+            self.waiting_login_dialog.destroy()
             # suppression du notebook
             del self._notebook
-
         else:
             self._notebook.add(self._homepage, text="Accueil")
             # on bind la fonction de recherche
             self._homepage.search.bind("<<OnSearch>>", self._on_search)
-            # On supprime la page de login lorsque tout est initialisé
-            self.deiconify()
-            self._login.destroy()
-            # Suppression de la fenêtre d'attente
-            self._login.waiting_dialog.destroy()
+
+    def _custom_hook_login(self, args: threading.ExceptHookArgs):
+        """
+        Fonction pour gérer les exceptions qui ne sont pas déjà gérées
+        dans le code exécuté dans le thread
+        """
+        # envoi du message de l'exception à la page login
+        self._login.var["error_message"].set(
+                        f"Type erreur = {args.exc_type}"
+                        + "\n"
+                        + f"identité thread = {args.thread.getName()}")
+        self.waiting_login_dialog.destroy()
 
     def _on_search(self, *_):
         """
@@ -172,7 +240,7 @@ class Application(tk.Tk):
 
         # Définie la function qui prendra en charge les exceptions
         # levées dans le thread
-        threading.excepthook = self._custom_hook
+        threading.excepthook = self._custom_hook_search
 
         # Ouvre un thread et exécute la fonction cible
         main_thread = threading.Thread(target=self._start_api_request)
@@ -238,7 +306,7 @@ class Application(tk.Tk):
             # la fin du traitement dans le thread
             self._search_done.set(True)
 
-    def _custom_hook(self, args: threading.ExceptHookArgs):
+    def _custom_hook_search(self, args: threading.ExceptHookArgs):
         """
         Fonction pour gérer les exceptions qui ne sont pas déjà gérées
         dans le code exécuté dans le thread
@@ -247,7 +315,7 @@ class Application(tk.Tk):
             title="Erreur technique observé dans un thread",
             message=(f"Type erreur = {args.exc_type}"
                      + "\n"
-                     + f"identité thread = {args.thread}"))
+                     + f"identité thread = {args.thread.getName()}"))
         self.waiting_dialog.destroy()
 
     def _create_url(self, data_from_dict: dict):
@@ -267,7 +335,6 @@ class Application(tk.Tk):
         # création d'instance ne nécessitant pas d'argument
         else:
             url = good_url_class()
-        print("url object =", url)
         # ajouter les autres critères dans l'URL
         if data_from_dict:
             self._add_criterias_in_url(url, data_from_dict)
@@ -337,4 +404,4 @@ class Application(tk.Tk):
         Action réalisée lors du clic sur la croix en haut à droite de l'app"""
         if messagebox.askokcancel("Quitter",
                                   "Voulez-vous fermer l'application ?"):
-            self.destroy() 
+            self.destroy()

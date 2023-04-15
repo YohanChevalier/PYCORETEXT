@@ -19,6 +19,7 @@ Module contenant la classe dédiée à la page de login.
 """
 
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import PhotoImage, ttk
 from tkinter.scrolledtext import ScrolledText
 from pathlib import Path
@@ -57,6 +58,7 @@ class LoginPage(tk.Toplevel):
         self.title("PYCORETEXT")
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
+        self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placement de la login page au centre de l'écran
         self._login_width = 500
         self._login_height = 500
@@ -67,8 +69,6 @@ class LoginPage(tk.Toplevel):
         self.geometry(
             f'{self._login_width}x{self._login_height}' +
             f'+{self._center_x}+{self._center_y}')
-        # fermeture de l'application quand clic sur la croix
-        self.protocol("WM_DELETE_WINDOW", lambda: self.master.destroy())
 
         # MAIN FRAME
         main_frame = ttk.Frame(self)
@@ -167,24 +167,11 @@ class LoginPage(tk.Toplevel):
         """
         Déclenche un évènement qui sera géré par l'application
         """
-        # affichage d'une fenêtre d'attente
-        self.waiting_dialog = tk.Toplevel(
-            self,
-        )
-        # placement de la fenêtre d'attente au centre de la page login
-        waiting_dialog_width = 150
-        waiting_dialog_heigth = 20
-        diff_x = self._login_width // 2 - waiting_dialog_width // 2
-        diff_y = self._login_height // 2 - waiting_dialog_heigth // 2
-        waiting_dialog_x = self.winfo_rootx() + diff_x
-        waiting_dialog_y = self.winfo_rooty() + diff_y
-        self.waiting_dialog.geometry(
-            f'{waiting_dialog_width}x{waiting_dialog_heigth}' +
-            f'+{waiting_dialog_x}+{waiting_dialog_y}')
-        # création du message d'attente
-        tk.Label(self.waiting_dialog,
-                 text="Tentative de connexion...").grid(sticky=("we"))
-        # rafraîchissement de la main loop afin d'afficher la page d'attente
-        self.update()
-        # génération d'un évènement à destination de l'application
         self.event_generate('<<Connexion>>')
+
+    def _on_closing(self):
+        """
+        Action réalisée lors du clic sur la croix en haut à droite de l'app"""
+        if messagebox.askokcancel("Quitter",
+                                  "Voulez-vous fermer l'application ?"):
+            self.destroy()
