@@ -394,6 +394,17 @@ class Application(tk.Tk):
                 message="Le critère 'operator' ne peut pas être utilisé seul."
             )
             state = 0
+        elif "location ca" in data \
+                or "theme ca" in data\
+                and data.get("jurisdiction", None) is None:
+            messagebox.showerror(
+                title="Conflit de juridictions",
+                message=("Certains critères ne sont pas compatibles avec "
+                         + "la juridiction choisie." + '\n'
+                         + "Rappel, la juridiction par défaut est 'cc'.")
+            )
+            state = 0
+
         # vérification des dates si présentes dans data
         date_to_check = ['date_start', 'date_end']
         for date in date_to_check:
