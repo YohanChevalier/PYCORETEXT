@@ -52,6 +52,7 @@ class Application(tk.Tk):
         self.resizable(False, False)
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
+        self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placer la fenêtre principale au centre de l'écran
         self._app_width = 1200
         self._app_height = 600
@@ -330,3 +331,10 @@ class Application(tk.Tk):
         """
         Action attendue lors du clic sur la croix rouge"""
         pass
+
+    def _on_closing(self):
+        """
+        Action réalisée lors du clic sur la croix en haut à droite de l'app"""
+        if messagebox.askokcancel("Quitter",
+                                  "Voulez-vous fermer l'application ?"):
+            self.destroy() 
