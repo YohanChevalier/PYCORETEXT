@@ -28,6 +28,7 @@ from . import exceptions as exc
 from pathlib import Path
 import sys
 import threading
+import datetime
 
 
 class Application(tk.Tk):
@@ -262,6 +263,7 @@ class Application(tk.Tk):
         # vérifier si le formulaire est bien complété
         state = self._check_form_integrity(data_from_dict)
         if not state:
+            self._search_done.set(False)
             return
         # création de l'objet URL
         url = self._create_url(data_from_dict)
@@ -392,6 +394,16 @@ class Application(tk.Tk):
                 message="Le critère 'operator' ne peut pas être utilisé seul."
             )
             state = 0
+        # vérification des dates si présentes dans data
+        date_to_check = ['date_start', 'date_end']
+        for date in date_to_check:
+            if date in data:
+                if self._date_checker(data[date]) is False:
+                    messagebox.showerror(
+                        title="Format de date incorrect",
+                        message=("Soit '2023', soit '2023-01'" +
+                                 ", soit '2023-01-01'."))
+                    state = 0
         return state
 
     def _close_waiting_dialog(self):
@@ -405,3 +417,23 @@ class Application(tk.Tk):
         if messagebox.askokcancel("Quitter",
                                   "Voulez-vous fermer l'application ?"):
             self.destroy()
+
+    def _date_checker(self, date: str):
+        check_state = False
+        # vérification par format
+        for format in ['%Y-%m-%d', '%Y-%m', '%Y']:
+            try:
+                datetime.datetime.strptime(date, format)
+            except ValueError:
+                pass
+            else:
+                check_state = True
+        # vérification par nombre de chiffres pour chaque segment
+        date_list = date.split("-")
+        for i, date in enumerate(date_list):
+            if i == 0:
+                if len(date) < 4:
+                    check_state = False
+            elif len(date) < 2:
+                check_state = False
+        return check_state
