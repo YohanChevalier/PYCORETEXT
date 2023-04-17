@@ -104,12 +104,12 @@ class Application(tk.Tk):
         waiting_login_label = ttk.Label(
                                 self.waiting_login_dialog,
                                 text='Mise en place de l\'application...')
-        waiting_login_label.grid(column=0, row=0, sticky=tk.W + tk.E)
+        waiting_login_label.grid(column=0, row=0, sticky=tk.W + tk.E, padx=6)
 
         # Barre de progression
         pbar = ttk.Progressbar(self.waiting_login_dialog, orient='horizontal',
                                length=100, mode='indeterminate')
-        pbar.grid(column=0, row=1, sticky=tk.W + tk.E)
+        pbar.grid(column=0, row=1, sticky=tk.W + tk.E, padx=6)
         pbar.start(5)
 
         # Variable d'état pour la mise en place de l'application
@@ -228,12 +228,12 @@ class Application(tk.Tk):
         # Label d'attente
         waiting_label = ttk.Label(self.waiting_dialog,
                                   text='Requêtes Judilibre en cours...')
-        waiting_label.grid(column=0, row=0, sticky=tk.W + tk.E)
+        waiting_label.grid(column=0, row=0, sticky=tk.W + tk.E, padx=6)
 
         # Barre de progression
         pbar = ttk.Progressbar(self.waiting_dialog, orient='horizontal',
                                length=200, mode='indeterminate')
-        pbar.grid(column=0, row=1, sticky=tk.W + tk.E)
+        pbar.grid(column=0, row=1, sticky=tk.W + tk.E, padx=6)
         pbar.start(5)
 
         # Variable d'état pour la recherche
@@ -390,18 +390,18 @@ class Application(tk.Tk):
             state = 0
         elif "key" in data or "value" in data:
             if "idT" not in data:
-                title = "Critère 'Métadonnée' manquant",
+                title = "Critère 'Métadonnée' manquant"
                 message = ("Veuillez sélectionner un élément dans le "
                            + "critère 'Métadonnée'")
                 state = 0
         elif "operator" in data and "query" not in data:
-            title = "Mot(s) clé(s) manquant(s)",
+            title = "Mot(s) clé(s) manquant(s)"
             message = "Le critère 'operator' ne peut pas être utilisé seul."
             state = 0
         elif "location ca" in data \
                 or "theme ca" in data\
                 and data.get("jurisdiction", None) is None:
-            title = "Conflit de juridictions",
+            title = "Conflit de juridictions"
             message = ("Certains critères ne sont pas compatibles avec "
                        + "la juridiction choisie." + '\n'
                        + "Rappel, la juridiction par défaut est 'cc'.")
@@ -411,7 +411,7 @@ class Application(tk.Tk):
         for date in date_to_check:
             if date in data:
                 if self._date_checker(data[date]) is False:
-                    title = "Format de date incorrect",
+                    title = "Format de date incorrect"
                     message = ("Soit '2023', soit '2023-01'" +
                                ", soit '2023-01-01'.")
                     state = 0
