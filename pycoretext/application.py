@@ -261,9 +261,15 @@ class Application(tk.Tk):
         # informations données par l'utilisateur dans le formulaire
         data_from_dict = self._homepage.search.get()
         # vérifier si le formulaire est bien complété
-        state = self._check_form_integrity(data_from_dict)
-        if not state:
+        # Si problème alors :
+        # -fin de la recherche
+        # -générer les erreurs si nécessaire
+        result_integrity = self._check_form_integrity(data_from_dict)
+        if not result_integrity[0]:
             self._search_done.set(False)
+            messagebox.showerror(
+                title=result_integrity[1], message=result_integrity[2]
+            )
             return
         # création de l'objet URL
         url = self._create_url(data_from_dict)
@@ -370,52 +376,46 @@ class Application(tk.Tk):
 
     def _check_form_integrity(self, data: dict):
         """
-        Génère des boîte de dialogue si le formulaire n'est pas correctement
-        complété (ex : formulaire vide)
+        Vérifie l'intégrité du formulaire.
+        Retourne un tuple composé du state, d'un titre et d'un message
+        Si state == 0 alors erreur
+        Le titre et le message serviront pour l'affichage d'une messagebox
         """
         state = 1
+        title = ""
+        message = ""
         if not data:
-            messagebox.showwarning(
-                title="Formulaire vide",
-                message="Aucun champ du formulaire n'est complété !")
+            title = "Formulaire vide"
+            message = "Aucun champ du formulaire n'est complété !"
             state = 0
         elif "key" in data or "value" in data:
             if "idT" not in data:
-                messagebox.showerror(
-                    title="Critère 'Métadonnée' manquant",
-                    message=("Veuillez sélectionner un élément dans le "
-                             "critère 'Métadonnée' (bloc 'Recherche par "
-                             "critères')")
-                )
+                title = "Critère 'Métadonnée' manquant",
+                message = ("Veuillez sélectionner un élément dans le "
+                           + "critère 'Métadonnée'")
                 state = 0
         elif "operator" in data and "query" not in data:
-            messagebox.showerror(
-                title="Mot(s) clé(s) manquant(s)",
-                message="Le critère 'operator' ne peut pas être utilisé seul."
-            )
+            title = "Mot(s) clé(s) manquant(s)",
+            message = "Le critère 'operator' ne peut pas être utilisé seul."
             state = 0
         elif "location ca" in data \
                 or "theme ca" in data\
                 and data.get("jurisdiction", None) is None:
-            messagebox.showerror(
-                title="Conflit de juridictions",
-                message=("Certains critères ne sont pas compatibles avec "
-                         + "la juridiction choisie." + '\n'
-                         + "Rappel, la juridiction par défaut est 'cc'.")
-            )
+            title = "Conflit de juridictions",
+            message = ("Certains critères ne sont pas compatibles avec "
+                       + "la juridiction choisie." + '\n'
+                       + "Rappel, la juridiction par défaut est 'cc'.")
             state = 0
-
         # vérification des dates si présentes dans data
         date_to_check = ['date_start', 'date_end']
         for date in date_to_check:
             if date in data:
                 if self._date_checker(data[date]) is False:
-                    messagebox.showerror(
-                        title="Format de date incorrect",
-                        message=("Soit '2023', soit '2023-01'" +
-                                 ", soit '2023-01-01'."))
+                    title = "Format de date incorrect",
+                    message = ("Soit '2023', soit '2023-01'" +
+                               ", soit '2023-01-01'.")
                     state = 0
-        return state
+        return (state, title, message)
 
     def _close_waiting_dialog(self):
         """
