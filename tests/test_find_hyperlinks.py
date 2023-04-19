@@ -1,3 +1,7 @@
+# https://stackoverflow.com/questions/27760561/tkinter-and-hyperlinks/27762692#27762692
+# https://stackoverflow.com/questions/50327234/adding-link-to-text-in-text-widget-in-tkinter/50328110#50328110
+# https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/text-methods.html
+
 text = (
     """Article <a href="https://www.legifrance.gouv.fr\
 /search/code?tab_selection=code&searchField=ALL&query=1009-1+code+de+procedure+civile&page=1&init=true"\
