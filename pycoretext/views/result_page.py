@@ -20,6 +20,7 @@ Classes pour instanciation d'une page de résultat
 
 import tkinter as tk
 from tkinter import ttk, VERTICAL
+import webbrowser as web
 from pycoretext.api_controller import api_answers
 from pycoretext.widgets import DecisionsList, ButtonWholeText
 
@@ -157,31 +158,26 @@ class ResultPage(tk.Frame):
         self._text.delete("1.0", tk.END)
         # classement alphabétique des métadonnées
         sorted_keys = sorted(list(dict_meta.keys()))
-        count_line = 1.0
         for key in sorted_keys:
             # on gère le texte ailleurs
             if key != "text":
                 value = dict_meta[key]
                 self._text.insert(
-                    str(count_line), f'==== {key.upper()} ====\n')
-                count_line += 1
-                count_line = self._write_value_in_text(value, count_line)
-                self._text.insert(str(count_line), '\n\n')
-                count_line += 1
+                    tk.END, f'==== {key.upper()} ====\n')
+                self._write_value_in_text(value)
+                self._text.insert(tk.END, '\n\n')
 
-    def _write_value_in_text(self, value, count_line: float):
+    def _write_value_in_text(self, value):
         """
         Ecrit dans self._text la valeur donnée selon son type et son contenu.
         """
         # Liste
         if isinstance(value, list):
             if not len(value):
-                self._text.insert(str(count_line), "None")
-                count_line += 1
+                self._text.insert(tk.END, "None")
             # Liste de string = string séparée par " / "
             elif isinstance(value[0], str):
-                self._text.insert(str(count_line), " / ".join(value))
-                count_line += 1
+                self._text.insert(tk.END, " / ".join(value))
             # Liste de dict = string débutant par # et avec saut de ligne
             elif isinstance(value[0], dict):
                 for index_list, item in enumerate(value):
@@ -193,16 +189,30 @@ class ResultPage(tk.Frame):
                         ch += f"{key.capitalize()} : {v}"
                         if index_dict + 1 < len(list(item.keys())):
                             ch += ", "
-                    self._text.insert(str(count_line), f"# {ch}")
-                    count_line += 1
+                    # Recherche des possibles hyperliens
+                    # Obtention des indices des targets si des remplacements ont été faits
+                    hyperlinks_info = self._find_replace_hyperlink(ch)
+                    # Si des hyperliens ont été trouvés
+                    if hyperlinks_info:
+                        new_ch = hyperlinks_info[0]
+                        self._text.insert(tk.END, f"# {new_ch}")
+                        # dernière ligne complétée
+                        i_line = self._text.index(
+                                        "end - 1 chars").split('.')[0]
+                        # Application des tags 
+                        for tag in hyperlinks_info[1]:
+                            self._add_hypertags(i_line,
+                                                tag[0] + 2,
+                                                tag[1] + 2,
+                                                tag[2])
+                    else:
+                        self._text.insert(tk.END, f"# {ch}")
                     if index_list + 1 < len(value):
-                        self._text.insert(str(count_line), '\n')
-                        count_line += 1
+                        self._text.insert(tk.END, '\n')
         # Dictionnaire = string débutant par #
         elif isinstance(value, dict):
             if not len(value):
-                self._text.insert(str(count_line), "None")
-                count_line += 1
+                self._text.insert(tk.END, "None")
             else:
                 ch = ""
                 for index, key in enumerate(list(value.keys())):
@@ -212,28 +222,21 @@ class ResultPage(tk.Frame):
                     ch += f"{key.capitalize()} : {v}"
                     if index + 1 < len(list(value.keys())):
                         ch += ", "
-                self._text.insert(str(count_line), f"# {ch}")
-                count_line += 1
+                self._text.insert(tk.END, f"# {ch}")
         # String simple = pas de mise en forme particulière
         elif isinstance(value, str):
             value = value.split("\n")
             for line in value:
-                self._text.insert(str(count_line), line)
-                count_line += 1
+                self._text.insert(tk.END, line)
         # Si boolean
         elif isinstance(value, bool):
             if value:
-                self._text.insert(str(count_line), "Oui")
-                count_line += 1
+                self._text.insert(tk.END, "Oui")
             else:
-                self._text.insert(str(count_line), "Non")
-                count_line += 1
+                self._text.insert(tk.END, "Non")
         # Si Faux alors on écrit "None"
         else:
-            self._text.insert(str(count_line), "None")
-            count_line += 1
-        # On renvoit le compteur de ligne pour continuer à alimenter self._text
-        return count_line
+            self._text.insert(tk.END, "None")
 
     def _feed_text_from_taxonomy(self):
         """
@@ -241,21 +244,15 @@ class ResultPage(tk.Frame):
         le résultat de taxonomy peut être un liste ou un dict
         """
         self._text.delete("1.0", tk.END)
-        count_line = 1.0
         if isinstance(self.result_taxo, list):
             for value in self.result_taxo:
-                self._text.insert(str(count_line), f'{value}')
-                count_line += 1
-                self._text.insert(str(count_line), '\n')
-                count_line += 1
+                self._text.insert(tk.END, f'{value}')
+                self._text.insert(tk.END, '\n\n')
         else:
             for key, value in self.result_taxo.items():
-                self._text.insert(str(count_line), f'=== {key} ===\n')
-                count_line += 1
-                self._text.insert(str(count_line), f'{value}')
-                count_line += 1
-                self._text.insert(str(count_line), '\n')
-                count_line += 1
+                self._text.insert(tk.END, f'=== {key} ===\n')
+                self._text.insert(tk.END, f'{value}')
+                self._text.insert(tk.END, '\n\n')
 
     def _build_access_text_button(self, decision_text,
                                   id_decision, number_decision):
@@ -311,3 +308,74 @@ class ResultPage(tk.Frame):
             return "taxonomy"
         else:
             return None
+
+    def _find_replace_hyperlink(self, text):
+        """
+        Dans un texte :
+        Trouve les balises <a></a> qui contiennent
+        les attributs href et target
+        Pour chaque occurence:
+        /1 remplace <a></a> par la target (texte d'affichage)
+        /2 conserve les indices de début et
+        fin de la target dans le nouveau texte
+        Retourne un tuple composé du nouveau text et d'une liste de tuples :
+            -> Chaque tuple contient l'indice de début et
+               de fin de la target ainsi que l'URL
+        Si aucune balise <a></a> alors retourne None
+        """
+        is_there_hyperlink = False
+        indices_and_url = []
+        while 1:
+            # Trouver le premier <a> dans le texte
+            indice_start = text.find("<a")
+            if indice_start == -1:
+                break
+            else:
+                is_there_hyperlink = True
+                indice_end = text.find("</a")
+                hyper = text[indice_start:indice_end+4]
+                url = hyper[hyper.find("https"):hyper.find("target")]
+                target = hyper[hyper.find(">")+1:hyper.find("</a>")]
+                text = text[:indice_start] + target + text[indice_end + 4:]
+                i_start_targed_in_new_text = indice_start
+                i_end_target_in_new_text = indice_start + len(target)
+                indices_and_url.append((i_start_targed_in_new_text,
+                                        i_end_target_in_new_text,
+                                        url))
+        if is_there_hyperlink:
+            return (text, indices_and_url)
+        else:
+            return None
+
+    def _open_url(self, url):
+        """
+        Ouvre l'URL donnée dans un nouvel onglet
+        du navigateur défini par défaut"""
+        web.open_new_tab(url)
+
+    def _enter(self, event):
+        """
+        Change la forme du curseur en main"""
+        self._text.config(cursor="hand2")
+
+    def _leave(self, event):
+        """
+        Revient à la forme de curseur normal"""
+        self._text.config(cursor="")
+
+    def _add_hypertags(self, i_line, i_start, i_end, url):
+        """
+        Crée un tag sur un extrait de texte
+        Le configure en bleu souligné
+        Le bind à _leave et _enter pour la forme du curseur
+        Le bind à _open_url"""
+        # ajouter un tag (début et fin)
+        self._text.tag_add(url, i_line + '.' + str(i_start),
+                           i_line + '.' + str(i_end))
+        # Le configurer en prenant l'url pour nom de tag
+        self._text.tag_config(url, foreground="blue", underline=True)
+        # Le lier à une méthode ou fonction
+        self._text.tag_bind(url, "<Button-1>",
+                            func=lambda event, url=url: self._open_url(url))
+        self._text.tag_bind(url, "<Enter>", self._enter)
+        self._text.tag_bind(url, "<Leave>", self._leave)
