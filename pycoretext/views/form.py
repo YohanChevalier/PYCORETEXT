@@ -104,7 +104,7 @@ class SearchBloc(ttk.Labelframe):
         self._taxo_frame = ttk.LabelFrame(
             simple_and_critere, text="Taxonomie : recherche des termes"
         )
-        self._taxo_frame.grid(column=1, row=0, sticky=tk.W + tk.E)
+        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E)
         w.LabelInput(
             self._taxo_frame, "Métadonnée", var=self._vars["idT"],
             input_args={"items_list": self._data["idT"],
@@ -117,13 +117,13 @@ class SearchBloc(ttk.Labelframe):
             input_class=ttk.Entry,
             disable_vars=(decision + export_and_search +
                           export_date_type + search_query + taxo_value)
-        ).grid(row=0, column=1)
+        ).grid(row=1, column=0)
         w.LabelInput(
             self._taxo_frame, "Intitulé complet", var=self._vars["value"],
             input_class=ttk.Entry,
             disable_vars=(decision + export_and_search +
                           export_date_type + search_query + taxo_key)
-        ).grid(row=0, column=2)
+        ).grid(row=2, column=0)
         w.LabelInput(
             self._taxo_frame, "Contexte", var=self._vars["context_value"],
             input_args={
@@ -132,13 +132,13 @@ class SearchBloc(ttk.Labelframe):
                 "selectmode": tk.SINGLE},
             disable_vars=(decision + export_and_search +
                           export_date_type + search_query)
-        ).grid(row=0, column=3)
+        ).grid(row=3, column=0)
 
         # RECHERCHE COMBINÉE
         self._combine = ttk.LabelFrame(
             self, text="Recherche combinée"
         )
-        self._combine.grid(column=0, row=1, sticky=tk.W + tk.E)
+        self._combine.grid(column=1, row=0, sticky=tk.W + tk.E)
         w.LabelInput(
             self._combine, "Mot(s) clé(s)", var=self._vars["query"],
             input_class=ttk.Entry,
@@ -236,7 +236,7 @@ class SearchBloc(ttk.Labelframe):
 
         # création des boutons "Recherche" et "Reset"
         buttons_frame = ttk.LabelFrame(self, text="Actions")
-        buttons_frame.grid(column=0, row=3, sticky=tk.W + tk.E)
+        buttons_frame.grid(column=1, row=1, sticky=tk.W + tk.E)
         buttons_frame.columnconfigure(0, weight=1)
         buttons_frame.columnconfigure(1, weight=1)
         # la commande du bouton de recherche est liée à une méthode

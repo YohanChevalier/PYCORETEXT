@@ -20,8 +20,10 @@ Une classe générale accompagnée de 3 sous-classes :
 3 Frames = "Informations de connexion", "Statistiques Judilibre", "Recherche"
 """
 
+import threading
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from datetime import date as d, timedelta as td
 from pycoretext import exceptions as exc, widgets as w
 from pycoretext.api_controller import api_url
@@ -35,14 +37,128 @@ class Homepage(ttk.Frame):
 
     def __init__(self, parent, connexion, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
+        self.connexion = connexion
         # paramétrage de la fenêtre homepage
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=2)
+        try:
+            self.search = form.SearchBloc(self, connexion)
+            self.search.grid(column=0, row=0, sticky=tk.W + tk.E)
+            self.search.columnconfigure(0, weight=1)
+            self.search.columnconfigure(1, weight=1)
+        except exc.ERRORS as e:
+            raise e
+        else:
+            self.info_button = ttk.Button(self,
+                                          text="Informations et statistiques",
+                                          command=self._on_click_info)
+            self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E)
 
+    def _display_info(self):
+        """
+        Affiche la fenêtre de niveau supérieur
+        pour les infos de connexion et les stats"""
+        try:
+            InfoPopup(self, self.connexion)
+            self._var_display_info.set(True)
+        except exc.ERRORS as e:
+            self._var_display_info.set(False)
+            messagebox.showerror(
+                title="Impossible d'afficher les informations",
+                message=e
+            )
+
+    def _on_click_info(self, *_):
+        """
+        1- création d'une fenêtre pop-up avec label et progress bar
+        2- instanciation d'un thread dont la cible est _display_info
+        3- fermeture de la pop-up une fois le thread terminé (observateur sur
+        variable) """
+        # placement de la fenêtre d'attente au centre de la page login
+        # affichage d'une fenêtre d'attente
+        self.waiting_dialog = tk.Toplevel(
+            self,
+        )
+        # Désactiver l'utilisation de la croix rouge pour fermer
+        self.waiting_dialog.protocol("WM_DELETE_WINDOW",
+                                     self._close_waiting_dialog)
+        self.waiting_dialog.grab_set()
+        self.waiting_dialog.columnconfigure(0, weight=1)
+        self.waiting_dialog.resizable(False, False)
+
+        waiting_dialog_width = 200
+        waiting_dialog_heigth = 60
+        diff_x = 1200 // 2 - waiting_dialog_width // 2
+        diff_y = 600 // 2 - waiting_dialog_heigth // 2
+        waiting_dialog_x = self.winfo_rootx() + diff_x
+        waiting_dialog_y = self.winfo_rooty() + diff_y
+        self.waiting_dialog.geometry(
+            f'{waiting_dialog_width}x{waiting_dialog_heigth}' +
+            f'+{waiting_dialog_x}+{waiting_dialog_y}')
+
+        # Label d'attente
+        waiting_label = ttk.Label(self.waiting_dialog,
+                                  text='Récupération des informations...')
+        waiting_label.grid(column=0, row=0, sticky=tk.W + tk.E, padx=6)
+
+        # Barre de progression
+        pbar = ttk.Progressbar(self.waiting_dialog, orient='horizontal',
+                               length=200, mode='indeterminate')
+        pbar.grid(column=0, row=1, sticky=tk.W + tk.E, padx=6)
+        pbar.start(5)
+
+        # Variable d'état pour la recherche
+        self._search_done = tk.BooleanVar()
+
+        # Définie la function qui prendra en charge les exceptions
+        # levées dans le thread
+        threading.excepthook = self._custom_hook_search
+
+        # Ouvre un thread et exécute la fonction cible
+        main_thread = threading.Thread(target=self._display_info)
+        main_thread.start()
+
+        # Variable d'attente
+        self._var_display_info = tk.BooleanVar()
+
+        # Attend que le thread ait modifié l'état de la recherche
+        self.wait_variable(self._var_display_info)
+
+        # Suppression de la fenêtre d'attente
+        self.waiting_dialog.destroy()
+
+    def _custom_hook_search(self, args: threading.ExceptHookArgs):
+        """
+        Fonction pour gérer les exceptions qui ne sont pas déjà gérées
+        dans le code exécuté dans le thread
+        """
+        messagebox.showerror(
+            title="Erreur technique observé dans un thread",
+            message=(f"Type erreur = {args.exc_type}"
+                     + "\n"
+                     + f"identité thread = {args.thread.getName()}"))
+        self.waiting_dialog.destroy()
+
+    def _close_waiting_dialog(self):
+        """
+        Action attendue lors du clic sur la croix rouge"""
+        pass
+
+
+class InfoPopup(tk.Toplevel):
+    """
+    Génère une fenêtre de niveau supérieur
+    Pour l'affichage des informations de connexion
+    et des informations statistiques"""
+
+    def __init__(self, parent, connexion, *args, **kwargs):
+        """
+        Fonction d'initialisation"""
+        super().__init__(parent, *args, **kwargs)
         # création du bloc pour les parties informatives
-        left_frame = tk.Frame(self)
-        left_frame.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N + tk.S)
-        left_frame.columnconfigure(0, weight=1)
+        main_frame = tk.Frame(self)
+        main_frame.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N + tk.S)
+        main_frame.columnconfigure(0, weight=1)
         # création du bloc d'infos
         try:
             service_state = InfosBlocData(connexion)._get_data()
@@ -50,7 +166,7 @@ class Homepage(ttk.Frame):
             raise e
         else:
             infos = InfosBloc(
-                left_frame, "Infos", connexion.endpoint,
+                main_frame, "Infos", connexion.endpoint,
                 connexion.key_user, service_state)
             infos.grid(
                 column=0, row=0, sticky=tk.W + tk.E,
@@ -58,21 +174,12 @@ class Homepage(ttk.Frame):
             # création du bloc des statistiques judilibre
             try:
                 stats = StatsBloc(
-                    left_frame, "Statistiques Judilibre",
+                    main_frame, "Statistiques Judilibre",
                     StatsBlocData(connexion)._get_data())
                 stats.grid(
                     column=0, row=1, sticky=tk.W + tk.E, padx=8)
             except exc.ERRORS as e1:
                 raise e1
-            else:
-                # création du formulaire de recherche
-                try:
-                    self.search = form.SearchBloc(self, connexion)
-                    self.search.grid(column=1, row=0, sticky=tk.W + tk.E)
-                    self.search.columnconfigure(0, weight=1)
-                    self.search.columnconfigure(1, weight=1)
-                except exc.ERRORS as e:
-                    raise e
 
 
 class InfosBloc(tk.LabelFrame):
