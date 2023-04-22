@@ -113,6 +113,13 @@ class ResultPage(tk.Frame):
                 total_frame,
                 text=self._nb_decision
                 ).grid(row=0, column=0, sticky=tk.W + tk.E)
+            # Alerte si limite de recherche API atteinte (10 000)
+            if self._nb_decision >= 10000:
+                ttk.Label(total_frame, text="Limite API atteinte !",
+                          foreground="red").grid(
+                    row=0, column=1, sticky=tk.W + tk.E,
+                    padx=10
+                          )
 
     def add_treeview(self):
         """
