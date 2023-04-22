@@ -190,7 +190,8 @@ class ResultPage(tk.Frame):
                         if index_dict + 1 < len(list(item.keys())):
                             ch += ", "
                     # Recherche des possibles hyperliens
-                    # Obtention des indices des targets si des remplacements ont été faits
+                    # Obtention des indices des targets si des remplacements
+                    # ont été faits
                     hyperlinks_info = self._find_replace_hyperlink(ch)
                     # Si des hyperliens ont été trouvés
                     if hyperlinks_info:
@@ -199,7 +200,7 @@ class ResultPage(tk.Frame):
                         # dernière ligne complétée
                         i_line = self._text.index(
                                         "end - 1 chars").split('.')[0]
-                        # Application des tags 
+                        # Application des tag
                         for tag in hyperlinks_info[1]:
                             self._add_hypertags(i_line,
                                                 tag[0] + 2,
