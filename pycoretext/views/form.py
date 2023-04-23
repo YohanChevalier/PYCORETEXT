@@ -93,7 +93,7 @@ class SearchBloc(ttk.Labelframe):
         self._simple = ttk.LabelFrame(
             simple_and_critere, text="Recherche simple"
         )
-        self._simple.grid(column=0, row=0, sticky=tk.N, padx=(0, 10))
+        self._simple.grid(column=0, row=0, sticky=tk.E + tk.W, padx=(0, 3))
         w.LabelInput(
             self._simple, "ID Judilibre", self._vars["id"],
             input_class=ttk.Entry,
@@ -102,9 +102,10 @@ class SearchBloc(ttk.Labelframe):
 
         # RECHERCHE DES CRITÈRES
         self._taxo_frame = ttk.LabelFrame(
-            simple_and_critere, text="Taxonomie : recherche des termes"
+            simple_and_critere, text="Taxonomie"
         )
-        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E)
+        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E,
+                              padx=(0, 3))
         w.LabelInput(
             self._taxo_frame, "Métadonnée", var=self._vars["idT"],
             input_args={"items_list": self._data["idT"],
@@ -236,7 +237,7 @@ class SearchBloc(ttk.Labelframe):
 
         # création des boutons "Recherche" et "Reset"
         buttons_frame = ttk.LabelFrame(self, text="Actions")
-        buttons_frame.grid(column=1, row=1, sticky=tk.W + tk.E)
+        buttons_frame.grid(column=0, columnspan=2, row=1, sticky=tk.W + tk.E)
         buttons_frame.columnconfigure(0, weight=1)
         buttons_frame.columnconfigure(1, weight=1)
         # la commande du bouton de recherche est liée à une méthode

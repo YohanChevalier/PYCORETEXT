@@ -59,7 +59,7 @@ class Homepage(ttk.Frame):
         Affiche la fenêtre de niveau supérieur
         pour les infos de connexion et les stats"""
         try:
-            InfoPopup(self, self.connexion)
+            self.info_window = InfoPopup(self, self.connexion)
             self._var_display_info.set(True)
         except exc.ERRORS as e:
             self._var_display_info.set(False)
@@ -127,6 +127,10 @@ class Homepage(ttk.Frame):
         # Suppression de la fenêtre d'attente
         self.waiting_dialog.destroy()
 
+        # Affichage de la fenêtre d'info
+        if self._var_display_info:
+            self.info_window.deiconify()
+
     def _custom_hook_search(self, args: threading.ExceptHookArgs):
         """
         Fonction pour gérer les exceptions qui ne sont pas déjà gérées
@@ -154,7 +158,23 @@ class InfoPopup(tk.Toplevel):
     def __init__(self, parent, connexion, *args, **kwargs):
         """
         Fonction d'initialisation"""
+        # Héritage de l'initialisateur parent
         super().__init__(parent, *args, **kwargs)
+        # on masque la fenêtre toplevel
+        self.withdraw()
+        # Configuration
+        self.title("Informations et statistiques")
+        self.resizable(False, False)
+        # Placement de la fenêtre
+        self.width = 250
+        self.height = 400
+        diff_x = 1200 // 2 - self.width // 2
+        diff_y = 600 // 2 - self.height // 2
+        popup_x = self.winfo_rootx() + diff_x
+        popup_y = self.winfo_rooty() + diff_y
+        self.geometry(
+            f'{self.width}x{self.height}' +
+            f'+{popup_x}+{popup_y}')
         # création du bloc pour les parties informatives
         main_frame = tk.Frame(self)
         main_frame.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N + tk.S)

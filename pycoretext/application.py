@@ -92,10 +92,12 @@ class Application(tk.Tk):
 
         waiting_login_dialog_width = 200
         waiting_login_dialog_heigth = 60
-        diff_x = self._app_width // 2 - waiting_login_dialog_width // 2
-        diff_y = self._app_height // 2 - waiting_login_dialog_heigth // 2
-        waiting_login_dialog_x = self.winfo_rootx() + diff_x
-        waiting_login_dialog_y = self.winfo_rooty() + diff_y
+        diff_x = (self._login._login_width // 2
+                  - waiting_login_dialog_width // 2)
+        diff_y = (self._login._login_width // 2
+                  - waiting_login_dialog_heigth // 2)
+        waiting_login_dialog_x = self._login.winfo_rootx() + diff_x
+        waiting_login_dialog_y = self._login.winfo_rooty() + diff_y
         self.waiting_login_dialog.geometry(
             f'{waiting_login_dialog_width}x{waiting_login_dialog_heigth}' +
             f'+{waiting_login_dialog_x}+{waiting_login_dialog_y}')
