@@ -27,6 +27,7 @@ from tkinter import messagebox
 from datetime import date as d, timedelta as td
 from pycoretext import exceptions as exc, widgets as w
 from pycoretext.api_controller import api_url
+from pycoretext.widgets import place_windows
 from . import form
 
 
@@ -85,17 +86,9 @@ class Homepage(ttk.Frame):
         self.waiting_dialog.grab_set()
         self.waiting_dialog.columnconfigure(0, weight=1)
         self.waiting_dialog.resizable(False, False)
-
-        waiting_dialog_width = 200
-        waiting_dialog_heigth = 60
-        diff_x = 1200 // 2 - waiting_dialog_width // 2
-        diff_y = 600 // 2 - waiting_dialog_heigth // 2
-        waiting_dialog_x = self.winfo_rootx() + diff_x
-        waiting_dialog_y = self.winfo_rooty() + diff_y
-        self.waiting_dialog.geometry(
-            f'{waiting_dialog_width}x{waiting_dialog_heigth}' +
-            f'+{waiting_dialog_x}+{waiting_dialog_y}')
-
+        # placement de la fenêtre
+        place_windows(self.waiting_dialog, 200, 60,
+                      root=self.waiting_dialog.nametowidget("."))
         # Label d'attente
         waiting_label = ttk.Label(self.waiting_dialog,
                                   text='Récupération des informations...')
@@ -166,15 +159,11 @@ class InfoPopup(tk.Toplevel):
         self.title("Informations et statistiques")
         self.resizable(False, False)
         # Placement de la fenêtre
-        self.width = 250
-        self.height = 400
-        diff_x = 1200 // 2 - self.width // 2
-        diff_y = 600 // 2 - self.height // 2
-        popup_x = self.winfo_rootx() + diff_x
-        popup_y = self.winfo_rooty() + diff_y
-        self.geometry(
-            f'{self.width}x{self.height}' +
-            f'+{popup_x}+{popup_y}')
+        self._width = 250
+        self._height = 400
+        place_windows(self, self._width, self._height,
+                      root=self.nametowidget('.'))
+
         # création du bloc pour les parties informatives
         main_frame = tk.Frame(self)
         main_frame.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N + tk.S)

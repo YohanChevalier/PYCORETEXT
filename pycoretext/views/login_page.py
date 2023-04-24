@@ -22,6 +22,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import PhotoImage, ttk
 from tkinter.scrolledtext import ScrolledText
+from pycoretext.widgets import place_windows
 from pathlib import Path
 import sys
 
@@ -60,15 +61,9 @@ class LoginPage(tk.Toplevel):
         self.rowconfigure(0, weight=1)
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placement de la login page au centre de l'écran
-        self._login_width = 500
-        self._login_height = 500
-        self._screen_width = self.winfo_screenwidth()
-        self._screen_height = self.winfo_screenheight()
-        self._center_x = int(self._screen_width/2 - self._login_width / 2)
-        self._center_y = int(self._screen_height/2 - self._login_height / 2)
-        self.geometry(
-            f'{self._login_width}x{self._login_height}' +
-            f'+{self._center_x}+{self._center_y}')
+        self._width = 500
+        self._height = 500
+        place_windows(self, self._width, self._height)
 
         # MAIN FRAME
         main_frame = ttk.Frame(self)

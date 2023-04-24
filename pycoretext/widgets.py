@@ -519,6 +519,8 @@ class ButtonWholeText(ttk.Button):
         top.title(f"{self.number_decision} / {self.id_decision}")
         top.columnconfigure(0, weight=1),
         top.rowconfigure(0, weight=1)
+        # Placement de la fenêtre
+        place_windows(top, 600, 600, top.nametowidget("."))
         text = tk.Text(
             top,
             wrap="word"
@@ -684,6 +686,29 @@ class NoneEmptyEntry(ttk.Entry):
 
     def _empty_error(self):
         self.error.set("")
+
+
+def place_windows(win_to_place: tk.Tk, width, height, root="screen",):
+    """
+    Positionne la fenêtre donnée au centre de la fenêtre root"""
+    # Si le root est l'écran
+    if root == "screen":
+        screen_width = win_to_place.winfo_screenwidth()
+        screen_height = win_to_place.winfo_screenheight()
+        center_x = int(screen_width/2 - width / 2)
+        center_y = int(screen_height/2 - height / 2)
+        win_to_place.geometry(
+            f'{width}x{height}' +
+            f'+{center_x}+{center_y}')
+    # Si le root est une autre fenêtre tkinter
+    else:
+        diff_x = (root._width // 2 - width // 2)
+        diff_y = (root._height // 2 - height // 2)
+        position_x = root.winfo_rootx() + diff_x
+        position_y = root.winfo_rooty() + diff_y
+        win_to_place.geometry(
+            f'{width}x{height}' +
+            f'+{position_x}+{position_y}')
 
 
 # ===========================

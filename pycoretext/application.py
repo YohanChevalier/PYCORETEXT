@@ -23,7 +23,7 @@ from tkinter import BooleanVar, messagebox
 from tkinter import ttk
 from .api_controller import api_connexion as co, api_url
 from .views import login_page as l_pg, homepage as h, result_page
-from .widgets import CustomNotebook
+from .widgets import CustomNotebook, place_windows
 from . import exceptions as exc
 from pathlib import Path
 import sys
@@ -54,15 +54,9 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=1)
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placer la fenêtre principale au centre de l'écran
-        self._app_width = 1200
-        self._app_height = 600
-        self._screen_width = self.winfo_screenwidth()
-        self._screen_height = self.winfo_screenheight()
-        self._center_x = int(self._screen_width / 2 - self._app_width / 2)
-        self._center_y = int(self._screen_height / 2 - self._app_height / 2)
-        self.geometry(
-            f'{self._app_width}x{self._app_height}' +
-            f'+{self._center_x}+{self._center_y}')
+        self._width = 1200
+        self._height = 600
+        place_windows(self, self._width, self._height)
         # création de la login page
         self._login = l_pg.LoginPage(self)
         # on lie l'événement <<Connexion>> généré dans LoginPage à notre app
@@ -89,18 +83,8 @@ class Application(tk.Tk):
         self.waiting_login_dialog.grab_set()
         self.waiting_login_dialog.columnconfigure(0, weight=1)
         self.waiting_login_dialog.resizable(False, False)
-
-        waiting_login_dialog_width = 200
-        waiting_login_dialog_heigth = 60
-        diff_x = (self._login._login_width // 2
-                  - waiting_login_dialog_width // 2)
-        diff_y = (self._login._login_width // 2
-                  - waiting_login_dialog_heigth // 2)
-        waiting_login_dialog_x = self._login.winfo_rootx() + diff_x
-        waiting_login_dialog_y = self._login.winfo_rooty() + diff_y
-        self.waiting_login_dialog.geometry(
-            f'{waiting_login_dialog_width}x{waiting_login_dialog_heigth}' +
-            f'+{waiting_login_dialog_x}+{waiting_login_dialog_y}')
+        # Positionnement de la fenêtre
+        place_windows(self.waiting_login_dialog, 200, 60, self._login)
 
         # Label d'attente
         waiting_login_label = ttk.Label(
@@ -216,16 +200,8 @@ class Application(tk.Tk):
         self.waiting_dialog.grab_set()
         self.waiting_dialog.columnconfigure(0, weight=1)
         self.waiting_dialog.resizable(False, False)
-
-        waiting_dialog_width = 200
-        waiting_dialog_heigth = 60
-        diff_x = self._app_width // 2 - waiting_dialog_width // 2
-        diff_y = self._app_height // 2 - waiting_dialog_heigth // 2
-        waiting_dialog_x = self.winfo_rootx() + diff_x
-        waiting_dialog_y = self.winfo_rooty() + diff_y
-        self.waiting_dialog.geometry(
-            f'{waiting_dialog_width}x{waiting_dialog_heigth}' +
-            f'+{waiting_dialog_x}+{waiting_dialog_y}')
+        # Placement de la fenêtre
+        place_windows(self.waiting_dialog, 200, 60, root=self)
 
         # Label d'attente
         waiting_label = ttk.Label(self.waiting_dialog,
