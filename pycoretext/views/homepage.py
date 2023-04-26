@@ -27,7 +27,7 @@ from tkinter import messagebox
 from datetime import date as d, timedelta as td
 from pycoretext import exceptions as exc, widgets as w
 from pycoretext.api_controller import api_url
-from pycoretext.widgets import place_windows
+from pycoretext.widgets import place_windows, CustomMessageBox
 from . import form
 
 
@@ -64,10 +64,10 @@ class Homepage(ttk.Frame):
             self._var_display_info.set(True)
         except exc.ERRORS as e:
             self._var_display_info.set(False)
-            messagebox.showerror(
-                title="Impossible d'afficher les informations",
-                message=e
-            )
+            CustomMessageBox(
+                "Impossible d'afficher les informations",
+                e,
+                root=self.nametowidget("."))
 
     def _on_click_info(self, *_):
         """
@@ -129,11 +129,14 @@ class Homepage(ttk.Frame):
         Fonction pour gérer les exceptions qui ne sont pas déjà gérées
         dans le code exécuté dans le thread
         """
-        messagebox.showerror(
-            title="Erreur technique observé dans un thread",
-            message=(f"Type erreur = {args.exc_type}"
-                     + "\n"
-                     + f"identité thread = {args.thread.getName()}"))
+        CustomMessageBox(
+            "Erreur technique observé dans un thread",
+            (f"Type erreur = {args.exc_type}"
+             + "\n"
+             + f"Détail = {args.exc_value}"
+             + "\n"
+             + f"identité thread = {args.thread.getName()}"),
+            "error")
         self.waiting_dialog.destroy()
 
     def _close_waiting_dialog(self):

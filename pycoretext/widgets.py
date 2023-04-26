@@ -688,6 +688,68 @@ class NoneEmptyEntry(ttk.Entry):
         self.error.set("")
 
 
+class CustomMessageBox(tk.Toplevel):
+    """
+    Instancie une fenêtre supérieure similaire à celle
+    disponible dans tk.Messagebox mais celle-ci peut
+    être placée au centre du widget root"""
+
+    image_type = {
+        "question": "::tk::icons::question",
+        "warning": "::tk::icons::warning",
+        "error": "::tk::icons::error",
+        "information": "::tk::icons::information"
+    }
+
+    def __init__(self, title, message, type, root=None, *args, **kwargs):
+        """
+        Fonction d'initialisation"""
+        super().__init__(*args, **kwargs)
+        self.title(title)
+        if not root:
+            self.root = self.master
+        else:
+            self.root = root
+        self.resizable(False, False)
+        place_windows(self, 430, 75, self.root)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=2)
+        # Image
+        tk.Label(self, image=self.image_type[type]).grid(row=0, column=0,
+                                                         pady=(7, 0),
+                                                         padx=(7, 2),
+                                                         sticky=tk.W)
+        # Message
+        tk.Label(self, text=message).grid(row=0, column=1, columnspan=2,
+                                          pady=(7, 4), sticky=tk.W)
+        if type == 'question':
+            buttons_frame = tk.Frame(self)
+            buttons_frame.grid(row=1, column=0,
+                               columnspan=2)
+            buttons_frame.columnconfigure(0, weight=1)
+            tk.Button(buttons_frame, text="Oui",
+                      command=self.master.destroy).grid(
+                                                        row=1,
+                                                        column=0,
+                                                        sticky=tk.W + tk.E)
+            tk.Button(buttons_frame, text="Annuler",
+                      command=self.destroy).grid(
+                                                row=1,
+                                                column=1,
+                                                padx=(7, 7),
+                                                sticky=tk.W + tk.E)
+        else:
+            tk.Button(self, text="OK", command=self.destroy).grid(
+                                                            row=1,
+                                                            column=0,
+                                                            columnspan=2,
+                                                            sticky=tk.E + tk.W,
+                                                            padx=120,
+                                                            pady=(0, 2))
+
+
 def place_windows(win_to_place: tk.Tk, width, height, root="screen",):
     """
     Positionne la fenêtre donnée au centre de la fenêtre root"""

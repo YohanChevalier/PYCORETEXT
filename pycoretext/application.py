@@ -23,7 +23,7 @@ from tkinter import BooleanVar, messagebox
 from tkinter import ttk
 from .api_controller import api_connexion as co, api_url
 from .views import login_page as l_pg, homepage as h, result_page
-from .widgets import CustomNotebook, place_windows
+from .widgets import CustomNotebook, place_windows, CustomMessageBox
 from . import exceptions as exc
 from pathlib import Path
 import sys
@@ -245,9 +245,8 @@ class Application(tk.Tk):
         result_integrity = self._check_form_integrity(data_from_dict)
         if not result_integrity[0]:
             self._search_done.set(False)
-            messagebox.showerror(
-                title=result_integrity[1], message=result_integrity[2]
-            )
+            CustomMessageBox(
+                result_integrity[1], result_integrity[2], "error")
             return
         # création de l'objet URL
         url = self._create_url(data_from_dict)
@@ -259,21 +258,24 @@ class Application(tk.Tk):
             self.connexion.send_request(url)
         except exc.NoResult as e:
             self.waiting_dialog.destroy()
-            messagebox.showinfo(
-                title="Aucun résultat",
-                message=e.message)
+            CustomMessageBox(
+                "Aucun résultat",
+                e.message,
+                "error")
             return
         except exc.ERRORS as e:
             self.waiting_dialog.destroy()
-            messagebox.showinfo(
-                title="Communication API",
-                message=e)
+            CustomMessageBox(
+                "Communication API",
+                e,
+                "error")
             return
         except exc.WrongCriteria as e:
             self.waiting_dialog.destroy()
-            messagebox.showinfo(
-                title="Critères erronés",
-                message=e.message)
+            CustomMessageBox(
+                "Critères erronés",
+                e.message,
+                "error")
             return
         else:   # si aucune exception = création de la page de résultat
             id_list = list(self.connexion.dict_answers.keys())
@@ -297,11 +299,12 @@ class Application(tk.Tk):
         Fonction pour gérer les exceptions qui ne sont pas déjà gérées
         dans le code exécuté dans le thread
         """
-        messagebox.showerror(
-            title="Erreur technique observé dans un thread",
-            message=(f"Type erreur = {args.exc_type}"
-                     + "\n"
-                     + f"identité thread = {args.thread.getName()}"))
+        CustomMessageBox(
+            "Erreur technique observé dans un thread",
+            (f"Type erreur = {args.exc_type}"
+             + "\n"
+             + f"identité thread = {args.thread.getName()}"),
+            "error")
         self.waiting_dialog.destroy()
 
     def _create_url(self, data_from_dict: dict):
@@ -403,9 +406,9 @@ class Application(tk.Tk):
     def _on_closing(self):
         """
         Action réalisée lors du clic sur la croix en haut à droite de l'app"""
-        if messagebox.askokcancel("Quitter",
-                                  "Voulez-vous fermer l'application ?"):
-            self.destroy()
+        CustomMessageBox("Quitter",
+                         "Voulez-vous fermer l'application ?",
+                         "question")
 
     def _date_checker(self, date: str):
         check_state = False

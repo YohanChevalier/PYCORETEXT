@@ -22,7 +22,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import PhotoImage, ttk
 from tkinter.scrolledtext import ScrolledText
-from pycoretext.widgets import place_windows
+from pycoretext.widgets import place_windows, CustomMessageBox
 from pathlib import Path
 import sys
 
@@ -167,6 +167,7 @@ class LoginPage(tk.Toplevel):
     def _on_closing(self):
         """
         Action réalisée lors du clic sur la croix en haut à droite de l'app"""
-        if messagebox.askokcancel("Quitter",
-                                  "Voulez-vous fermer l'application ?"):
-            self.destroy()
+        CustomMessageBox("Quitter",
+                         "Voulez-vous fermer l'application ?",
+                         "question",
+                         root=self)
