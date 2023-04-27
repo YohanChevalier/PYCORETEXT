@@ -26,7 +26,8 @@ ERRORS = (
     AttributeError,
     requests.ConnectionError,
     requests.HTTPError,
-    ValueError)
+    ValueError,
+    requests.ReadTimeout)
 
 
 class WrongCriteria(Exception):
