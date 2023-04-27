@@ -130,10 +130,6 @@ class Application(tk.Tk):
             # si le test est correct alors c'est parti !
             self.__connexion_exists.set(True)
             self._build_homepage()
-            self._login_ready.set(True)
-            # On supprime la page de login lorsque tout est initialisé
-            self.deiconify()
-            self._login.destroy()
         else:
             # On envoie le message de l'exception à la page login
             self._login.var["error_message"].set(
@@ -142,6 +138,7 @@ class Application(tk.Tk):
             self.connexion = None
             # suppression de la fenêtre d'attente
             self.waiting_login_dialog.destroy()
+            print("test connexion failed")
 
     def _build_homepage(self):
         """
@@ -154,6 +151,7 @@ class Application(tk.Tk):
         self._notebook.grid(sticky=tk.W + tk.E + tk.N + tk.S)
         # ajout de la page d'accueil "homepage" dans le notebook
         # on transmet la connexion pour les requêtes internes
+        print("homepage built")
         try:
             self._homepage = h.Homepage(self._notebook, self.connexion)
         except exc.ERRORS as e:
@@ -164,12 +162,19 @@ class Application(tk.Tk):
             self.connexion = None
             # suppression de la fenêtre d'attente
             self.waiting_login_dialog.destroy()
-            # suppression du notebook
+            # suppression du notebook (widget et variable)
+            self._notebook.destroy()
             del self._notebook
         else:
+            print("requests hompage success")
             self._notebook.add(self._homepage, text="Accueil")
             # on bind la fonction de recherche
             self._homepage.search.bind("<<OnSearch>>", self._on_search)
+            # Signal pour supprimer la progressbar
+            self._login_ready.set(True)
+            # On supprime la page de login lorsque tout est initialisé
+            self.deiconify()
+            self._login.destroy()
 
     def _custom_hook_login(self, args: threading.ExceptHookArgs):
         """

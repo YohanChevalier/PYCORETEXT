@@ -19,7 +19,6 @@ Module contenant la classe dédiée à la page de login.
 """
 
 import tkinter as tk
-from tkinter import messagebox
 from tkinter import PhotoImage, ttk
 from tkinter.scrolledtext import ScrolledText
 from pycoretext.widgets import place_windows, CustomMessageBox

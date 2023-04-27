@@ -547,14 +547,16 @@ class CustomNotebook(ttk.Notebook):
     """
 
     __initialized = False
+    _id_style_close = 1
 
     def __init__(self, *args, **kwargs):
         """
         Fonction d'initialisation
         """
-        if not self.__initialized:
-            self.__initialize_custom_style()
-            self.__inititialized = True
+        print("self.count = ", self._id_style_close)
+        print("initialisé = ", self.__initialized)
+        self.__initialize_custom_style()
+        CustomNotebook.__initialized = True
 
         kwargs["style"] = "CustomNotebook"
         ttk.Notebook.__init__(self, *args, **kwargs)
@@ -563,6 +565,7 @@ class CustomNotebook(ttk.Notebook):
 
         self.bind("<ButtonPress-1>", self._on_close_press, True)
         self.bind("<ButtonRelease-1>", self._on_close_release)
+        CustomNotebook._id_style_close += 1
 
     def _on_close_press(self, event):
         """
@@ -603,7 +606,6 @@ class CustomNotebook(ttk.Notebook):
         self._active = None
 
     def __initialize_custom_style(self):
-        style = ttk.Style()
         self._images = (
             tk.PhotoImage("img_close", data='''
                 R0lGODlhCAAIAMIBAAAAADs7O4+Pj9nZ2Ts7Ozs7Ozs7Ozs7OyH+EUNyZWF0ZWQg
@@ -620,8 +622,10 @@ class CustomNotebook(ttk.Notebook):
                 5kEJADs=
             ''')
         )
-
-        style.element_create("close", "image", "img_close",
+        style = ttk.Style()
+        element_name = "close" + str(self._id_style_close)
+        element_name_bis = "CustomNotebook." + element_name
+        style.element_create(element_name, "image", "img_close",
                              ("active", "pressed", "!disabled",
                               "img_closepressed"),
                              ("active", "!disabled", "img_closeactive"),
@@ -642,7 +646,7 @@ class CustomNotebook(ttk.Notebook):
                                 "children": [
                                     ("CustomNotebook.label", {"side": "left",
                                                               "sticky": ''}),
-                                    ("CustomNotebook.close", {"side": "left",
+                                    (element_name_bis, {"side": "left",
                                      "sticky": ''}),
                                     ]
                             })
