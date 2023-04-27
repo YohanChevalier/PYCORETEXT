@@ -23,7 +23,6 @@ Une classe générale accompagnée de 3 sous-classes :
 import threading
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
 from datetime import date as d, timedelta as td
 from pycoretext import exceptions as exc, widgets as w
 from pycoretext.api_controller import api_url
@@ -55,7 +54,7 @@ class Homepage(ttk.Frame):
                                           command=self._on_click_info)
             self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E)
 
-    def _display_info(self):
+    def _start_display_info(self):
         """
         Affiche la fenêtre de niveau supérieur
         pour les infos de connexion et les stats"""
@@ -105,10 +104,10 @@ class Homepage(ttk.Frame):
 
         # Définie la function qui prendra en charge les exceptions
         # levées dans le thread
-        threading.excepthook = self._custom_hook_search
+        threading.excepthook = self._custom_hook_display
 
         # Ouvre un thread et exécute la fonction cible
-        main_thread = threading.Thread(target=self._display_info)
+        main_thread = threading.Thread(target=self._start_display_info)
         main_thread.start()
 
         # Variable d'attente
@@ -124,7 +123,7 @@ class Homepage(ttk.Frame):
         if self._var_display_info:
             self.info_window.deiconify()
 
-    def _custom_hook_search(self, args: threading.ExceptHookArgs):
+    def _custom_hook_display(self, args: threading.ExceptHookArgs):
         """
         Fonction pour gérer les exceptions qui ne sont pas déjà gérées
         dans le code exécuté dans le thread

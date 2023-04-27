@@ -19,7 +19,7 @@ Module contenant la classe principale de l'application, l'objet Tk
 """
 
 import tkinter as tk
-from tkinter import BooleanVar, messagebox
+from tkinter import BooleanVar
 from tkinter import ttk
 from .api_controller import api_connexion as co, api_url
 from .views import login_page as l_pg, homepage as h, result_page
@@ -180,6 +180,8 @@ class Application(tk.Tk):
         self._login.var["error_message"].set(
                         f"Type erreur = {args.exc_type}"
                         + "\n"
+                        f"Valeur = {args.exc_value}"
+                        + "\n"
                         + f"identité thread = {args.thread.getName()}")
         self.waiting_login_dialog.destroy()
 
@@ -302,6 +304,8 @@ class Application(tk.Tk):
         CustomMessageBox(
             "Erreur technique observé dans un thread",
             (f"Type erreur = {args.exc_type}"
+             + "\n"
+             f"Valeur = {args.exc_value}"
              + "\n"
              + f"identité thread = {args.thread.getName()}"),
             "error")

@@ -710,32 +710,35 @@ class CustomMessageBox(tk.Toplevel):
             self.root = self.master
         else:
             self.root = root
+        place_windows(self, 430, 100, self.root)
         self.resizable(False, False)
-        place_windows(self, 430, 75, self.root)
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=2)
         # Image
-        tk.Label(self, image=self.image_type[type]).grid(row=0, column=0,
-                                                         pady=(7, 0),
-                                                         padx=(7, 2),
-                                                         sticky=tk.W)
+        ttk.Label(self, image=self.image_type[type]).grid(row=0, column=0,
+                                                          pady=(7, 0),
+                                                          padx=(7, 0),
+                                                          sticky=tk.W)
         # Message
-        tk.Label(self, text=message).grid(row=0, column=1, columnspan=2,
-                                          pady=(7, 4), sticky=tk.W)
+        ttk.Label(self, text=message,
+                  anchor=tk.E, justify="left").grid(row=0, column=1,
+                                                    columnspan=2,
+                                                    pady=(7, 4), sticky=tk.W)
+        # Partie dédiée à la fermeture des fenêtre
         if type == 'question':
             buttons_frame = tk.Frame(self)
             buttons_frame.grid(row=1, column=0,
                                columnspan=2)
             buttons_frame.columnconfigure(0, weight=1)
-            tk.Button(buttons_frame, text="Oui",
-                      command=self.master.destroy).grid(
+            ttk.Button(buttons_frame, text="Oui",
+                       command=self.master.destroy).grid(
                                                         row=1,
                                                         column=0,
                                                         sticky=tk.W + tk.E)
-            tk.Button(buttons_frame, text="Annuler",
-                      command=self.destroy).grid(
+            ttk.Button(buttons_frame, text="Annuler",
+                       command=self.destroy).grid(
                                                 row=1,
                                                 column=1,
                                                 padx=(7, 7),
