@@ -378,7 +378,7 @@ class Application(tk.Tk):
             title = "Formulaire vide"
             message = "Aucun champ du formulaire n'est complété !"
             state = 0
-        elif "key" in data or "value" in data:
+        elif "key" in data or "value" in data or "context_value" in data:
             if "idT" not in data:
                 title = "Critère 'Métadonnée' manquant"
                 message = ("Veuillez sélectionner un élément dans le "
