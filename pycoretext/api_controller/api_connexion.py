@@ -62,16 +62,18 @@ class Connexion:
         is_request_ok = None
         try:
             response = r_get(self.endpoint + "/healthcheck",
-                             headers=self.headers, timeout=10)
+                             headers=self.headers, timeout=5)
             # une réponse correcte est forcément entre 200 et 300
             print(response.status_code)
             if 200 <= response.status_code < 300:
                 is_request_ok = True
             else:
                 raise ValueError(f"Wrong status: {response.status_code}")
-        except exc.ERRORS as e:
+        except requests.ReadTimeout:
+            is_request_ok = "API timeout, délai de 5 secondes dépassé"
+        except exc.ERRORS as e1:
             # Le message de l'exception est placé dans la variable de retour
-            is_request_ok = e
+            is_request_ok = e1
         finally:
             return is_request_ok
 
@@ -95,7 +97,7 @@ class Connexion:
             # si url est correcte, tentative de connexion
             try:
                 response = r_get(full_url, headers=self.headers,
-                                 timeout=10)
+                                 timeout=5)
                 # tester le code de retour
                 print(response.status_code)
                 if 200 <= response.status_code < 300:
@@ -104,6 +106,10 @@ class Connexion:
                 else:
                     raise ValueError(
                         f"Wrong status: {response.status_code}:")
+            # transformation de l'exception de timeout en ValueError
+            except requests.ReadTimeout as e1:
+                raise ValueError(
+                    "Api timeout, délai de 5 secondes dépassé") from e1
             except exc.ERRORS as e2:
                 raise e2
             else:

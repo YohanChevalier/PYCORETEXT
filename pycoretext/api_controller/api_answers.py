@@ -152,7 +152,7 @@ class AnswerExport(Answer):
         # récupération de la session requests
         session = self._get_session()
         # requête elle-même
-        with session.get(url, headers=self.headers) as response:
+        with session.get(url, headers=self.headers, timeout=5) as response:
             if response.status_code != 200:
                 if response.status_code in self._wrong_response_list:
                     self._wrong_response_list[response.status_code] + 1

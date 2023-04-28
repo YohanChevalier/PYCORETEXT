@@ -547,6 +547,9 @@ class CustomNotebook(ttk.Notebook):
     """
 
     __initialized = False
+    # Permet de recréer un nouveau style si le style a déjà été initialisé
+    # lors d'une précédente tentative.
+    # Sans cela les images pour la croix disparaissent après la 1re tentative
     _id_style_close = 1
 
     def __init__(self, *args, **kwargs):
@@ -623,8 +626,10 @@ class CustomNotebook(ttk.Notebook):
             ''')
         )
         style = ttk.Style()
+        # Définit le nom de l'élément à créer
         element_name = "close" + str(self._id_style_close)
-        element_name_bis = "CustomNotebook." + element_name
+        # Pour l'appel de l'élément plus tard
+        element_call = "CustomNotebook." + element_name
         style.element_create(element_name, "image", "img_close",
                              ("active", "pressed", "!disabled",
                               "img_closepressed"),
@@ -646,7 +651,7 @@ class CustomNotebook(ttk.Notebook):
                                 "children": [
                                     ("CustomNotebook.label", {"side": "left",
                                                               "sticky": ''}),
-                                    (element_name_bis, {"side": "left",
+                                    (element_call, {"side": "left",
                                      "sticky": ''}),
                                     ]
                             })
@@ -715,6 +720,8 @@ class CustomMessageBox(tk.Toplevel):
         else:
             self.root = root
         place_windows(self, 430, 100, self.root)
+        # Seule cette fenêtre est accessible
+        self.grab_set()
         self.resizable(False, False)
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
