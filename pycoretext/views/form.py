@@ -98,8 +98,10 @@ class SearchBloc(ttk.Frame):
         simple_and_critere.rowconfigure(1, weight=1)
 
         # RECHERCHE SIMPLE
+        self._label_simple = ttk.Label(text="Recherche simple",
+                                       font=("tkDefaultFont", 10, "bold"))
         self._simple = ttk.LabelFrame(
-            simple_and_critere, text="Recherche simple",
+            simple_and_critere, labelwidget=self._label_simple,
         )
         self._simple.grid(column=0, row=0, sticky=(
                           tk.E + tk.W + tk.N + tk.S))
@@ -110,8 +112,10 @@ class SearchBloc(ttk.Frame):
             ).grid(row=0, column=0)
 
         # RECHERCHE DES CRITÈRES
+        self._label_taxo = ttk.Label(text="Taxonomie",
+                                     font=("tkDefaultFont", 10, "bold"))
         self._taxo_frame = ttk.LabelFrame(
-            simple_and_critere, text="Taxonomie")
+            simple_and_critere, labelwidget=self._label_taxo)
         self._taxo_frame.grid(column=0, row=1, sticky=(
                          tk.E + tk.W + tk.N + tk.S))
         w.LabelInput(
@@ -144,9 +148,10 @@ class SearchBloc(ttk.Frame):
         ).grid(row=3, column=0)
 
         # RECHERCHE COMBINÉE
+        self._label_combine = ttk.Label(text="Recherche combinée",
+                                        font=("tkDefaultFont", 10, "bold"))
         self._combine = ttk.LabelFrame(
-            self, text="Recherche combinée"
-        )
+            self, labelwidget=self._label_combine)
         self._combine.grid(column=1, row=0, sticky=tk.W + tk.E)
         w.LabelInput(
             self._combine, "Mot(s) clé(s)", var=self._vars["query"],
@@ -250,7 +255,9 @@ class SearchBloc(ttk.Frame):
         self._select2.grid(row=0, column=1, sticky=tk.W + tk.E)
 
         # création des boutons "Recherche" et "Reset"
-        buttons_frame = ttk.LabelFrame(self, text="Actions")
+        self._label_action = ttk.Label(text="Actions",
+                                       font=("tkDefaultFont", 10, "bold"))
+        buttons_frame = ttk.LabelFrame(self, labelwidget=self._label_action)
         buttons_frame.grid(column=0, columnspan=2, row=1, sticky=tk.W + tk.E)
         buttons_frame.columnconfigure(0, weight=1)
         buttons_frame.columnconfigure(1, weight=1)
