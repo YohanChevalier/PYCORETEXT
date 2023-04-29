@@ -1,6 +1,6 @@
 import timeit
-from pycoretext.api_controller import api_connexion as co
-from pycoretext.api_controller import api_url
+from api_controller import api_connexion as co
+from api_controller import api_url
 
 start = timeit.default_timer()
 
@@ -26,7 +26,7 @@ url1_export = api_url.UrlExport()
 # url1_export.set_criteria("chamber=", "comm")
 url1_export.set_criteria("date_start=", "2022-10-15")
 url1_export.set_criteria("date_end=", "2022-10-31")
-url1_export.set_criteria("date_type=", "creation")
+url1_export.set_criteria("filetype", "prep_rapp")
 # url1_export.set_criteria("jurisdiction=", "cc")
 
 url1_1_export = api_url.UrlExport()
@@ -34,12 +34,12 @@ url1_1_export.set_criteria("location=", "ca_agen")
 url1_1_export.set_criteria("jurisdiction=", "ca")
 
 
-# co_yohan.send_request(url1_export)
+co_yohan.send_request(url1_export)
 # co_yohan.send_request(url1_1_export)
-# print(co_yohan.dict_answers[1].total_decisions)
-# for decision in co_yohan.dict_answers[1].dict_decisions.keys():
-#     print("n°", decision, "id = ",
-#           co_yohan.dict_answers[1].dict_decisions[decision].dict_meta["visa"])
+print(co_yohan.dict_answers[1].total_decisions)
+for decision in co_yohan.dict_answers[1].dict_decisions.keys():
+    print("n°", decision, "id = ",
+          co_yohan.dict_answers[1].dict_decisions[decision].dict_meta["files"])
 
 # for key, value in co_yohan.dict_answers[1].dict_decisions[1].\
 #                                             dict_meta.items():

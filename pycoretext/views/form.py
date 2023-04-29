@@ -60,7 +60,8 @@ class SearchBloc(ttk.Labelframe):
             "key": tk.StringVar(),
             "value": tk.StringVar(),
             "context_value": tk.StringVar(),
-            "location ca": tk.StringVar()
+            "location ca": tk.StringVar(),
+            "withFileOfType": tk.StringVar()
         }
         # récupérer les données dynamiquement pour les inputs
         try:
@@ -80,20 +81,24 @@ class SearchBloc(ttk.Labelframe):
         export_and_search = self._group_var([
                    "chamber", "formation", "theme", "theme ca",
                    "type", "publication", "solution", "jurisdiction",
-                   "date_start", "date_end", "date_type", "location ca"
+                   "date_start", "date_end", "date_type", "location ca",
+                   "withFileOfType"
                    ])
         export_date_type = self._group_var(["date_type"])
         taxo = self._group_var(["idT", "key", "value", "context_value"])
         taxo_value = self._group_var(["value"])
         taxo_key = self._group_var(["key"])
+
+        # Frame principal
         simple_and_critere = ttk.Frame(self)
-        simple_and_critere.grid(column=0, row=0, sticky=tk.W)
+        simple_and_critere.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N)
 
         # RECHERCHE SIMPLE
         self._simple = ttk.LabelFrame(
             simple_and_critere, text="Recherche simple"
         )
-        self._simple.grid(column=0, row=0, sticky=tk.E + tk.W, padx=(0, 3))
+        self._simple.grid(column=0, row=0, sticky=tk.E + tk.W + tk.N,
+                          padx=(0, 3))
         w.LabelInput(
             self._simple, "ID Judilibre", self._vars["id"],
             input_class=ttk.Entry,
@@ -104,7 +109,7 @@ class SearchBloc(ttk.Labelframe):
         self._taxo_frame = ttk.LabelFrame(
             simple_and_critere, text="Taxonomie"
         )
-        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E,
+        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E + tk.N,
                               padx=(0, 3))
         w.LabelInput(
             self._taxo_frame, "Métadonnée", var=self._vars["idT"],
@@ -144,7 +149,7 @@ class SearchBloc(ttk.Labelframe):
             self._combine, "Mot(s) clé(s)", var=self._vars["query"],
             input_class=ttk.Entry,
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=0, column=0)
+        ).grid(row=0, column=0, rowspan=3)
         w.LabelInput(
             self._combine, "Opérateur (df='or')",
             var=self._vars["operator"],
@@ -153,70 +158,76 @@ class SearchBloc(ttk.Labelframe):
                 "heigh": 3,
                 "selectmode": tk.SINGLE},
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=0, column=1)
+        ).grid(row=0, column=1, rowspan=3)
         w.LabelInput(
             self._combine, "Du (AAAA-MM-JJ)", var=self._vars["date_start"],
             input_class=ttk.Entry,
             disable_vars=decision+taxo
-        ).grid(row=0, column=2)
+        ).grid(row=0, column=2, pady=2.5)
         w.LabelInput(
             self._combine, "Au (AAAA-MM-JJ)", var=self._vars["date_end"],
             input_class=ttk.Entry,
             disable_vars=decision+taxo
-        ).grid(row=0, column=3)
+        ).grid(row=1, column=2, pady=(0, 2.5))
         w.LabelInput(
             self._combine, "Type de date", var=self._vars["date_type"],
             input_args={"items_list": ["creation", "update"],
                         "heigh": 2},
             disable_vars=decision+taxo+search_query
-        ).grid(row=0, column=4)
+        ).grid(row=0, column=3, rowspan=3)
         w.LabelInput(
             self._combine, "Juridiction (df='cc')",
             var=self._vars["jurisdiction"],
             input_args={"items_list": self._data["jurisdiction"], "heigh": 2},
             disable_vars=decision+taxo
-        ).grid(row=0, column=5)
+        ).grid(row=0, column=4, rowspan=3)
+        w.LabelInput(
+            self._combine, "Avec PDF", var=self._vars["withFileOfType"],
+            input_args={"items_list": self._data["filetype"],
+                        "heigh": 4},
+            disable_vars=decision+taxo
+        ).grid(row=0, column=5, rowspan=3)
         w.LabelInput(
             self._combine,
             label="Chambre", var=self._vars["chamber"],
             input_args={"items_list": self._data["chamber"],
                         "heigh": 6},
             disable_vars=decision+taxo
-        ).grid(row=1, column=0)
+        ).grid(row=3, column=0)
         w.LabelInput(
             self._combine, "Formation", var=self._vars["formation"],
             input_args={"items_list": self._data["formation"],
                         "heigh": 6},
             disable_vars=decision+taxo
-        ).grid(row=1, column=1)
+        ).grid(row=3, column=1)
         w.LabelInput(
             self._combine, "Nature de la décision", var=self._vars["type"],
             input_args={"items_list": self._data["type"],
                         "heigh": 6},
             disable_vars=decision+taxo
-        ).grid(row=1, column=2)
+        ).grid(row=3, column=2)
         w.LabelInput(
             self._combine, "Publication", var=self._vars["publication"],
             input_args={"items_list": self._data["publication"],
                         "heigh": 5},
             disable_vars=decision+taxo
-        ).grid(row=1, column=3)
+        ).grid(row=3, column=3)
         w.LabelInput(
             self._combine, "Solution", var=self._vars["solution"],
             input_args={"items_list": self._data["solution"],
                         "heigh": 6},
             disable_vars=decision+taxo
-        ).grid(row=1, column=4)
+        ).grid(row=3, column=4)
         w.LabelInput(
             self._combine, "Siège ca", var=self._vars["location ca"],
             input_args={"items_list": self._data["location ca"],
                         "heigh": 6},
             disable_vars=decision+taxo
-        ).grid(row=1, column=5)
+        ).grid(row=3, column=5)
 
         # les deux sélections pour les thèmes
         selections_frame = ttk.Frame(self._combine)
-        selections_frame.grid(column=0, row=2, sticky=tk.W + tk.E,
+        selections_frame.grid(column=0, row=4, sticky=tk.W + tk.E,
                               columnspan=10)
         selections_frame.columnconfigure(0, weight=1)
         selections_frame.columnconfigure(1, weight=1)
@@ -349,7 +360,8 @@ class SearchData:
             "jurisdiction": self._create_sub_list("jurisdiction"),
             "operator": self._create_sub_list("operator"),
             "idT": main_list,
-            "location ca": self._create_sub_list("location ca")
+            "location ca": self._create_sub_list("location ca"),
+            "filetype": self._create_sub_list("filetype")
         }
         # vider le dictionnaire
         self.connexion.dict_answers.clear()
