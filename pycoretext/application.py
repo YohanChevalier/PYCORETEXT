@@ -54,8 +54,8 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=1)
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placer la fenêtre principale au centre de l'écran
-        self._width = 1200
-        self._height = 600
+        self._width = 1100
+        self._height = 530
         place_windows(self, self._width, self._height)
         # création de la login page
         self._login = l_pg.LoginPage(self)

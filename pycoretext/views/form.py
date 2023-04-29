@@ -26,16 +26,16 @@ from pycoretext.api_controller import api_url, api_connexion as co
 from pycoretext import exceptions as exc
 
 
-class SearchBloc(ttk.Labelframe):
+class SearchBloc(ttk.Frame):
     """
     Frame principal qui contiendra les sous_frames de la recherche
     """
 
-    def __init__(self, master, connexion, text="RECHERCHE", *args, **kwargs):
+    def __init__(self, master, connexion, *args, **kwargs):
         """
         Fonction d'initialisation
         """
-        super().__init__(master=master, text=text, *args, **kwargs)
+        super().__init__(master=master, *args, **kwargs)
         # récupération de la connexion qui sera utile pour SearchData
         self.connexion = connexion
         # sauvegarde de l'ensemble des objets Var
@@ -91,14 +91,18 @@ class SearchBloc(ttk.Labelframe):
 
         # Frame principal
         simple_and_critere = ttk.Frame(self)
-        simple_and_critere.grid(column=0, row=0, sticky=tk.W + tk.E + tk.N)
+        simple_and_critere.grid(column=0, row=0, sticky=(
+                                tk.W + tk.E + tk.N + tk.S),
+                                padx=(0, 10))
+        simple_and_critere.rowconfigure(0, weight=1)
+        simple_and_critere.rowconfigure(1, weight=1)
 
         # RECHERCHE SIMPLE
         self._simple = ttk.LabelFrame(
-            simple_and_critere, text="Recherche simple"
+            simple_and_critere, text="Recherche simple",
         )
-        self._simple.grid(column=0, row=0, sticky=tk.E + tk.W + tk.N,
-                          padx=(0, 3))
+        self._simple.grid(column=0, row=0, sticky=(
+                          tk.E + tk.W + tk.N + tk.S))
         w.LabelInput(
             self._simple, "ID Judilibre", self._vars["id"],
             input_class=ttk.Entry,
@@ -107,10 +111,9 @@ class SearchBloc(ttk.Labelframe):
 
         # RECHERCHE DES CRITÈRES
         self._taxo_frame = ttk.LabelFrame(
-            simple_and_critere, text="Taxonomie"
-        )
-        self._taxo_frame.grid(column=0, row=1, sticky=tk.W + tk.E + tk.N,
-                              padx=(0, 3))
+            simple_and_critere, text="Taxonomie")
+        self._taxo_frame.grid(column=0, row=1, sticky=(
+                         tk.E + tk.W + tk.N + tk.S))
         w.LabelInput(
             self._taxo_frame, "Métadonnée", var=self._vars["idT"],
             input_args={"items_list": self._data["idT"],

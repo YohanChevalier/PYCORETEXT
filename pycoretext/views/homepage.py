@@ -43,7 +43,8 @@ class Homepage(ttk.Frame):
         self.columnconfigure(1, weight=2)
         try:
             self.search = form.SearchBloc(self, connexion)
-            self.search.grid(column=0, row=0, sticky=tk.W + tk.E)
+            self.search.grid(column=0, row=0, sticky=tk.W + tk.E,
+                             padx=10, pady=10)
             self.search.columnconfigure(0, weight=1)
             self.search.columnconfigure(1, weight=1)
         except exc.ERRORS as e:
@@ -52,7 +53,8 @@ class Homepage(ttk.Frame):
             self.info_button = ttk.Button(self,
                                           text="Informations et statistiques",
                                           command=self._on_click_info)
-            self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E)
+            self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E,
+                                  padx=10)
 
     def _start_display_info(self):
         """
