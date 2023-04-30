@@ -81,6 +81,7 @@ class Application(tk.Tk):
         self.waiting_login_dialog.protocol("WM_DELETE_WINDOW",
                                            self._close_waiting_dialog)
         self.waiting_login_dialog.grab_set()
+        self.waiting_login_dialog.focus_set()
         self.waiting_login_dialog.columnconfigure(0, weight=1)
         self.waiting_login_dialog.resizable(False, False)
         # Positionnement de la fenêtre
@@ -204,6 +205,7 @@ class Application(tk.Tk):
         # Désactiver l'utilisation de la croix rouge pour fermer
         self.waiting_dialog.protocol("WM_DELETE_WINDOW",
                                      self._close_waiting_dialog)
+        self.waiting_dialog.focus_set()
         self.waiting_dialog.grab_set()
         self.waiting_dialog.columnconfigure(0, weight=1)
         self.waiting_dialog.resizable(False, False)
