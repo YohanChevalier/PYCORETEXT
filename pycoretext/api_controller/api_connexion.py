@@ -64,7 +64,6 @@ class Connexion:
             response = r_get(self.endpoint + "/healthcheck",
                              headers=self.headers, timeout=5)
             # une réponse correcte est forcément entre 200 et 300
-            print(response.status_code)
             if 200 <= response.status_code < 300:
                 is_request_ok = True
             else:
@@ -99,7 +98,6 @@ class Connexion:
                 response = r_get(full_url, headers=self.headers,
                                  timeout=5)
                 # tester le code de retour
-                print(response.status_code)
                 if 200 <= response.status_code < 300:
                     # on ne fait rien, c'est correct
                     pass

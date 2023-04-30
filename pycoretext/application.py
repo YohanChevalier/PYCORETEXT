@@ -139,7 +139,6 @@ class Application(tk.Tk):
             self.connexion = None
             # suppression de la fenêtre d'attente
             self.waiting_login_dialog.destroy()
-            print("test connexion failed")
 
     def _build_homepage(self):
         """
@@ -152,7 +151,6 @@ class Application(tk.Tk):
         self._notebook.grid(sticky=tk.W + tk.E + tk.N + tk.S)
         # ajout de la page d'accueil "homepage" dans le notebook
         # on transmet la connexion pour les requêtes internes
-        print("homepage built")
         try:
             self._homepage = h.Homepage(self._notebook, self.connexion)
         except exc.ERRORS as e:
@@ -167,7 +165,6 @@ class Application(tk.Tk):
             self._notebook.destroy()
             del self._notebook
         else:
-            print("requests hompage success")
             self._notebook.add(self._homepage, text="Accueil")
             # on bind la fonction de recherche
             self._homepage.search.bind("<<OnSearch>>", self._on_search)
@@ -393,7 +390,6 @@ class Application(tk.Tk):
         elif "location ca" in data or "theme ca" in data:
             juris = data.get("jurisdiction", None)
             if juris is None or juris == "cc":
-                print("juridiction", data.get("jurisdiction", None))
                 title = "Conflit de juridictions"
                 message = ("Certains critères ne sont pas compatibles "
                            + "avec la juridiction choisie." + '\n'

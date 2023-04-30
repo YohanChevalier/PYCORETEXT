@@ -556,8 +556,6 @@ class CustomNotebook(ttk.Notebook):
         """
         Fonction d'initialisation
         """
-        print("self.count = ", self._id_style_close)
-        print("initialisé = ", self.__initialized)
         self.__initialize_custom_style()
         CustomNotebook.__initialized = True
 
