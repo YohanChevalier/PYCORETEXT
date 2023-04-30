@@ -429,7 +429,7 @@ class DecisionsList(tk.Frame):
             self,
             columns=list(self.columns_def.keys())[1:],
             selectmode="browse",
-            height=20
+            height=18
         )
         self.treeview.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N + tk.S)
         # configuration des headings du treeview à partir du columns_def dict

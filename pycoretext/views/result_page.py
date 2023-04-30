@@ -59,11 +59,13 @@ class ResultPage(tk.Frame):
         else:
             self._nb_decision = None
         # configuration du widget
-        self.columnconfigure(1, weight=1)
+        self.columnconfigure(1, weight=2)
+        self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
         # frame principal
         self._left_frame = ttk.Frame(self)
-        self._left_frame.grid(row=0, column=0, sticky="eswn")
+        self._left_frame.grid(row=0, column=0, sticky="eswn",
+                              padx=4, pady=4)
         self._left_frame.columnconfigure(0, weight=1)
         # ajout des critères et du nb de décisions si nécessaire
         self.add_answer_details()
@@ -92,15 +94,13 @@ class ResultPage(tk.Frame):
         """
         # frame principal
         details_frame = ttk.Frame(self._left_frame)
-        details_frame.grid(row=0, column=0, sticky=tk.W + tk.E,
-                           pady=5, padx=5)
+        details_frame.grid(row=0, column=0, sticky=tk.W + tk.E)
         details_frame.columnconfigure(0, weight=1)
         # fritères de recherche
         criteria_frame = ttk.LabelFrame(
             details_frame,
             text="Critères de recherche")
-        criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N,
-                            pady=(0, 5))
+        criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
         ttk.Label(
             criteria_frame,
             text=self._criteria_to_string()
@@ -127,28 +127,35 @@ class ResultPage(tk.Frame):
         """
         Construit le treeview si plusieurs décisions ont été renvoyées
         """
+        # créationd du treeview
         self._treeview = DecisionsList(self._left_frame)
-        self._treeview.grid(row=1, column=0, sticky=tk.W + tk.E + tk.N + tk.S,
-                            padx=5)
+        self._treeview.grid(row=1, column=0, sticky=tk.W + tk.E + tk.N + tk.S)
         self._treeview.populate(self.dict_decisions)
         # Ajout du bouton pour export Excel
-        self._button_excel = ttk.Button(self._left_frame, text="Export Excel brut",
+        self._button_excel = ttk.Button(self._left_frame,
+                                        text="Export Excel brut",
                                         command=self._export_raw_excel)
         self._button_excel.grid(row=2, column=0,
-                                sticky=tk.W + tk.E + tk.N,
-                                padx=5, pady=(5, 1))
+                                sticky=tk.W + tk.E + tk.S,
+                                pady=(3, 0))
 
     def add_text(self):
         """
         Construit la fenêtre de visualisation des métadonnées
         """
-        self._text = tk.Text(self, height=25, wrap="word")
-        self._text.grid(row=0, column=1, sticky=tk.E + tk.W + tk.N + tk.S,
-                        padx=5, pady=5)
+        # créer le frame de droite
+        self._right_frame = ttk.Frame(self)
+        self._right_frame.grid(row=0, column=1, sticky="eswn",
+                               pady=(13, 4), padx=4)
+        self._right_frame.columnconfigure(0, weight=1)
+        # ajout du widget Text
+        self._text = tk.Text(self._right_frame, height=28,
+                             wrap="word", width=70)
+        self._text.grid(row=0, column=0, sticky=tk.E + tk.W + tk.N + tk.S)
         # création de la scrollbar
-        s = ttk.Scrollbar(self, orient=VERTICAL,
+        s = ttk.Scrollbar(self._right_frame, orient=VERTICAL,
                           command=self._text.yview)
-        s.grid(row=0, column=2, sticky=tk.N + tk.S + tk.W)
+        s.grid(row=0, column=1, sticky=tk.N + tk.S + tk.W)
         self._text["yscrollcommand"] = s.set
 
     def retrieve_selection_treeview(self, *_):
@@ -278,16 +285,17 @@ class ResultPage(tk.Frame):
         if hasattr(self, "access_text_button"):
             self.access_text_button.destroy()
         self.access_text_button = ButtonWholeText(
-            self,
+            self._right_frame,
             decision_text,
             id_decision,
             number_decision
                 )
         self.access_text_button.grid(
             row=1,
-            column=1,
-            sticky=tk.W + tk.E,
-            padx=5, pady=5
+            column=0,
+            columnspan=2,
+            sticky=tk.W + tk.E + tk.S,
+            pady=(3, 0)
         )
 
     def _criteria_to_string(self):
@@ -304,7 +312,7 @@ class ResultPage(tk.Frame):
                 if not i + 1 == _l:
                     value += " -"
             final_string += f"{key} {value}"
-            if index in [3, 7, 11]:
+            if index in [3, 7, 11] and index + 1 < len(list_keys):
                 final_string += "\n"
             else:
                 final_string += " | "
@@ -407,12 +415,15 @@ class ResultPage(tk.Frame):
             meta_in_value = value.dict_meta.copy()
             dict_for_export[key] = meta_in_value
             # suppression du text
-            dict_for_export[key].pop("text")
+            dict_for_export[key].pop("text", "")
         # création du dataframe transposé
         df = pd.DataFrame(dict_for_export).T
-        today = datetime.today().strftime("%Y-%m-%d")
+        today = datetime.today().strftime("%Y-%m-%d-%H-%M")
         filename = f"\\{today}_pycoretext_export.xlsx"
         # on demande à l'utilisateur dans quel dossier placer le fichier excel
-        export_path = filedialog.askdirectory()
+        try:
+            export_path = filedialog.askdirectory()
+        except PermissionError:
+            pass
         # export Excel
         df.to_excel(export_path + filename)

@@ -55,7 +55,7 @@ class Application(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placer la fenêtre principale au centre de l'écran
         self._width = 1100
-        self._height = 600
+        self._height = 550
         place_windows(self, self._width, self._height)
         # création de la login page
         self._login = l_pg.LoginPage(self)
@@ -388,14 +388,16 @@ class Application(tk.Tk):
             title = "Mot(s) clé(s) manquant(s)"
             message = "Le critère 'operator' ne peut pas être utilisé seul."
             state = 0
-        elif "location ca" in data \
-                or "theme ca" in data\
-                and data.get("jurisdiction", None) is None:
-            title = "Conflit de juridictions"
-            message = ("Certains critères ne sont pas compatibles avec "
-                       + "la juridiction choisie." + '\n'
-                       + "Rappel, la juridiction par défaut est 'cc'.")
-            state = 0
+        elif "location ca" in data or "theme ca" in data:
+            juris = data.get("jurisdiction", None)
+            if juris is None or juris == "cc":
+                print("juridiction", data.get("jurisdiction", None))
+                title = "Conflit de juridictions"
+                message = ("Certains critères ne sont pas compatibles "
+                           + "avec la juridiction choisie." + '\n'
+                           + "Rappel, la juridiction par défaut est"
+                           + "'cc'.")
+                state = 0
         # vérification des dates si présentes dans data
         date_to_check = ['date_start', 'date_end']
         for date in date_to_check:
