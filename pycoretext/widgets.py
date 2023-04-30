@@ -721,6 +721,7 @@ class CustomMessageBox(tk.Toplevel):
             self.root = root
         place_windows(self, 430, 100, self.root)
         # Seule cette fenêtre est accessible
+        self.focus_set()
         self.grab_set()
         self.resizable(False, False)
         self.rowconfigure(0, weight=1)
