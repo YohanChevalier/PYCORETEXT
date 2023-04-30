@@ -419,7 +419,7 @@ class ResultPage(tk.Frame):
         # création du dataframe transposé
         df = pd.DataFrame(dict_for_export).T
         today = datetime.today().strftime("%Y-%m-%d-%H-%M")
-        filename = f"\\{today}_pycoretext_export.xlsx"
+        filename = f"\\{today}_pycoretext_id{self._id_answer}.xlsx"
         # on demande à l'utilisateur dans quel dossier placer le fichier excel
         try:
             export_path = filedialog.askdirectory()
