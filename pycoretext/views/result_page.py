@@ -19,8 +19,10 @@ Classes pour instanciation d'une page de résultat
 """
 
 import tkinter as tk
-from tkinter import ttk, VERTICAL
+from tkinter import ttk, VERTICAL, filedialog
 import webbrowser as web
+import pandas as pd
+from datetime import datetime
 from pycoretext.api_controller import api_answers
 from pycoretext.widgets import DecisionsList, ButtonWholeText
 
@@ -127,14 +129,20 @@ class ResultPage(tk.Frame):
         """
         self._treeview = DecisionsList(self._left_frame)
         self._treeview.grid(row=1, column=0, sticky=tk.W + tk.E + tk.N + tk.S,
-                            padx=5, pady=(0, 5))
+                            padx=5)
         self._treeview.populate(self.dict_decisions)
+        # Ajout du bouton pour export Excel
+        self._button_excel = ttk.Button(self._left_frame, text="Export Excel brut",
+                                        command=self._export_raw_excel)
+        self._button_excel.grid(row=2, column=0,
+                                sticky=tk.W + tk.E + tk.N,
+                                padx=5, pady=(5, 1))
 
     def add_text(self):
         """
         Construit la fenêtre de visualisation des métadonnées
         """
-        self._text = tk.Text(self, height=30, wrap="word")
+        self._text = tk.Text(self, height=25, wrap="word")
         self._text.grid(row=0, column=1, sticky=tk.E + tk.W + tk.N + tk.S,
                         padx=5, pady=5)
         # création de la scrollbar
@@ -387,3 +395,24 @@ class ResultPage(tk.Frame):
                             func=lambda event, url=url: self._open_url(url))
         self._text.tag_bind(url, "<Enter>", self._enter)
         self._text.tag_bind(url, "<Leave>", self._leave)
+
+    def _export_raw_excel(self):
+        """
+        Méthode qui utilise Pandas pour exporter
+        les données dans Excel"""
+        # dictionnaire adapté à Pandas
+        dict_for_export = {}
+        for key, value in self.dict_decisions.items():
+            # copie du dictionnaire de la décision
+            meta_in_value = value.dict_meta.copy()
+            dict_for_export[key] = meta_in_value
+            # suppression du text
+            dict_for_export[key].pop("text")
+        # création du dataframe transposé
+        df = pd.DataFrame(dict_for_export).T
+        today = datetime.today().strftime("%Y-%m-%d")
+        filename = f"\\{today}_pycoretext_export.xlsx"
+        # on demande à l'utilisateur dans quel dossier placer le fichier excel
+        export_path = filedialog.askdirectory()
+        # export Excel
+        df.to_excel(export_path + filename)
