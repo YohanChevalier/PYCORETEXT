@@ -36,7 +36,9 @@ https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techn
 ..........................
 
 Numéro de version = 2.0.0
+
 Date de publication = 2023-05
+
 Liste des améliorations :
     * Utilisation du threading pour les messages d'attente
     * Lorsque la fenêtre principale est déplacée, les fenêtres supérieures suivront désormais
