@@ -754,13 +754,20 @@ class CustomMessageBox(tk.Toplevel):
                                                 padx=(7, 7),
                                                 sticky=tk.W + tk.E)
         else:
-            tk.Button(self, text="OK", command=self.destroy).grid(
-                                                            row=1,
-                                                            column=0,
-                                                            columnspan=2,
-                                                            sticky=tk.E + tk.W,
-                                                            padx=120,
-                                                            pady=(0, 2))
+            self._ok_button = tk.Button(self, text="OK",
+                                        command=self._destroy_window)
+            self._ok_button.grid(
+                                row=1,
+                                column=0,
+                                columnspan=2,
+                                sticky=tk.E + tk.W,
+                                padx=120,
+                                pady=(0, 2))
+            self._ok_button.focus_set()
+            self._ok_button.bind('<Return>', func=self._destroy_window)
+
+    def _destroy_window(self, event=None):
+        self.destroy()
 
 
 def place_windows(win_to_place: tk.Tk, width, height, root="screen",):
