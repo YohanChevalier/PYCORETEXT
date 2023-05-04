@@ -31,6 +31,26 @@ Se reporter au fichier "specifications_techniques.rst" dans le dossier \\docs
 
 https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techniques.rst
 
+..........................
+ Version de l'application
+..........................
+
+Numéro de version = 2.0.0
+Date de publication = 2023-05
+Liste des améliorations :
+    * Utilisation du threading pour les messages d'attente
+    * Lorsque la fenêtre principale est déplacée, les fenêtres supérieures suivront désormais
+    * Renforcement des validations de données dans le formulaire
+    * Redisposition des éléments du formulaire = gain d'espace + gain de rapidité au démarrage
+    * Nouveau critère de recherche = texte avec pdf
+    * Gestion des hyperliens pour 'Visa' et 'Rapprochement' la prévisualisation des métadonnées d'un résulat
+    * Ajout d'une alerte lorsque le nombre de résultat atteint 10 000
+    * Ajout d'une export Excel de la liste de résultat
+    * Meilleure affichage des exceptions déclenchaient dans les threads
+    * Ajout d'un timeout de 5 secondes sur les requêtes API
+    * Correction de divers bugs
+    * Modification de quelques libellésandbox
+
 ..............
 INSTALLATION
 ..............
