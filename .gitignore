@@ -37,3 +37,6 @@ MANIFEST
 
 " Sphinx documentation
 docs/build
+
+# Autres fichiers
+tests/test_ratelimit_backoff.py
