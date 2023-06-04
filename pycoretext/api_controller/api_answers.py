@@ -24,6 +24,7 @@ from concurrent.futures import ThreadPoolExecutor
 import threading
 from ratelimit import limits, RateLimitException
 from backoff import on_exception, expo
+from pycoretext import exceptions as exc
 
 
 class Answer:
@@ -129,6 +130,18 @@ class AnswerExport(Answer):
 #             self._thread_local.session = requests.Session()
 #         return self._thread_local.session
 
+    def _start_simple_api_request(self, url):
+        """
+        Exécuter la fonction de requête à l'API
+        Gérer les exceptions issus des abandons Backoff
+        """
+        try:
+            response = self.connexion.simple_api_request(url)
+        except exc.ERRORS:
+            print('!!!! Catch exception from thread in answer : ')
+        else:
+            return response
+
     def _generate_decisions(self, urls_list):
         """
         Lance les workers (threads) sur la fonction principale
@@ -138,19 +151,21 @@ class AnswerExport(Answer):
         # avant de récupérer les résultats
         with ThreadPoolExecutor(max_workers=10) as executor:
             # mapping sur la fonction de requêtage
-            results = executor.map(self.connexion.simple_api_request,
+            results = executor.map(self._start_simple_api_request,
                                    urls_list[:-1])
             executor.shutdown(wait=True)
         # récupération des résultats et traitement de chaque résultat
         for r in results:
-            try:
-                r = r.json()
-            except Exception as e:
-                print(e)
-            else:
-                self._decision_creation(r)
-                # incrémenter le nb de requêtes
-                self._nb_request += 1
+            # si le résultat est nul à cause d'une exception, on ne traite pas
+            if r:
+                try:
+                    r = r.json()
+                except Exception as e:
+                    print(e)
+                else:
+                    self._decision_creation(r)
+                    # incrémenter le nb de requêtes
+                    self._nb_request += 1
 
     # ratelimit pour gérer le throttle
     # => 10 requêtes par seconde et possibilité de retenter 20 fois.

@@ -104,7 +104,7 @@ class Connexion:
                           (requests.exceptions.Timeout,
                            ratelimit.RateLimitException,
                            requests.exceptions.HTTPError),
-                          max_tries=20,
+                          max_tries=3,
                           giveup=filter_wrong_codes,
                           on_success=_backoff_on_success,
                           on_backoff=_backoff_on_backoff,
