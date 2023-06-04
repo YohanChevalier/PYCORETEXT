@@ -31,18 +31,32 @@ import threading
 import datetime
 import logging
 
+# Définir le format des messages logging
+FORMAT = '[%(asctime)s] %(levelname)s // %(name)s // %(message)s'
+DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
+
 # Définir un logger root pour le suivi des événements
 logger_root = logging.getLogger('flux')
 logger_root.setLevel(logging.INFO)
 
-# Définir le handler et le formatter
+# Définir le handler et le formatter du root
 fh = logging.StreamHandler()
-formatter = logging.Formatter('%(levelname)s | %(asctime)s : %(name)s '
-                              + '- %(message)s')
+formatter = logging.Formatter(FORMAT, datefmt=DATE_FORMAT)
 fh.setFormatter(formatter)
 logger_root.addHandler(fh)
 
+# Premier enfant du root flux
 logger = logging.getLogger('flux.app')
+
+# Définir un logger pour les appels API
+logger_api = logging.getLogger('api')
+logger_api.setLevel(logging.INFO)
+
+# Définir le handler et le formatter du logger_api
+fh = logging.StreamHandler()
+formatter = logging.Formatter(FORMAT, datefmt=DATE_FORMAT)
+fh.setFormatter(formatter)
+logger_api.addHandler(fh)
 
 
 class Application(tk.Tk):

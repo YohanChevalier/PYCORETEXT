@@ -19,14 +19,18 @@ Module qui rassemble les exceptions gérées dans le projet pycoretext
 """
 
 import requests
+import ratelimit
 
 # variable utilisée dans les différents modules du projet
 # liste les exceptions à gérer lors d'une requête API
 ERRORS = (
-    AttributeError,
-    requests.ConnectionError,
     requests.HTTPError,
-    ValueError)
+    requests.exceptions.Timeout,
+    ratelimit.RateLimitException,
+    requests.ConnectionError,
+    AttributeError,
+    ValueError,
+    requests.exceptions.RequestException)
 
 
 class WrongCriteria(Exception):

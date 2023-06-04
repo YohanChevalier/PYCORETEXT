@@ -22,10 +22,16 @@ créée grâce aux classes du module api_url, requête grâce au module
 request et génération de l'objet Answer approprié.
 """
 
-from requests import get as r_get
 import requests
 from pycoretext import exceptions as exc
 from . import api_answers as ans, api_url
+import ratelimit
+import backoff
+import logging
+import random
+
+
+logger_api = logging.getLogger('api.api_connexion')
 
 
 class Connexion:
@@ -49,10 +55,84 @@ class Connexion:
         # le header est nécessaire lors de la requête request.get (r_get)
         self.headers = {'accept': 'application/json',
                         'KeyId': key_user}
+        # créer la session HTTP
+        self.session = requests.Session()
+        self.session.headers = {'accept': 'application/json', 'KeyId': key_user}
         # 1/ nombre d'objets Answer créés
         # 2/ idendifiant du dernier objet Answer généré
         # 3/ collection des objets Answer sous forme de dict.
         self.nb_answers, self.current_id_answer, self.dict_answers = 0, 0, {}
+
+    @staticmethod
+    def filter_wrong_codes(e):
+        """
+        Analyser l'exception prise par backoff lors
+        de l'exécution de la function simple_api_request
+
+        Si HTTPError alors on vérifie le code :
+         - Erreurs serveur (>=500) = répétition (False)
+         - Erreurs client spécifiques (429, 416) = répétition (False)
+         - Autres erreurs clients = Give up
+        """
+        if type(e) == requests.exceptions.HTTPError:
+            if e.response.status_code >= 500:
+                return False
+            elif e.response.status_code in [429, 416]:
+                return False
+            else:
+                return True
+        return False
+
+    @staticmethod
+    def _backoff_on_backoff(details):
+        logger_api.warning("Backing off {wait:0.1f} seconds after {tries} tries"
+                           " ==> Exception: {exception}".format(**details))
+
+    @staticmethod
+    def _backoff_on_giveup(details):
+        logger_api.error("Give up after {tries} tries"
+                         " ==> Exception: {exception}".format(**details))
+
+    @staticmethod
+    def _backoff_on_success(details):
+        logger_api.info("Success after {tries} tries"
+                        " ==> URL: {args[1]}".format(**details))
+
+    @backoff.on_exception(backoff.expo,
+                          (requests.exceptions.Timeout,
+                           ratelimit.RateLimitException,
+                           requests.exceptions.HTTPError),
+                          max_tries=5,
+                          giveup=filter_wrong_codes,
+                          on_success=_backoff_on_success,
+                          on_backoff=_backoff_on_backoff,
+                          on_giveup=_backoff_on_giveup,
+                          logger=None)
+    @ratelimit.limits(calls=20, period=1)
+    def simple_api_request(self, url: str):
+        """
+        Envoyer une requête à l'API
+
+        ratelimit: 20 calls par seconde
+        backoff:
+         Si exception timeout, ratelimit ou HTTPError selon le code
+         Alors répétion de la fonction, pas plus de 4 fois
+        """
+        response = self.session.get(url, timeout=8)
+        random_test = random.randrange(15)
+        if random_test == 0:
+            raise requests.exceptions.Timeout('timeout')
+        elif random_test == 1:
+            raise ratelimit.RateLimitException('oops', 1)
+        elif random_test == 2:
+            response.status_code = 503
+        elif random_test == 3:
+            response.status_code = 500
+        else:
+            pass
+        # If wrong status a HTTPError is raised
+        response.raise_for_status()
+        return response
 
     def test_connexion(self):
         """
@@ -60,19 +140,14 @@ class Connexion:
         retourne True si succès, message d'erreur (str) si échec
         """
         is_request_ok = None
+        url = self.endpoint + "/healthcheck"
         try:
-            response = r_get(self.endpoint + "/healthcheck",
-                             headers=self.headers, timeout=5)
-            # une réponse correcte est forcément entre 200 et 300
-            if 200 <= response.status_code < 300:
-                is_request_ok = True
-            else:
-                raise ValueError(f"Wrong status: {response.status_code}")
-        except requests.ReadTimeout:
-            is_request_ok = "API timeout, délai de 5 secondes dépassé"
-        except exc.ERRORS as e1:
+            self.simple_api_request(url)
+        except exc.ERRORS as e:
             # Le message de l'exception est placé dans la variable de retour
-            is_request_ok = e1
+            is_request_ok = e
+        else:
+            is_request_ok = True
         finally:
             return is_request_ok
 
@@ -95,21 +170,10 @@ class Connexion:
         else:
             # si url est correcte, tentative de connexion
             try:
-                response = r_get(full_url, headers=self.headers,
-                                 timeout=5)
-                # tester le code de retour
-                if 200 <= response.status_code < 300:
-                    # on ne fait rien, c'est correct
-                    pass
-                else:
-                    raise ValueError(
-                        f"Wrong status: {response.status_code}:")
+                response = self.simple_api_request(full_url)
             # transformation de l'exception de timeout en ValueError
-            except requests.ReadTimeout as e1:
-                raise ValueError(
-                    "Api timeout, délai de 5 secondes dépassé") from e1
-            except exc.ERRORS as e2:
-                raise e2
+            except exc.ERRORS as e:
+                raise e
             else:
                 # tentative de création de l'objet Anwser
                 try:
@@ -118,8 +182,8 @@ class Connexion:
                                         url_object.dict_criterias,
                                         full_url, internal,
                                         url_object.integral)
-                except exc.NoResult as e3:
-                    raise e3
+                except exc.NoResult as e1:
+                    raise e1
 
     def _create_answer(
             self, response: requests.Response,
