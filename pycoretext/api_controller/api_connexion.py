@@ -57,7 +57,8 @@ class Connexion:
                         'KeyId': key_user}
         # créer la session HTTP
         self.session = requests.Session()
-        self.session.headers = {'accept': 'application/json', 'KeyId': key_user}
+        self.session.headers = {'accept': 'application/json',
+                                'KeyId': key_user}
         # 1/ nombre d'objets Answer créés
         # 2/ idendifiant du dernier objet Answer généré
         # 3/ collection des objets Answer sous forme de dict.
@@ -85,7 +86,8 @@ class Connexion:
 
     @staticmethod
     def _backoff_on_backoff(details):
-        logger_api.warning("Backing off {wait:0.1f} seconds after {tries} tries"
+        logger_api.warning("Backing off {wait:0.1f} seconds"
+                           "after {tries} tries"
                            " ==> Exception: {exception}".format(**details))
 
     @staticmethod
@@ -102,7 +104,7 @@ class Connexion:
                           (requests.exceptions.Timeout,
                            ratelimit.RateLimitException,
                            requests.exceptions.HTTPError),
-                          max_tries=5,
+                          max_tries=20,
                           giveup=filter_wrong_codes,
                           on_success=_backoff_on_success,
                           on_backoff=_backoff_on_backoff,
@@ -119,17 +121,17 @@ class Connexion:
          Alors répétion de la fonction, pas plus de 4 fois
         """
         response = self.session.get(url, timeout=8)
-        random_test = random.randrange(15)
-        if random_test == 0:
-            raise requests.exceptions.Timeout('timeout')
-        elif random_test == 1:
-            raise ratelimit.RateLimitException('oops', 1)
-        elif random_test == 2:
-            response.status_code = 503
-        elif random_test == 3:
-            response.status_code = 500
-        else:
-            pass
+#         random_test = random.randrange(15)
+#         if random_test == 0:
+#             raise requests.exceptions.Timeout('timeout')
+#         elif random_test == 1:
+#             raise ratelimit.RateLimitException('oops', 1)
+#         elif random_test == 2:
+#             response.status_code = 503
+#         elif random_test == 3:
+#             response.status_code = 500
+#         else:
+#             pass
         # If wrong status a HTTPError is raised
         response.raise_for_status()
         return response
@@ -215,14 +217,15 @@ class Connexion:
                     answer = ans.AnswerExport(dict_from_response,
                                               id_answer,
                                               dict_criterias,
+                                              self,
                                               # info pour nouvelle requête
-                                              self.headers,
                                               first_url)
                 # sinon un simple objet Answer suffit
                 else:
                     answer = ans.Answer(dict_from_response,
                                         id_answer,
-                                        dict_criterias)
+                                        dict_criterias,
+                                        connexion=self)
         # même chose pour search
         elif url_type == "search":
             if dict_from_response['total'] == 0:
@@ -234,7 +237,7 @@ class Connexion:
                     answer = ans.AnswerSearch(dict_from_response,
                                               id_answer,
                                               dict_criterias,
-                                              self.headers,
+                                              self,
                                               first_url)
                 else:
                     answer = ans.Answer(dict_from_response,

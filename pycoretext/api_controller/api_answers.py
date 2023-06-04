@@ -33,7 +33,8 @@ class Answer:
     Crée les objets Decision et les ajoute au dictionnaire de décisions.
     """
 
-    def __init__(self, dict_from_response, id_answer, dict_criterias):
+    def __init__(self, dict_from_response, id_answer, dict_criterias,
+                 connexion=None):
         """
         Constructeur de la classe Answer
         """
@@ -43,6 +44,9 @@ class Answer:
         self.id_answer = id_answer
         # critères de recherches issus de l'objet Url
         self.dict_criterias = dict_criterias
+        # Récupération de la connexion
+        if connexion:
+            self.connexion = connexion
         # nombre total de décisions retournées ("total" dans le dict)
         # Si cette clé n'existe pas alors None
         self.total_decisions = self.dict_from_response.get("total", None)
@@ -61,16 +65,17 @@ class AnswerExport(Answer):
     """
 
     def __init__(self, dict_from_response, id_answer, dict_criterias,
-                 headers, first_url):
+                 connexion, first_url):
         """
         Constructeur de la classe AnswerExport
         """
         # récupération des informations de connexion
         # !! important de commencer par cette étape
-        self.headers, self.first_url = headers, first_url
+        self.first_url = first_url
         print('1ere URL = ', self.first_url)
         # appelle le constructeur parent
-        super().__init__(dict_from_response, id_answer, dict_criterias)
+        super().__init__(dict_from_response, id_answer, dict_criterias,
+                         connexion)
         # nombre de décisions contenues dans cet objet Answer
         self.nb_decision = 0
         # identifiant de la dernière décision créée
@@ -103,7 +108,7 @@ class AnswerExport(Answer):
         # Threading = requête pour chaque url et création de Decision
         # Solution trouvée : https://realpython.com/python-concurrency/
         # création de l'objet thread.local
-        self._thread_local = threading.local()
+        # self._thread_local = threading.local()
         self._generate_decisions(urls_list)
         # --------------------
         # Vérification console du résultat
@@ -115,14 +120,14 @@ class AnswerExport(Answer):
             for code, nb in self._wrong_response_list.items():
                 print(code, " = ", nb)
 
-    def _get_session(self):
-        """
-        Crée une session requests. on réutilise alors la même TCP connexion
-        et on gagne en performance.
-        """
-        if not hasattr(self._thread_local, "session"):
-            self._thread_local.session = requests.Session()
-        return self._thread_local.session
+#     def _get_session(self):
+#         """
+#         Crée une session requests. on réutilise alors la même TCP connexion
+#         et on gagne en performance.
+#         """
+#         if not hasattr(self._thread_local, "session"):
+#             self._thread_local.session = requests.Session()
+#         return self._thread_local.session
 
     def _generate_decisions(self, urls_list):
         """
@@ -133,37 +138,45 @@ class AnswerExport(Answer):
         # avant de récupérer les résultats
         with ThreadPoolExecutor(max_workers=10) as executor:
             # mapping sur la fonction de requêtage
-            results = executor.map(self._send_simple_request, urls_list[:-1])
+            results = executor.map(self.connexion.simple_api_request,
+                                   urls_list[:-1])
             executor.shutdown(wait=True)
         # récupération des résultats et traitement de chaque résultat
         for r in results:
-            self._decision_creation(r)
+            try:
+                r = r.json()
+            except Exception as e:
+                print(e)
+            else:
+                self._decision_creation(r)
+                # incrémenter le nb de requêtes
+                self._nb_request += 1
 
     # ratelimit pour gérer le throttle
     # => 10 requêtes par seconde et possibilité de retenter 20 fois.
     # backoff  pour relancer la fonction en cas d'exception
-    @on_exception(expo, RateLimitException, max_tries=20)
-    @limits(calls=10, period=1)
-    def _send_simple_request(self, url):
-        """
-        Effectue une requête avec l'url donnée
-        Retourne un objet dict
-        """
-        # récupération de la session requests
-        session = self._get_session()
-        # requête elle-même
-        with session.get(url, headers=self.headers, timeout=5) as response:
-            if response.status_code != 200:
-                if response.status_code in self._wrong_response_list:
-                    self._wrong_response_list[response.status_code] + 1
-                else:
-                    self._wrong_response_list[response.status_code] = 1
-        # incrémenter le nb de requêtes
-        self._nb_request += 1
-        # print utile pour la vérification par terminal
-        print(self._nb_request, ' - ', response.status_code, ' - ',
-              url)
-        return response.json()
+#     @on_exception(expo, RateLimitException, max_tries=20)
+#     @limits(calls=10, period=1)
+#     def _send_simple_request(self, url):
+#         """
+#         Effectue une requête avec l'url donnée
+#         Retourne un objet dict
+#         """
+#         # récupération de la session requests
+#         session = self._get_session()
+#         # requête elle-même
+#         with session.get(url, headers=self.headers, timeout=5) as response:
+#             if response.status_code != 200:
+#                 if response.status_code in self._wrong_response_list:
+#                     self._wrong_response_list[response.status_code] + 1
+#                 else:
+#                     self._wrong_response_list[response.status_code] = 1
+#         # incrémenter le nb de requêtes
+#         self._nb_request += 1
+#         # print utile pour la vérification par terminal
+#         print(self._nb_request, ' - ', response.status_code, ' - ',
+#               url)
+#         return response.json()
 
     def _decision_creation(self, dict_from_response: dict):
         """
@@ -218,12 +231,12 @@ class AnswerSearch(AnswerExport):
     """
 
     def __init__(self, dict_from_response, id_answer, dict_criterias,
-                 headers, first_url):
+                 connexion, first_url):
         """
         Constructeur de la classe
         """
         super().__init__(dict_from_response, id_answer, dict_criterias,
-                         headers, first_url)
+                         connexion, first_url)
 
     def _decision_creation(self, dict_from_response: dict):
         """

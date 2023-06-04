@@ -32,7 +32,8 @@ import datetime
 import logging
 
 # Définir le format des messages logging
-FORMAT = '[%(asctime)s] %(levelname)s // %(name)s // %(message)s'
+FORMAT1 = '[%(asctime)s] %(levelname)s // %(name)s // %(message)s'
+FORMAT2 = '[%(asctime)s] %(threadName)s // %(levelname)s // %(name)s // %(message)s'
 DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
 
 # Définir un logger root pour le suivi des événements
@@ -41,7 +42,7 @@ logger_root.setLevel(logging.INFO)
 
 # Définir le handler et le formatter du root
 fh = logging.StreamHandler()
-formatter = logging.Formatter(FORMAT, datefmt=DATE_FORMAT)
+formatter = logging.Formatter(FORMAT1, datefmt=DATE_FORMAT)
 fh.setFormatter(formatter)
 logger_root.addHandler(fh)
 
@@ -54,7 +55,7 @@ logger_api.setLevel(logging.INFO)
 
 # Définir le handler et le formatter du logger_api
 fh = logging.StreamHandler()
-formatter = logging.Formatter(FORMAT, datefmt=DATE_FORMAT)
+formatter = logging.Formatter(FORMAT2, datefmt=DATE_FORMAT)
 fh.setFormatter(formatter)
 logger_api.addHandler(fh)
 
