@@ -25,6 +25,9 @@ import pandas as pd
 from datetime import datetime
 from pycoretext.api_controller import api_answers
 from pycoretext.widgets import DecisionsList, ButtonWholeText
+import logging
+
+logger = logging.getLogger('flux.app.ResultPage')
 
 
 class ResultPage(tk.Frame):
@@ -38,6 +41,7 @@ class ResultPage(tk.Frame):
         """
         initialisation de l'objet
         """
+        logger.info('START create ResultPage')
         super().__init__(parent, *args, **kwargs)
         # récupération des données importantes liées à l'answer
         self._answer = answer
@@ -87,6 +91,7 @@ class ResultPage(tk.Frame):
         elif self._answer_type == "taxonomy":
             self.add_text()
             self._feed_text_from_taxonomy()
+        logger.info('END create ResultPage')
 
     def add_answer_details(self):
         """
@@ -96,7 +101,7 @@ class ResultPage(tk.Frame):
         details_frame = ttk.Frame(self._left_frame)
         details_frame.grid(row=0, column=0, sticky=tk.W + tk.E)
         details_frame.columnconfigure(0, weight=1)
-        # fritères de recherche
+        # critères de recherche
         criteria_frame = ttk.LabelFrame(
             details_frame,
             text="Critères de recherche")
@@ -408,6 +413,7 @@ class ResultPage(tk.Frame):
         """
         Méthode qui utilise Pandas pour exporter
         les données dans Excel"""
+        logger.info('TRY export result in Excel')
         # dictionnaire adapté à Pandas
         dict_for_export = {}
         for key, value in self.dict_decisions.items():
@@ -427,3 +433,5 @@ class ResultPage(tk.Frame):
             pass
         # export Excel
         df.to_excel(export_path + filename)
+        logger.info('SUCCESS export result in Excel : '
+                    + f'file name = \'{export_path + filename}\'')

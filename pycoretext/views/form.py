@@ -24,6 +24,9 @@ from tkinter import ttk
 from pycoretext import widgets as w
 from pycoretext.api_controller import api_url, api_connexion as co
 from pycoretext import exceptions as exc
+import logging
+
+logger = logging.getLogger('flux.homepage.form')
 
 
 class SearchBloc(ttk.Frame):
@@ -65,10 +68,13 @@ class SearchBloc(ttk.Frame):
         }
         # récupérer les données dynamiquement pour les inputs
         try:
+            logger.info('TRY get data for input')
             self._data = SearchData(self.connexion).data
         except exc.ERRORS as e:
+            logger.info('FAIL get data for input')
             raise e
         else:
+            logger.info('SUCCESS get data for input')
             self._create_form()
 
     def _create_form(self):

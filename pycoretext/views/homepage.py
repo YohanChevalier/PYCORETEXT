@@ -28,6 +28,9 @@ from pycoretext import exceptions as exc, widgets as w
 from pycoretext.api_controller import api_url
 from pycoretext.widgets import place_windows, CustomMessageBox
 from . import form
+import logging
+
+logger = logging.getLogger('flux.homepage')
 
 
 class Homepage(ttk.Frame):
@@ -42,12 +45,14 @@ class Homepage(ttk.Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=2)
         try:
+            logger.info('TRY create SearchBloc part')
             self.search = form.SearchBloc(self, connexion)
             self.search.grid(column=0, row=0, sticky=tk.W + tk.E,
                              padx=10, pady=10)
             self.search.columnconfigure(0, weight=1)
             self.search.columnconfigure(1, weight=1)
         except exc.ERRORS as e:
+            logger.error('FAIL create SearchBloc part')
             raise e
         else:
             self.info_button = ttk.Button(self,
@@ -55,20 +60,25 @@ class Homepage(ttk.Frame):
                                           command=self._on_click_info)
             self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E,
                                   padx=10)
+            logger.info('SUCCESS create SearchBloc part')
 
     def _start_display_info(self):
         """
         Affiche la fenêtre de niveau supérieur
         pour les infos de connexion et les stats"""
+        logger.info('TRY display InfoPopup')
         try:
             self.info_window = InfoPopup(self, self.connexion)
             self._var_display_info.set(True)
         except exc.ERRORS as e:
+            logger.info('FAIL display InfoPopup')
             self._var_display_info.set(False)
             CustomMessageBox(
                 "Impossible d'afficher les informations",
                 e,
                 root=self.nametowidget("."))
+        else:
+            logger.info('SUCCESS display InfoPopup')
 
     def _on_click_info(self, *_):
         """
@@ -174,8 +184,10 @@ class InfoPopup(tk.Toplevel):
         main_frame.columnconfigure(0, weight=1)
         # création du bloc d'infos
         try:
+            logger.info('TRY create InfosBloc in InfoPopup')
             service_state = InfosBlocData(connexion)._get_data()
         except exc.ERRORS as e:
+            logger.info('FAIL create InfosBloc in InfoPopup')
             raise e
         else:
             infos = InfosBloc(
@@ -184,15 +196,20 @@ class InfoPopup(tk.Toplevel):
             infos.grid(
                 column=0, row=0, sticky=tk.W + tk.E,
                 pady=(0, 10), padx=8)
+            logger.info('SUCCES create InfosBloc in InfoPopup')
             # création du bloc des statistiques judilibre
             try:
+                logger.info('TRY create StatsBloc in InfoPopup')
                 stats = StatsBloc(
                     main_frame, "Statistiques Judilibre",
                     StatsBlocData(connexion)._get_data())
                 stats.grid(
                     column=0, row=1, sticky=tk.W + tk.E, padx=8)
             except exc.ERRORS as e1:
+                logger.info('FAIL create StatsBloc in InfoPopup')
                 raise e1
+            else:
+                logger.info('SUCCESS create StatsBloc in InfoPopup')
 
 
 class InfosBloc(tk.LabelFrame):

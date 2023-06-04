@@ -17,4 +17,3 @@
 from pycoretext import application
 
 app = application.Application()
-app.mainloop()

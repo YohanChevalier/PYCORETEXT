@@ -500,6 +500,7 @@ class ButtonWholeText(ttk.Button):
 
     def __init__(self, parent, decision_text, id_decision,
                  number_decision, *args, **kwargs):
+        
         """Méthode constructrice"""
         self.parent = parent
         self.decision_text = decision_text

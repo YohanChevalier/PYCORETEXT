@@ -29,12 +29,27 @@ from pathlib import Path
 import sys
 import threading
 import datetime
+import logging
+
+# Définir un logger root pour le suivi des événements
+logger_root = logging.getLogger('flux')
+logger_root.setLevel(logging.INFO)
+
+# Définir le handler et le formatter
+fh = logging.StreamHandler()
+formatter = logging.Formatter('%(levelname)s | %(asctime)s : %(name)s '
+                              + '- %(message)s')
+fh.setFormatter(formatter)
+logger_root.addHandler(fh)
+
+logger = logging.getLogger('flux.app')
 
 
 class Application(tk.Tk):
     """ Classe principale de l'application"""
 
     def __init__(self, *args, **kwargs):
+        logger.info('START init of the application')
         super().__init__(*args, **kwargs)
         # chemins d'accès pour l'image et le texte
         # il change selon si nous sommes dans un fichier frozen (exécutable)
@@ -64,6 +79,7 @@ class Application(tk.Tk):
         # fenêtre principale masquée au démarrage
         self.withdraw()
         # initialisation du gestionnaire d'événements
+        logger.info('END init of the application')
         self.mainloop()
 
     def _on_connexion(self, *_):
@@ -122,16 +138,19 @@ class Application(tk.Tk):
         dans la login page
         2- si ok = construction de la homepage et fermeture de la login page
         3- si ko = envoi de l'erreur dans la login page et nettoyage"""
+        logger.info('TRY API connection')
         self.connexion = co.Connexion(
             env=self._login.var["environment"].get(),
             key_user=self._login.var["key"].get()
             )
         test_result = self.connexion.test_connexion()
         if isinstance(test_result, bool):
+            logger.info('SUCCES API connection')
             # si le test est correct alors c'est parti !
             self.__connexion_exists.set(True)
             self._build_homepage()
         else:
+            logger.error(f'FAIL API connection : {test_result}')
             # On envoie le message de l'exception à la page login
             self._login.var["error_message"].set(
                 f"Erreur de connexion : {test_result}")
@@ -145,6 +164,7 @@ class Application(tk.Tk):
         Création de la page d'accueil.
         Envoid e l'éventuelle erreur à la login page
         """
+        logger.info('START create homepage')
         # création du notebook d'après la classe personnalisée
         # qui offre des onglets avec croix pour fermer
         self._notebook = CustomNotebook(self)
@@ -154,6 +174,7 @@ class Application(tk.Tk):
         try:
             self._homepage = h.Homepage(self._notebook, self.connexion)
         except exc.ERRORS as e:
+            logging.info(f'FAIL create homepage : {e}')
             # envoi du message de l'exception à la page login
             self._login.var["error_message"].set(
                 f"Erreur de connexion : {e}")
@@ -173,6 +194,7 @@ class Application(tk.Tk):
             # On supprime la page de login lorsque tout est initialisé
             self.deiconify()
             self._login.destroy()
+            logger.info('SUCCESS homepage created')
 
     def _custom_hook_login(self, args: threading.ExceptHookArgs):
         """
@@ -241,6 +263,7 @@ class Application(tk.Tk):
         """
         Méthode qui récupère les données du formulaire
         """
+        logger.info('TRY user API request')
         # appel de la fonction get() de SearchBloc afin de récolter les
         # informations données par l'utilisateur dans le formulaire
         data_from_dict = self._homepage.search.get()
@@ -263,6 +286,7 @@ class Application(tk.Tk):
         try:
             self.connexion.send_request(url)
         except exc.NoResult as e:
+            logger.info('NO RESULT user API request')
             self.waiting_dialog.destroy()
             CustomMessageBox(
                 "Aucun résultat",
@@ -270,6 +294,7 @@ class Application(tk.Tk):
                 "error")
             return
         except exc.ERRORS as e:
+            logger.error(f'FAIL user API request : {e}')
             self.waiting_dialog.destroy()
             CustomMessageBox(
                 "Communication API",
@@ -277,6 +302,7 @@ class Application(tk.Tk):
                 "error")
             return
         except exc.WrongCriteria as e:
+            logger.error(f'FAIL user API request : {e}')
             self.waiting_dialog.destroy()
             CustomMessageBox(
                 "Critères erronés",
@@ -284,6 +310,7 @@ class Application(tk.Tk):
                 "error")
             return
         else:   # si aucune exception = création de la page de résultat
+            logger.info('SUCCESS user request to API')
             id_list = list(self.connexion.dict_answers.keys())
             last_id = 0
             for id in id_list:
