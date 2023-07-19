@@ -41,7 +41,7 @@ class Connexion:
     """
     # Permettra de compter les requêtes envoyées à l'API
     requests_number = 0
-    # Compte les requêtes abandonnées (peu importe la raison)
+    # Compte les requêtes qui ont échoué (peu importe la raison)
     abandoned_requests_number = 0
 
     # constructeur avec 2 paramètres facultatifs : la clé d'auth. et l'env.
@@ -71,15 +71,15 @@ class Connexion:
     @staticmethod
     def filter_wrong_codes(e):
         """
-        Analyser l'exception prise par backoff lors
-        de l'exécution de la function simple_api_request
+        Analyse l'exception prise par backoff lors
+        de l'exécution de la fonction simple_api_request
 
-        Si HTTPError alors on vérifie le code :
+        Si HTTPError alors vérification du code :
          - Erreurs serveur (>=500) = répétition (False)
          - Erreurs client spécifiques (429, 416) = répétition (False)
          - Autres erreurs clients = Give up
          Si ratelimit.RateLimitException:
-          on ne compte pas la requête
+          Ne compte pas la requête puisqu'elle n'est pas arrivée à l'API
         """
         if type(e) == requests.exceptions.HTTPError:
             if e.response.status_code >= 500:
