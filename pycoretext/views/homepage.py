@@ -83,16 +83,21 @@ class Homepage(ttk.Frame):
         logger.info('TRY display InfoPopup')
         try:
             self.info_window = InfoPopup(self, self.connexion)
-            self._var_display_info.set(True)
         except exc.ERRORS as e:
             logger.info('FAIL display InfoPopup')
             self._var_display_info.set(False)
             CustomMessageBox(
                 "Impossible d'afficher les informations",
                 e,
+                type='error',
                 root=self.nametowidget("."))
+            # Génère un événement pour que l'app actualise le compte des requêtes
+            self.event_generate(('<<info_request>>'))
         else:
+            self._var_display_info.set(True)
             logger.info('SUCCESS display InfoPopup')
+            # Génère un événement pour que l'app actualise le compte des requêtes
+            self.event_generate(('<<info_request>>'))
 
     def _on_click_info(self, *_):
         """
@@ -146,7 +151,7 @@ class Homepage(ttk.Frame):
         self.waiting_dialog.destroy()
 
         # Affichage de la fenêtre d'info
-        if self._var_display_info:
+        if self._var_display_info.get():
             self.info_window.deiconify()
 
     def _custom_hook_display(self, args: threading.ExceptHookArgs):

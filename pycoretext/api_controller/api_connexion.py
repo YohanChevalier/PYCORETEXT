@@ -97,18 +97,27 @@ class Connexion:
 
     @staticmethod
     def _backoff_on_backoff(details):
+        """
+        Log warning in case of backoff
+        """
         logger_api.warning("Backing off {wait:0.1f} seconds"
                            "after {tries} tries"
                            " ==> Exception: {exception}".format(**details))
 
     @staticmethod
     def _backoff_on_giveup(details):
+        """
+        Log error in case of giveup
+        """
         logger_api.error("Give up after {tries} tries"
                          " ==> Exception: {exception}".format(**details))
         Connexion.abandoned_requests_number += 1
 
     @staticmethod
     def _backoff_on_success(details):
+        """
+        Log info in case of success
+        """
         logger_api.info("Success after {tries} tries"
                         " ==> URL: {args[1]}".format(**details))
         Connexion.requests_number += 1
@@ -132,6 +141,8 @@ class Connexion:
         backoff:
          Si exception timeout, ratelimit ou HTTPError selon le code
          Alors répétion de la fonction, pas plus de 5 fois
+         avant d'abandonner.
+         Aucun logger propre à backoff
         """
         response = self.session.get(url, timeout=8)
         random_test = random.randrange(15)
@@ -187,7 +198,7 @@ class Connexion:
             try:
                 response = self.simple_api_request(full_url)
             # la première requête, si elle est en erreur
-            # est toujours bloquée directement
+            # génère automatiquement une exception.
             except exc.ERRORS as e:
                 raise e
             else:

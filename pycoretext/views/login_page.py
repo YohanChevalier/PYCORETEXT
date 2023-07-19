@@ -109,6 +109,12 @@ class LoginPage(tk.Toplevel):
         mess_frame.grid(column=0, row=5, sticky=(tk.W + tk.E))
         mess_frame.columnconfigure(0, weight=1)
         self._error_mess = ttk.Label(mess_frame)
+        # Méthode pour le wrapping trouvée ici :
+        # https://stackoverflow.com/questions/11949391/
+        # how-do-i-use-tkinter-to-create-line-wrapped-text-that-fills-the-width-of-the-win
+        self._error_mess.bind('<Configure>',
+                              lambda e: self._error_mess.config(
+                                wraplength=self._error_mess.winfo_width()))
         self._error_mess.grid(sticky=(tk.E + tk.W))
         # AVERTISSEMENT
         oridata_frame = tk.LabelFrame(main_frame, text="Avertissement")

@@ -733,10 +733,16 @@ class CustomMessageBox(tk.Toplevel):
                                                           padx=(7, 0),
                                                           sticky=tk.W)
         # Message
-        ttk.Label(self, text=message,
-                  anchor=tk.E, justify="left").grid(row=0, column=1,
-                                                    columnspan=2,
-                                                    pady=(7, 4), sticky=tk.W)
+        # Méthode pour le wrapping trouvée ici :
+        # https://stackoverflow.com/questions/11949391/
+        # how-do-i-use-tkinter-to-create-line-wrapped-text-that-fills-the-width-of-the-win
+        message_label = ttk.Label(self, text=message,
+                                  justify=tk.LEFT)
+        message_label.bind('<Configure>',
+                           lambda e: message_label.config(
+                                wraplength=message_label.winfo_width())) 
+        message_label.grid(row=0, column=1, columnspan=2,
+                           pady=(7, 4), sticky=tk.W)
         # Partie dédiée à la fermeture des fenêtre
         if type == 'question':
             buttons_frame = tk.Frame(self)
@@ -749,11 +755,11 @@ class CustomMessageBox(tk.Toplevel):
                                                         column=0,
                                                         sticky=tk.W + tk.E)
             ttk.Button(buttons_frame, text="Annuler",
-                       command=self.destroy).grid(
-                                                row=1,
-                                                column=1,
-                                                padx=(7, 7),
-                                                sticky=tk.W + tk.E)
+                       command=self._destroy_window).grid(
+                                                     row=1,
+                                                     column=1,
+                                                     padx=(7, 7),
+                                                     sticky=tk.W + tk.E)
         else:
             self._ok_button = tk.Button(self, text="OK",
                                         command=self._destroy_window)

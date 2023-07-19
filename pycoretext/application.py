@@ -203,6 +203,8 @@ class Application(tk.Tk):
             del self._notebook
         else:
             self._notebook.add(self._homepage, text="Accueil")
+            # Lie l'événement <<info_request>> généré par la hompage à notre app
+            self._homepage.bind('<<info_request>>', self._update_count)
             # on bind la fonction de recherche
             self._homepage.search.bind("<<OnSearch>>", self._on_search)
             # Signal pour supprimer la progressbar
@@ -490,7 +492,7 @@ class Application(tk.Tk):
                 check_state = False
         return check_state
 
-    def _update_count(self):
+    def _update_count(self, *_):
         """
         Met à jour le nombre de requêtes réussies ou non.
         Récupère les données dans la classe Connexion et
