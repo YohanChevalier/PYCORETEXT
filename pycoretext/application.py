@@ -33,7 +33,8 @@ import logging
 
 # Définir le format des messages logging
 FORMAT1 = '[%(asctime)s] %(levelname)s // %(name)s // %(message)s'
-FORMAT2 = '[%(asctime)s] %(threadName)s // %(levelname)s // %(name)s // %(message)s'
+FORMAT2 = ('[%(asctime)s] %(threadName)s // %(levelname)s // %(name)s'
+           + '// %(message)s')
 DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
 
 # Définir un logger root pour le suivi des événements
@@ -189,7 +190,7 @@ class Application(tk.Tk):
         try:
             self._homepage = h.Homepage(self._notebook, self.connexion)
         except exc.ERRORS as e:
-            logging.info(f'FAIL create homepage : {e}')
+            logger.info(f'FAIL create homepage : {e}')
             # envoi du message de l'exception à la page login
             self._login.var["error_message"].set(
                 f"Erreur de connexion : {e}")
@@ -209,6 +210,8 @@ class Application(tk.Tk):
             # On supprime la page de login lorsque tout est initialisé
             self.deiconify()
             self._login.destroy()
+            # mise à jour des compteurs de requêtes
+            self._update_count()
             logger.info('SUCCESS homepage created')
 
     def _custom_hook_login(self, args: threading.ExceptHookArgs):
@@ -307,6 +310,8 @@ class Application(tk.Tk):
                 "Aucun résultat",
                 e.message,
                 "error")
+            # mise à jour des compteurs de requêtes
+            self._update_count()
             return
         except exc.ERRORS as e:
             logger.error(f'FAIL user API request : {e}')
@@ -315,6 +320,8 @@ class Application(tk.Tk):
                 "Communication API",
                 e,
                 "error")
+            # mise à jour des compteurs de requêtes
+            self._update_count()
             return
         except exc.WrongCriteria as e:
             logger.error(f'FAIL user API request : {e}')
@@ -341,6 +348,8 @@ class Application(tk.Tk):
             # mise à jour de la variable qui indique
             # la fin du traitement dans le thread
             self._search_done.set(True)
+            # mise à jour des compteurs de requêtes
+            self._update_count()
 
     def _custom_hook_search(self, args: threading.ExceptHookArgs):
         """
@@ -480,3 +489,16 @@ class Application(tk.Tk):
             elif len(date) < 2:
                 check_state = False
         return check_state
+
+    def _update_count(self):
+        """
+        Met à jour le nombre de requêtes réussies ou non.
+        Récupère les données dans la classe Connexion et
+        modifie les labels correspondants dans la homepage
+        """
+        self._homepage.requests_number.config(text=(
+                        "Requêtes API correctes : "
+                        + str(co.Connexion.requests_number)))
+        self._homepage.abandoned_requests_number.config(text=(
+                        "Requêtes API erronées : "
+                        + str(co.Connexion.abandoned_requests_number)))

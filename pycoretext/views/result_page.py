@@ -49,19 +49,23 @@ class ResultPage(tk.Frame):
         self._dict_criterias = answer.dict_criterias
         self._answer_type = self.identify_type(str(answer.__class__))
         if self._answer_type in ["export", "search"]:
-            self._nb_decision = answer.total_decisions
+            self._expected_decisions_nb_from_api = answer.total_decisions
+            self._decisions_nb_obtained = answer.nb_decision
             self.dict_decisions = answer.dict_decisions
         elif self._answer_type == "decision":
-            self._nb_decision = str(1)
+            self._expected_decisions_nb_from_api = 1
+            self._decisions_nb_obtained = None
             self.decision = answer.decision.dict_meta
         elif self._answer_type == "taxonomy":
             if hasattr(self._answer, "list_results"):
                 self.result_taxo = self._answer.list_results
             else:
                 self.result_taxo = self._answer.dict_results
-            self._nb_decision = None
+            self._expected_decisions_nb_from_api = None
+            self._decisions_nb_obtained = None
         else:
-            self._nb_decision = None
+            self._expected_decisions_nb_from_api = None
+            self._decisions_nb_obtained = None
         # configuration du widget
         self.columnconfigure(1, weight=2)
         self.columnconfigure(0, weight=1)
@@ -105,28 +109,50 @@ class ResultPage(tk.Frame):
         criteria_frame = ttk.LabelFrame(
             details_frame,
             text="Critères de recherche")
-        criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
         ttk.Label(
             criteria_frame,
             text=self._criteria_to_string()
             ).grid(row=0, column=0, sticky=tk.W + tk.E)
-        # nombre de décisions trouvées si existe :
-        if self._nb_decision:
-            total_frame = ttk.LabelFrame(
+        # affichage du nombre de décisions attendues et obtenues
+        # attendues
+        if self._expected_decisions_nb_from_api:
+            expected_frame = ttk.LabelFrame(
                 details_frame,
-                text="Nombre de décisions")
-            total_frame.grid(row=1, column=0, sticky=tk.W + tk.E + tk.N)
-            ttk.Label(
-                total_frame,
-                text=self._nb_decision
-                ).grid(row=0, column=0, sticky=tk.W + tk.E)
+                text="Nb décisions annoncées par API")
+            expected_frame.grid(row=1, column=0, sticky=tk.W + tk.E + tk.N)
+            expected_label = ttk.Label(
+                                expected_frame,
+                                text=self._expected_decisions_nb_from_api
+                                )
+            expected_label.grid(row=0, column=0, sticky=tk.W + tk.E)
             # Alerte si limite de recherche API atteinte (10 000)
-            if self._nb_decision >= 10000:
-                ttk.Label(total_frame, text="Limite API atteinte !",
-                          foreground="red").grid(
-                    row=0, column=1, sticky=tk.W + tk.E,
-                    padx=10
-                          )
+            if self._expected_decisions_nb_from_api >= 10000:
+                expected_label.config(text=(
+                            str(self._expected_decisions_nb_from_api)
+                            + " Limite API !"),
+                            foreground="red")
+            # obtenues
+            if self._decisions_nb_obtained:
+                final_frame = ttk.LabelFrame(
+                    details_frame,
+                    text="Nb décisions obtenues par Pycoretext")
+                final_frame.grid(row=1, column=1, sticky=tk.W + tk.E + tk.N)
+                final_label = ttk.Label(
+                            final_frame,
+                            text=self._decisions_nb_obtained
+                            )
+                final_label.grid(row=0, column=0, sticky=tk.W + tk.E)
+                # Alerte si le nb obtenu est différent de celui attendu
+                if (
+                    self._expected_decisions_nb_from_api
+                        != self._decisions_nb_obtained):
+                    final_label.config(foreground="red")
+                # grid le frame des critères avec un column span
+                criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N,
+                                    columnspan=2)
+            else:
+                # grid le frame des critères sans column span
+                criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
 
     def add_treeview(self):
         """

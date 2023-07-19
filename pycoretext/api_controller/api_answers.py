@@ -18,12 +18,8 @@
 Les classes de ce modules permettent de stocker et structurer les réponses
 obtenues par une requête dans l'API
 """
-import requests
 from math import ceil
 from concurrent.futures import ThreadPoolExecutor
-import threading
-from ratelimit import limits, RateLimitException
-from backoff import on_exception, expo
 from pycoretext import exceptions as exc
 
 
@@ -87,23 +83,22 @@ class AnswerExport(Answer):
         # construction de la liste d'urls
         if 'next_page' in dict_from_response:
             # attribut présent dans les réponses Search
-            # par défaut, il y a 10 résutats par page pour Search
-            default_nb_decisions_in_dict = 10
+            # J'ai choisi des valeurs identiques mais cela pourrait changer
+            default_nb_decisions_in_dict = 50
         else:
             # attribut présent dans les réponses Export
             # par défaut, il y a 50 résutats par page pour Export
             default_nb_decisions_in_dict = 50
         # pour Export et Search, plusieurs batchs ou pages doivent être traités
         # le dict_from_response ne correspond qu'au premier d'entre eux
-        # grâce à lui, nous connaissons le nb de résulats et nous pouvons alors
-        # calculer l'index du dernier batch ou page
-        last_index = ceil(self.total_decisions / default_nb_decisions_in_dict)
-        print('last index = ', last_index)
+        # nous pouvons à partir de cette donnée et du nombre de résultats
+        # obtenir le nombre d'URLs à traiter
+        self.number_of_urls = ceil(
+                    self.total_decisions / default_nb_decisions_in_dict)
+        print('number of URLs = ', self.number_of_urls)
         # création de la liste des Url à partir du résulat de la 1ere page
-        urls_list = self._create_urls_list(self.first_url, last_index)
-        print('length url list = ', len(urls_list))
-        # Compte le nombre de requêtes
-        self._nb_request = 0
+        urls_list = self._start_create_urls_list()
+        print('first url : ', self.first_url)
         # Liste qui contiendra les mauvaises réponses (429 ou 416)
         self._wrong_response_list = {}
         # Threading = requête pour chaque url et création de Decision
@@ -121,24 +116,18 @@ class AnswerExport(Answer):
             for code, nb in self._wrong_response_list.items():
                 print(code, " = ", nb)
 
-#     def _get_session(self):
-#         """
-#         Crée une session requests. on réutilise alors la même TCP connexion
-#         et on gagne en performance.
-#         """
-#         if not hasattr(self._thread_local, "session"):
-#             self._thread_local.session = requests.Session()
-#         return self._thread_local.session
-
     def _start_simple_api_request(self, url):
         """
-        Exécuter la fonction de requête à l'API
-        Gérer les exceptions issus des abandons Backoff
+        Exécuter la fonction de requête à l'API.
+        Les exceptions issus des abandons Backoff
+        ne déclenchent aucune action car elles apparaîtront
+        en résultat nul dans la liste de résultats du
+        ThreadPoolExecutor
         """
         try:
             response = self.connexion.simple_api_request(url)
         except exc.ERRORS:
-            print('!!!! Catch exception from thread in answer : ')
+            pass
         else:
             return response
 
@@ -152,7 +141,7 @@ class AnswerExport(Answer):
         with ThreadPoolExecutor(max_workers=10) as executor:
             # mapping sur la fonction de requêtage
             results = executor.map(self._start_simple_api_request,
-                                   urls_list[:-1])
+                                   urls_list)
             executor.shutdown(wait=True)
         # récupération des résultats et traitement de chaque résultat
         for r in results:
@@ -164,34 +153,6 @@ class AnswerExport(Answer):
                     print(e)
                 else:
                     self._decision_creation(r)
-                    # incrémenter le nb de requêtes
-                    self._nb_request += 1
-
-    # ratelimit pour gérer le throttle
-    # => 10 requêtes par seconde et possibilité de retenter 20 fois.
-    # backoff  pour relancer la fonction en cas d'exception
-#     @on_exception(expo, RateLimitException, max_tries=20)
-#     @limits(calls=10, period=1)
-#     def _send_simple_request(self, url):
-#         """
-#         Effectue une requête avec l'url donnée
-#         Retourne un objet dict
-#         """
-#         # récupération de la session requests
-#         session = self._get_session()
-#         # requête elle-même
-#         with session.get(url, headers=self.headers, timeout=5) as response:
-#             if response.status_code != 200:
-#                 if response.status_code in self._wrong_response_list:
-#                     self._wrong_response_list[response.status_code] + 1
-#                 else:
-#                     self._wrong_response_list[response.status_code] = 1
-#         # incrémenter le nb de requêtes
-#         self._nb_request += 1
-#         # print utile pour la vérification par terminal
-#         print(self._nb_request, ' - ', response.status_code, ' - ',
-#               url)
-#         return response.json()
 
     def _decision_creation(self, dict_from_response: dict):
         """
@@ -206,7 +167,16 @@ class AnswerExport(Answer):
             # mise à jour du nb de décisions
             self.nb_decision += 1
 
-    def _create_urls_list(self, first_url, last_index):
+    def _start_create_urls_list(self):
+        """
+        Exécute la fonction de création de la liste des URLs
+        Selon le type de réponse, l'expression à rechercher pour les
+        remplacements varie.
+        """
+        return self._create_urls_list(self.first_url, self.number_of_urls,
+                                      "batch=")
+
+    def _create_urls_list(self, first_url, last_index, str_to_search):
         """
         Crée la list des urls
         """
@@ -214,12 +184,13 @@ class AnswerExport(Answer):
         # compteur pour le contrôle de la boucle
         count = 0
         # tant que nous n'avons pas dépassé le nb de pages maximal
-        while count <= last_index:
+        while count < last_index:
             # ajout de l'url en cours de traitement dans la liste
             urls_list.append(first_url)
+            count += 1
             current_index = ''
             # a quel index débute le numéro de page dans l'url ?
-            start_index = first_url.find("batch=") + len('batch=')
+            start_index = first_url.find(str_to_search) + len(str_to_search)
             # boucle qui permet de récupérer les chiffres qui composent le
             # numéro de page
             while first_url[start_index].isdigit():
@@ -233,9 +204,8 @@ class AnswerExport(Answer):
             # incrément
             new_index = str(int(current_index) + 1)
             # remplacement du numéro
-            first_url = first_url.replace("batch=" + current_index,
-                                          "batch=" + new_index)
-            count += 1
+            first_url = first_url.replace(str_to_search + current_index,
+                                          str_to_search + new_index)
         return urls_list
 
 
@@ -265,37 +235,14 @@ class AnswerSearch(AnswerExport):
             self.dict_decisions[new_id] = DecisionShort(item)
             self.nb_decision += 1
 
-    def _create_urls_list(self, first_url, last_index):
+    def _start_create_urls_list(self):
         """
-        Crée la list des urls
+        Exécute la fonction de création de la liste des URLs
+        Selon le type de réponse, l'expression à rechercher pour les
+        remplacements varie.
         """
-        urls_list = []
-        # compteur pour le contrôle de la boucle
-        count = 0
-        # tant que nous n'avons pas dépassé le nb de pages maximal
-        while count <= last_index:
-            # ajout de l'url en cours de traitement dans la liste
-            urls_list.append(first_url)
-            current_index = ''
-            # a quel index début le numéro de page dans l'url ?
-            start_index = first_url.find("page=") + len('page=')
-            # boucle qui permet de récupérer les chiffres qui composent le
-            # numéro de page
-            while first_url[start_index].isdigit():
-                current_index += first_url[start_index]
-                start_index += 1
-                # !! on ne poursuit pas si la fin de l'url est atteinte
-                if start_index < len(first_url):
-                    continue
-                else:
-                    break
-            # incrément
-            new_index = str(int(current_index) + 1)
-            # remplacement du numéro
-            first_url = first_url.replace("page=" + current_index,
-                                          "page=" + new_index)
-            count += 1
-        return urls_list
+        return self._create_urls_list(self.first_url, self.number_of_urls,
+                                      "page=")
 
 
 class AnswerDecision(Answer):

@@ -104,6 +104,7 @@ class UrlSearch(UrlBase):
     """
     # commande obligatoire pour Search
     _search_base = "/search?"
+    _page_size = 50
     # !! cet objet attend un str. En l'occurence, les mots clés choisis
 
     def __init__(self, query: str, integral=True):
@@ -118,6 +119,8 @@ class UrlSearch(UrlBase):
         # ajout des critères obligatoires
         self._page = 0
         self._query = query
+        # ajout du critère page_size à 50
+        self.set_criteria('page_size=', str(self._page_size))
         self.set_criteria("query=", self._query)
         self.set_criteria("page=", str(self._page))
 

@@ -39,6 +39,10 @@ class Connexion:
     Etablissement d'une connexion à l'env. de QA ou de PRO Judilibre.
     Elle contient les méthodes de test, de requêtage et retour.
     """
+    # Permettra de compter les requêtes envoyées à l'API
+    requests_number = 0
+    # Compte les requêtes abandonnées (peu importe la raison)
+    abandoned_requests_number = 0
 
     # constructeur avec 2 paramètres facultatifs : la clé d'auth. et l'env.
     def __init__(self, key_user: str, env='sandbox'):
@@ -74,14 +78,21 @@ class Connexion:
          - Erreurs serveur (>=500) = répétition (False)
          - Erreurs client spécifiques (429, 416) = répétition (False)
          - Autres erreurs clients = Give up
+         Si ratelimit.RateLimitException:
+          on ne compte pas la requête
         """
         if type(e) == requests.exceptions.HTTPError:
             if e.response.status_code >= 500:
+                Connexion.requests_number += 1
                 return False
             elif e.response.status_code in [429, 416]:
+                Connexion.requests_number += 1
                 return False
             else:
                 return True
+        elif type(e) == ratelimit.RateLimitException:
+            return False
+        Connexion.requests_number += 1
         return False
 
     @staticmethod
@@ -94,44 +105,46 @@ class Connexion:
     def _backoff_on_giveup(details):
         logger_api.error("Give up after {tries} tries"
                          " ==> Exception: {exception}".format(**details))
+        Connexion.abandoned_requests_number += 1
 
     @staticmethod
     def _backoff_on_success(details):
         logger_api.info("Success after {tries} tries"
                         " ==> URL: {args[1]}".format(**details))
+        Connexion.requests_number += 1
 
     @backoff.on_exception(backoff.expo,
                           (requests.exceptions.Timeout,
                            ratelimit.RateLimitException,
                            requests.exceptions.HTTPError),
-                          max_tries=3,
+                          max_tries=5,
                           giveup=filter_wrong_codes,
                           on_success=_backoff_on_success,
                           on_backoff=_backoff_on_backoff,
                           on_giveup=_backoff_on_giveup,
                           logger=None)
-    @ratelimit.limits(calls=20, period=1)
+    @ratelimit.limits(calls=19, period=1)
     def simple_api_request(self, url: str):
         """
         Envoyer une requête à l'API
 
-        ratelimit: 20 calls par seconde
+        ratelimit: 19 calls par seconde
         backoff:
          Si exception timeout, ratelimit ou HTTPError selon le code
-         Alors répétion de la fonction, pas plus de 4 fois
+         Alors répétion de la fonction, pas plus de 5 fois
         """
         response = self.session.get(url, timeout=8)
-#         random_test = random.randrange(15)
-#         if random_test == 0:
-#             raise requests.exceptions.Timeout('timeout')
-#         elif random_test == 1:
-#             raise ratelimit.RateLimitException('oops', 1)
-#         elif random_test == 2:
-#             response.status_code = 503
-#         elif random_test == 3:
-#             response.status_code = 500
-#         else:
-#             pass
+        random_test = random.randrange(15)
+        if random_test == 0:
+            raise requests.exceptions.Timeout('timeout')
+        elif random_test == 1:
+            raise ratelimit.RateLimitException('oops', 1)
+        elif random_test == 2:
+            response.status_code = 503
+        elif random_test == 3:
+            response.status_code = 404
+        else:
+            pass
         # If wrong status a HTTPError is raised
         response.raise_for_status()
         return response
@@ -173,7 +186,8 @@ class Connexion:
             # si url est correcte, tentative de connexion
             try:
                 response = self.simple_api_request(full_url)
-            # transformation de l'exception de timeout en ValueError
+            # la première requête, si elle est en erreur
+            # est toujours bloquée directement
             except exc.ERRORS as e:
                 raise e
             else:

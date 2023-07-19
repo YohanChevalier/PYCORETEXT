@@ -60,6 +60,20 @@ class Homepage(ttk.Frame):
                                           command=self._on_click_info)
             self.info_button.grid(column=0, row=1, sticky=tk.W + tk.E,
                                   padx=10)
+            # Création des compteurs de requêtes
+            self.count_frame = ttk.Frame(self)
+            self.count_frame.grid(column=0, row=2, sticky=tk.E,
+                                  padx=10)
+            self.requests_number = ttk.Label(self.count_frame,
+                                             text="Requêtes API correctes : 0",
+                                             foreground="green4")
+            self.requests_number.grid(column=0, row=0, sticky=tk.E)
+            self.abandoned_requests_number = ttk.Label(
+                                        self.count_frame,
+                                        text=" Requêtes API erronées : 0",
+                                        foreground="red")
+            self.abandoned_requests_number.grid(column=1, row=0, sticky=tk.E,
+                                                padx=10)
             logger.info('SUCCESS create SearchBloc part')
 
     def _start_display_info(self):
