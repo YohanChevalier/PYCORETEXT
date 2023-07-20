@@ -25,6 +25,7 @@ import pandas as pd
 from datetime import datetime
 from pycoretext.api_controller import api_answers
 from pycoretext.widgets import DecisionsList, ButtonWholeText
+import pycoretext.widgets as widgets
 import logging
 
 logger = logging.getLogger('flux.app.ResultPage')
@@ -142,14 +143,33 @@ class ResultPage(tk.Frame):
                             text=self._decisions_nb_obtained
                             )
                 final_label.grid(row=0, column=0, sticky=tk.W + tk.E)
-                # Alerte si le nb obtenu est différent de celui attendu
+                # Si le nb obtenu n'est pas celui attendu
+                # le nb appraît en rouge
                 if (
                     self._expected_decisions_nb_from_api
                         != self._decisions_nb_obtained):
                     final_label.config(foreground="red")
-                # grid le frame des critères avec un column span
-                criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N,
-                                    columnspan=2)
+                # si des requêtes sont erronnées
+                # on insère un bouton qui permettra d'obtenir
+                # la liste de ces URLS
+                if len(self._answer.wrong_urls):
+                    # on crée un bouton pour afficher les requêtes en erreur
+                    self.wrong_urls_button = tk.Button(
+                                            details_frame,
+                                            text='Requêtes erronées',
+                                            command=self._display_wrong_urls,
+                                            bg='red', fg='white')
+                    self.wrong_urls_button.grid(
+                                        row=1, column=2,
+                                        sticky=tk.W + tk.E + tk.N + tk.S)
+                    # grid le frame des critères avec un column span de 3
+                    criteria_frame.grid(row=0, column=0,
+                                        sticky=tk.W + tk.E + tk.N,
+                                        columnspan=3)
+                else:
+                    criteria_frame.grid(row=0, column=0,
+                                        sticky=tk.W + tk.E + tk.N,
+                                        columnspan=2)
             else:
                 # grid le frame des critères sans column span
                 criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
@@ -461,3 +481,26 @@ class ResultPage(tk.Frame):
         df.to_excel(export_path + filename)
         logger.info('SUCCESS export result in Excel : '
                     + f'file name = \'{export_path + filename}\'')
+
+    def _display_wrong_urls(self):
+        """
+        Retrieve the wrong_urls list from the answer
+        Diplay it inside a text widget toplevel
+        """
+        wrong_urls_list = self._answer.wrong_urls
+        urls_window = tk.Toplevel(self.nametowidget("."))
+        urls_window.title(f"ID{self._id_answer} - {len(wrong_urls_list)}"
+                          + " requêtes erronnées")
+        urls_window.resizable(True, False)
+        urls_window.columnconfigure(0, weight=1)
+        urls_window.columnconfigure(1, weight=0)
+        widgets.place_windows(urls_window, 800, 300, self.nametowidget("."))
+        urls_list_in_text = tk.Text(urls_window)
+        urls_list_in_text.grid(row=0,
+                               column=0,
+                               sticky=tk.W + tk.E + tk.N + tk.S)
+        s = ttk.Scrollbar(urls_window, orient=tk.VERTICAL,
+                          command=urls_list_in_text.yview)
+        s.grid(row=0, column=1, sticky=tk.N + tk.S)
+        for url in wrong_urls_list:
+            urls_list_in_text.insert(tk.END, f"# {url}\n")

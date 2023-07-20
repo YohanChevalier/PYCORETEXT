@@ -77,6 +77,8 @@ class AnswerExport(Answer):
         self.nb_decision = 0
         # identifiant de la dernière décision créée
         self._current_id_decision = 0
+        # liste des urls dont les requêtes ont rencontré des erreurs
+        self.wrong_urls = []
         # dictionnaire qui contiendra l'ensemble des objets Decision
         self.dict_decisions = {}
         print('total decisions = ', self.total_decisions)
@@ -127,7 +129,7 @@ class AnswerExport(Answer):
         try:
             response = self.connexion.simple_api_request(url)
         except exc.ERRORS:
-            pass
+            self.wrong_urls.append(url)
         else:
             return response
 

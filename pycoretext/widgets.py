@@ -777,7 +777,7 @@ class CustomMessageBox(tk.Toplevel):
         self.destroy()
 
 
-def place_windows(win_to_place: tk.Tk, width, height, root="screen",):
+def place_windows(win_to_place: tk.Tk, width, height, root="screen"):
     """
     Positionne la fenêtre donnée au centre de la fenêtre root"""
     # Si le root est l'écran
