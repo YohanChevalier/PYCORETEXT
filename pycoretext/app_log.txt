@@ -1,0 +1,481 @@
+[07-25-2023 19:32:58] INFO // flux.app // START init of the application
+[07-25-2023 19:32:58] INFO // flux.app // END init of the application
+[07-25-2023 19:33:00] INFO // flux.app // TRY API connection
+[07-25-2023 19:33:00] ERROR // api.api_connexion // Thread-1 (_start_main_window_setup)// Give up after 1 tries ==> Exception: 400 Client Error: Bad Request for url: https://api.piste.gouv.fr/cassation/judilibre/v1.0/healthcheck
+[07-25-2023 19:33:00] ERROR // flux.app // FAIL API connection : 400 Client Error: Bad Request for url: https://api.piste.gouv.fr/cassation/judilibre/v1.0/healthcheck
+[07-25-2023 19:33:10] INFO // flux.app // TRY API connection
+[07-25-2023 19:33:10] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/healthcheck
+[07-25-2023 19:33:10] INFO // flux.app // SUCCES API connection
+[07-25-2023 19:33:10] INFO // flux.app // START create homepage
+[07-25-2023 19:33:10] INFO // flux.homepage // TRY create SearchBloc part
+[07-25-2023 19:33:10] INFO // flux.homepage.form // TRY get data for input
+[07-25-2023 19:33:10] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=
+[07-25-2023 19:33:10] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=chamber
+[07-25-2023 19:33:10] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=formation
+[07-25-2023 19:33:10] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=theme
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=theme&context_value=ca
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=type
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=publication
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=solution
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=jurisdiction
+[07-25-2023 19:33:11] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=operator
+[07-25-2023 19:33:12] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=location&context_value=ca
+[07-25-2023 19:33:12] INFO // api.api_connexion // Thread-2 (_start_main_window_setup)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/taxonomy?id=filetype
+[07-25-2023 19:33:12] INFO // flux.homepage.form // SUCCESS get data for input
+[07-25-2023 19:33:12] INFO // flux.homepage // SUCCESS create SearchBloc part
+[07-25-2023 19:33:12] INFO // flux.app // SUCCESS homepage created
+[07-25-2023 19:33:17] INFO // flux.app // TRY user API request
+[07-25-2023 19:33:18] INFO // api.api_connexion // Thread-3 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=0&jurisdiction=ca
+[07-25-2023 19:33:18] INFO // api.api_connexion // ThreadPoolExecutor-0_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=0&jurisdiction=ca
+[07-25-2023 19:33:18] INFO // api.api_connexion // ThreadPoolExecutor-0_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=6&jurisdiction=ca
+[07-25-2023 19:33:18] INFO // api.api_connexion // ThreadPoolExecutor-0_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=3&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=5&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=7&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=2&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=1&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=8&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=4&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=11&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=9&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=12&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=10&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=13&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=14&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=15&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=17&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=16&jurisdiction=ca
+[07-25-2023 19:33:19] INFO // api.api_connexion // ThreadPoolExecutor-0_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=19&jurisdiction=ca
+[07-25-2023 19:33:20] INFO // api.api_connexion // ThreadPoolExecutor-0_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=18&jurisdiction=ca
+[07-25-2023 19:33:20] INFO // api.api_connexion // ThreadPoolExecutor-0_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=22&jurisdiction=ca
+[07-25-2023 19:33:20] INFO // api.api_connexion // ThreadPoolExecutor-0_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=21&jurisdiction=ca
+[07-25-2023 19:33:20] INFO // api.api_connexion // ThreadPoolExecutor-0_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=chien&page=20&jurisdiction=ca
+[07-25-2023 19:33:20] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:33:20] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:33:20] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:33:54] INFO // flux.app // TRY user API request
+[07-25-2023 19:33:54] INFO // api.api_connexion // Thread-4 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=0&jurisdiction=ca
+[07-25-2023 19:33:54] INFO // api.api_connexion // ThreadPoolExecutor-1_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=0&jurisdiction=ca
+[07-25-2023 19:33:54] INFO // api.api_connexion // ThreadPoolExecutor-1_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=1&jurisdiction=ca
+[07-25-2023 19:33:54] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:33:54] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:33:54] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:34:23] INFO // flux.app // TRY user API request
+[07-25-2023 19:34:23] INFO // api.api_connexion // Thread-5 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=0&jurisdiction=ca&withFileOfType=prep_rapp
+[07-25-2023 19:34:24] INFO // api.api_connexion // ThreadPoolExecutor-2_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=1&jurisdiction=ca&withFileOfType=prep_rapp
+[07-25-2023 19:34:24] INFO // api.api_connexion // ThreadPoolExecutor-2_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=yohan&page=0&jurisdiction=ca&withFileOfType=prep_rapp
+[07-25-2023 19:34:24] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:34:24] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:34:24] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:35:56] INFO // flux.app // TRY user API request
+[07-25-2023 19:35:56] INFO // api.api_connexion // Thread-6 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=4
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=2
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=5
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=8
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=3
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=1
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=6
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=9
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=7
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_9// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_7// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=10
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_4// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=11
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_2// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=13
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_5// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=12
+[07-25-2023 19:35:57] WARNING // api.api_connexion // ThreadPoolExecutor-3_0// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=14
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=15
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=16
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=17
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=24
+[07-25-2023 19:35:57] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=25
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=18
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=26
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=29
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=28
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=19
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=21
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=27
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=20
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=30
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_0// Backing off 0.2 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=33
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_8// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=35
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=31
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_2// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_1// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=34
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_7// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=32
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_3// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=36
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_6// Backing off 0.1 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_7// Backing off 0.3 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=38
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_9// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=37
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_4// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_6// Backing off 0.1 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_0// Backing off 1.1 secondsafter 3 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_5// Backing off 1.1 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] WARNING // api.api_connexion // ThreadPoolExecutor-3_6// Backing off 1.3 secondsafter 3 tries ==> Exception: too many calls
+[07-25-2023 19:35:58] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=40
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=42
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=46
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=43
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=47
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=41
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=48
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=39
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=50
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=49
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=53
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=51
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=52
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_1// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=45
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_9// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=54
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_8// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_0// Backing off 5.8 secondsafter 4 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=55
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_3// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_5// Backing off 0.2 secondsafter 3 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=57
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_7// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=58
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_2// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:35:59] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=56
+[07-25-2023 19:35:59] WARNING // api.api_connexion // ThreadPoolExecutor-3_4// Backing off 0.1 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=65
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_5// Success after 4 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=22
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 4 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=44
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=62
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=66
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=67
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=63
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=61
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=60
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=64
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=59
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_1// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=68
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_6// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=69
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_3// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=72
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_7// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=70
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_4// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=75
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_2// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=74
+[07-25-2023 19:36:00] WARNING // api.api_connexion // ThreadPoolExecutor-3_9// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=71
+[07-25-2023 19:36:00] INFO // api.api_connexion // ThreadPoolExecutor-3_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=73
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=79
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=76
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=82
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=80
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=78
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=77
+[07-25-2023 19:36:01] INFO // api.api_connexion // ThreadPoolExecutor-3_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=81
+[07-25-2023 19:36:05] INFO // api.api_connexion // ThreadPoolExecutor-3_0// Success after 5 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=23
+[07-25-2023 19:36:05] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:36:05] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:36:05] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:36:15] INFO // flux.app // TRY user API request
+[07-25-2023 19:36:15] INFO // api.api_connexion // Thread-7 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=2&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=6&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=4&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=9&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=7&operator=or
+[07-25-2023 19:36:15] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=1&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=3&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=10&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_2// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=11&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_0// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=8&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_8// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=14&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_9// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_8// Backing off 1.4 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=5&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_5// Backing off 1.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_0// Backing off 1.0 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=16&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_1// Backing off 0.1 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=15&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_7// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=12&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_6// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_6// Backing off 0.3 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=13&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_4// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_1// Backing off 0.2 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=17&operator=or
+[07-25-2023 19:36:16] WARNING // api.api_connexion // ThreadPoolExecutor-4_3// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=27&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=26&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=23&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=18&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=21&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=25&operator=or
+[07-25-2023 19:36:16] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=29&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=31&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=33&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=30&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=28&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_5// Backing off 0.8 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=32&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_9// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_9// Backing off 0.7 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=34&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_4// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=24&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_7// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=38&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_3// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=35&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_2// Backing off 0.1 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=36&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_6// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_3// Backing off 1.3 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=37&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_1// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=19&operator=or
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_0// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] WARNING // api.api_connexion // ThreadPoolExecutor-4_2// Backing off 1.0 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=20&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=41&operator=or
+[07-25-2023 19:36:17] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=40&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=47&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=39&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=46&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=48&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=49&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=50&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=22&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=51&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=45&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_1// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=44&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_6// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=52&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_0// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_2// Backing off 0.9 secondsafter 3 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=56&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_5// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=57&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_9// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=55&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_8// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_8// Backing off 1.6 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=53&operator=or
+[07-25-2023 19:36:18] WARNING // api.api_connexion // ThreadPoolExecutor-4_7// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=54&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=65&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=60&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=42&operator=or
+[07-25-2023 19:36:18] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=58&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=61&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=59&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=66&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=67&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=70&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=69&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=68&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_3// Backing off 1.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=64&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_7// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=72&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_4// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=71&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_6// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=73&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_0// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 4 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=43&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_2// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=75&operator=or
+[07-25-2023 19:36:19] WARNING // api.api_connexion // ThreadPoolExecutor-4_1// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=62&operator=or
+[07-25-2023 19:36:19] INFO // api.api_connexion // ThreadPoolExecutor-4_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=74&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=77&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=82&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=79&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_8// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=63&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=76&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=81&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_0// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=80&operator=or
+[07-25-2023 19:36:20] INFO // api.api_connexion // ThreadPoolExecutor-4_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=78&operator=or
+[07-25-2023 19:36:20] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:36:20] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:36:20] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:36:24] INFO // flux.app // TRY user API request
+[07-25-2023 19:36:25] INFO // api.api_connexion // Thread-8 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=4&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=6&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=5&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=3&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=2&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=7&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=1&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=10&operator=and
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=9&operator=and
+[07-25-2023 19:36:25] WARNING // api.api_connexion // ThreadPoolExecutor-5_4// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:25] WARNING // api.api_connexion // ThreadPoolExecutor-5_9// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:25] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=8&operator=and
+[07-25-2023 19:36:25] WARNING // api.api_connexion // ThreadPoolExecutor-5_8// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=14&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=12&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=17&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=16&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=15&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=13&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=11&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=21&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=22&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=20&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=23&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=25&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=26&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=28&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=24&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=27&operator=and
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=29&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_4// Backing off 1.7 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=33&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_3// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=32&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_7// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=30&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_8// Backing off 0.0 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_8// Backing off 1.7 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=35&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_1// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=36&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_6// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=31&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_0// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=34&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_2// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=19&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_9// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=37&operator=and
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_5// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_2// Backing off 0.6 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_0// Backing off 1.5 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:26] WARNING // api.api_connexion // ThreadPoolExecutor-5_5// Backing off 0.3 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=38&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=45&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=41&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=46&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=39&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=47&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=44&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=48&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=50&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=51&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=54&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=42&operator=and
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=52&operator=and
+[07-25-2023 19:36:27] WARNING // api.api_connexion // ThreadPoolExecutor-5_3// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:27] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=49&operator=and
+[07-25-2023 19:36:27] WARNING // api.api_connexion // ThreadPoolExecutor-5_1// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=53&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_2// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=55&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_5// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=56&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_7// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=58&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_6// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=57&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_9// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=18&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=40&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=43&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=62&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=66&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=64&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=60&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=59&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=61&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=63&operator=and
+[07-25-2023 19:36:28] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=67&operator=and
+[07-25-2023 19:36:28] WARNING // api.api_connexion // ThreadPoolExecutor-5_8// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=69&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_5// Backing off 0.9 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=68&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_0// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=71&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_6// Backing off 0.5 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_9// Backing off 0.6 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=70&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_4// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=75&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_7// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=72&operator=and
+[07-25-2023 19:36:29] WARNING // api.api_connexion // ThreadPoolExecutor-5_1// Backing off 0.8 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=73&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=74&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_0// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=78&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=80&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_7// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=81&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_6// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=79&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_9// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=65&operator=and
+[07-25-2023 19:36:29] INFO // api.api_connexion // ThreadPoolExecutor-5_8// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=76&operator=and
+[07-25-2023 19:36:30] INFO // api.api_connexion // ThreadPoolExecutor-5_1// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=82&operator=and
+[07-25-2023 19:36:30] INFO // api.api_connexion // ThreadPoolExecutor-5_5// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=77&operator=and
+[07-25-2023 19:36:30] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:36:30] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:36:30] INFO // flux.app.ResultPage // END create ResultPage
+[07-25-2023 19:36:33] INFO // flux.app // TRY user API request
+[07-25-2023 19:36:34] INFO // api.api_connexion // Thread-9 (_start_api_request)// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=1&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=7&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=0&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=2&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=9&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=3&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=5&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=6&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_8// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=8&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_8// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_1// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=10&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_1// Backing off 0.2 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_0// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=12&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_0// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_3// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=15&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_3// Backing off 0.4 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_4// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=4&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_4// Backing off 0.6 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_5// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=16&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_5// Backing off 0.7 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_9// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=14&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_6// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=17&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_9// Backing off 0.3 secondsafter 1 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_2// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=13&operator=exact
+[07-25-2023 19:36:34] INFO // api.api_connexion // ThreadPoolExecutor-6_7// Success after 1 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=11&operator=exact
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_1// Backing off 2.0 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:34] WARNING // api.api_connexion // ThreadPoolExecutor-6_8// Backing off 0.9 secondsafter 2 tries ==> Exception: too many calls
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_3// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=21&operator=exact
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_9// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=24&operator=exact
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_0// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=20&operator=exact
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_4// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=22&operator=exact
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_5// Success after 2 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=23&operator=exact
+[07-25-2023 19:36:35] INFO // api.api_connexion // ThreadPoolExecutor-6_8// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=18&operator=exact
+[07-25-2023 19:36:36] INFO // api.api_connexion // ThreadPoolExecutor-6_1// Success after 3 tries ==> URL: https://api.piste.gouv.fr/cassation/judilibre/v1.0/search?page_size=50&query=boulangerie&page=19&operator=exact
+[07-25-2023 19:36:36] INFO // flux.app // SUCCESS user request to API
+[07-25-2023 19:36:36] INFO // flux.app.ResultPage // START create ResultPage
+[07-25-2023 19:36:36] INFO // flux.app.ResultPage // END create ResultPage

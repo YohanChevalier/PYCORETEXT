@@ -71,7 +71,7 @@ class SearchBloc(ttk.Frame):
             logger.info('TRY get data for input')
             self._data = SearchData(self.connexion).data
         except exc.ERRORS as e:
-            logger.info('FAIL get data for input')
+            logger.error('FAIL get data for input')
             raise e
         else:
             logger.info('SUCCESS get data for input')

@@ -145,17 +145,17 @@ class Connexion:
          Aucun logger propre à backoff
         """
         response = self.session.get(url, timeout=8)
-        random_test = random.randrange(15)
-        if random_test == 0:
-            raise requests.exceptions.Timeout('timeout')
-        elif random_test == 1:
-            raise ratelimit.RateLimitException('oops', 1)
-        elif random_test == 2:
-            response.status_code = 503
-        elif random_test == 3:
-            response.status_code = 404
-        else:
-            pass
+#         random_test = random.randrange(15)
+#         if random_test == 0:
+#             raise requests.exceptions.Timeout('timeout')
+#         elif random_test == 1:
+#             raise ratelimit.RateLimitException('oops', 1)
+#         elif random_test == 2:
+#             response.status_code = 503
+#         elif random_test == 3:
+#             response.status_code = 404
+#         else:
+#             pass
         # If wrong status a HTTPError is raised
         response.raise_for_status()
         return response
