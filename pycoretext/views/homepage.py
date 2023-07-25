@@ -84,7 +84,7 @@ class Homepage(ttk.Frame):
         try:
             self.info_window = InfoPopup(self, self.connexion)
         except exc.ERRORS as e:
-            logger.info('FAIL display InfoPopup')
+            logger.error('FAIL display InfoPopup')
             self._var_display_info.set(False)
             CustomMessageBox(
                 "Impossible d'afficher les informations",
@@ -206,7 +206,7 @@ class InfoPopup(tk.Toplevel):
             logger.info('TRY create InfosBloc in InfoPopup')
             service_state = InfosBlocData(connexion)._get_data()
         except exc.ERRORS as e:
-            logger.info('FAIL create InfosBloc in InfoPopup')
+            logger.error('FAIL create InfosBloc in InfoPopup')
             raise e
         else:
             infos = InfosBloc(
@@ -215,7 +215,7 @@ class InfoPopup(tk.Toplevel):
             infos.grid(
                 column=0, row=0, sticky=tk.W + tk.E,
                 pady=(0, 10), padx=8)
-            logger.info('SUCCES create InfosBloc in InfoPopup')
+            logger.info('SUCCESS create InfosBloc in InfoPopup')
             # création du bloc des statistiques judilibre
             try:
                 logger.info('TRY create StatsBloc in InfoPopup')
@@ -225,7 +225,7 @@ class InfoPopup(tk.Toplevel):
                 stats.grid(
                     column=0, row=1, sticky=tk.W + tk.E, padx=8)
             except exc.ERRORS as e1:
-                logger.info('FAIL create StatsBloc in InfoPopup')
+                logger.error('FAIL create StatsBloc in InfoPopup')
                 raise e1
             else:
                 logger.info('SUCCESS create StatsBloc in InfoPopup')

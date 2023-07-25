@@ -29,11 +29,24 @@ from pathlib import Path
 import sys
 import threading
 import datetime
+import os
 import logging
+
+# Définie le chemin vers le fichier log
+# il change selon si nous sommes dans un fichier frozen (exécutable)
+# ou dans la structure normale du projet
+if getattr(sys, 'frozen', False):
+    LOGFILE = Path(sys.executable).parent / "app_log.txt"
+else:
+    LOGFILE = Path(__file__).parent / "app_log.txt"
+
+# Suppression du précédent log file
+if Path.exists(LOGFILE):
+    os.remove(LOGFILE)
 
 # Définir le format des messages logging
 FORMAT1 = '[%(asctime)s] %(levelname)s // %(name)s // %(message)s'
-FORMAT2 = ('[%(asctime)s] %(threadName)s // %(levelname)s // %(name)s'
+FORMAT2 = ('[%(asctime)s] %(levelname)s // %(name)s // %(threadName)s'
            + '// %(message)s')
 DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
 
@@ -41,11 +54,17 @@ DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
 logger_root = logging.getLogger('flux')
 logger_root.setLevel(logging.INFO)
 
-# Définir le handler et le formatter du root
-fh = logging.StreamHandler()
+# Définir le streamhandler et le formatter du root
+sh_r = logging.StreamHandler()
 formatter = logging.Formatter(FORMAT1, datefmt=DATE_FORMAT)
-fh.setFormatter(formatter)
-logger_root.addHandler(fh)
+sh_r.setFormatter(formatter)
+logger_root.addHandler(sh_r)
+
+# Définir le filehandler et le formatter du root
+fh_r = logging.FileHandler(LOGFILE, mode="a")
+formatter = logging.Formatter(FORMAT1, datefmt=DATE_FORMAT)
+fh_r.setFormatter(formatter)
+logger_root.addHandler(fh_r)
 
 # Premier enfant du root flux
 logger = logging.getLogger('flux.app')
@@ -54,11 +73,17 @@ logger = logging.getLogger('flux.app')
 logger_api = logging.getLogger('api')
 logger_api.setLevel(logging.INFO)
 
-# Définir le handler et le formatter du logger_api
-fh = logging.StreamHandler()
+# Définir le streamhandler et le formatter du logger_api
+sh_api = logging.StreamHandler()
 formatter = logging.Formatter(FORMAT2, datefmt=DATE_FORMAT)
-fh.setFormatter(formatter)
-logger_api.addHandler(fh)
+sh_api.setFormatter(formatter)
+logger_api.addHandler(sh_api)
+
+# Définir le filehandler et le formatter du logger_api
+fh_api = logging.FileHandler(LOGFILE, mode="a")
+formatter = logging.Formatter(FORMAT2, datefmt=DATE_FORMAT)
+fh_api.setFormatter(formatter)
+logger_api.addHandler(fh_api)
 
 
 class Application(tk.Tk):
@@ -190,7 +215,7 @@ class Application(tk.Tk):
         try:
             self._homepage = h.Homepage(self._notebook, self.connexion)
         except exc.ERRORS as e:
-            logger.info(f'FAIL create homepage : {e}')
+            logger.error(f'FAIL create homepage : {e}')
             # envoi du message de l'exception à la page login
             self._login.var["error_message"].set(
                 f"Erreur de connexion : {e}")
@@ -296,6 +321,8 @@ class Application(tk.Tk):
             self._search_done.set(False)
             CustomMessageBox(
                 result_integrity[1], result_integrity[2], "error")
+            # logging de l'erreur
+            logger.error(f'FAIL user API request => {result_integrity[1]}')
             return
         # création de l'objet URL
         url = self._create_url(data_from_dict)
