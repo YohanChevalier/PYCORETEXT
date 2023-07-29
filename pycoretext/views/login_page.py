@@ -47,6 +47,7 @@ class LoginPage(tk.Toplevel):
             "environment": tk.StringVar(),
             "key": tk.StringVar(),
             "error_message": tk.StringVar(),
+            "test_mode": tk.BooleanVar()
                     }
         # tracer la variable de message d'erreur
         self.var["error_message"].trace_add("write", self._on_error)
@@ -131,6 +132,12 @@ class LoginPage(tk.Toplevel):
         self._fill_oridata()
         # Permet de bloquer l'écriture pour les utilisateurs
         self._oridata.configure(state=tk.DISABLED)
+
+        # Checkbox pour des tests
+        test_checkbox = ttk.Checkbutton(main_frame,
+                                        text='Mode test',
+                                        variable=self.var['test_mode'])
+        test_checkbox.grid(column=0, row=7, sticky=tk.W)
 
     def _fill_oridata(self):
         """

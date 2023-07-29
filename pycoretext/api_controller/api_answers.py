@@ -25,6 +25,7 @@ import logging
 
 logger_api = logging.getLogger('api.api_answer')
 
+
 class Answer:
     """
     Reçoit en argument la réponse Judilibre sous forme de dictionnaire.

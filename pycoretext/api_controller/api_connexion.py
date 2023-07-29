@@ -45,7 +45,7 @@ class Connexion:
     abandoned_requests_number = 0
 
     # constructeur avec 2 paramètres facultatifs : la clé d'auth. et l'env.
-    def __init__(self, key_user: str, env='sandbox'):
+    def __init__(self, key_user: str, env='sandbox', test_mode=False):
         self.key_user = key_user
         # le endpoint est différent selon l'env. sélectionné en paramètre
         if env == 'production':
@@ -59,6 +59,8 @@ class Connexion:
         # le header est nécessaire lors de la requête request.get (r_get)
         self.headers = {'accept': 'application/json',
                         'KeyId': key_user}
+        # le mode test est-il activé
+        self.test_mode = test_mode
         # créer la session HTTP
         self.session = requests.Session()
         self.session.headers = {'accept': 'application/json',
@@ -145,17 +147,21 @@ class Connexion:
          Aucun logger propre à backoff
         """
         response = self.session.get(url, timeout=8)
-#         random_test = random.randrange(15)
-#         if random_test == 0:
-#             raise requests.exceptions.Timeout('timeout')
-#         elif random_test == 1:
-#             raise ratelimit.RateLimitException('oops', 1)
-#         elif random_test == 2:
-#             response.status_code = 503
-#         elif random_test == 3:
-#             response.status_code = 404
-#         else:
-#             pass
+        # Génération aléatoire d'erreurs dans le mode de test
+        if self.test_mode:
+            random_test = random.randrange(0, 15)
+            if random_test == 0:
+                raise requests.exceptions.Timeout('timeout')
+            elif random_test == 1:
+                raise ratelimit.RateLimitException('oops', 1)
+            elif random_test == 2:
+                # server unavailable
+                response.status_code = 503
+            elif random_test == 3:
+                # Not found
+                response.status_code = 404
+            else:
+                pass
         # If wrong status a HTTPError is raised
         response.raise_for_status()
         return response

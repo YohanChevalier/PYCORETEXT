@@ -491,16 +491,17 @@ class ResultPage(tk.Frame):
         urls_window = tk.Toplevel(self.nametowidget("."))
         urls_window.title(f"ID{self._id_answer} - {len(wrong_urls_list)}"
                           + " requêtes erronnées")
-        urls_window.resizable(True, False)
+        urls_window.resizable(False, False)
         urls_window.columnconfigure(0, weight=1)
         urls_window.columnconfigure(1, weight=0)
-        widgets.place_windows(urls_window, 800, 300, self.nametowidget("."))
-        urls_list_in_text = tk.Text(urls_window)
+        widgets.place_windows(urls_window, 900, 350, self.nametowidget("."))
+        urls_list_in_text = tk.Text(urls_window, height=20)
         urls_list_in_text.grid(row=0,
                                column=0,
                                sticky=tk.W + tk.E + tk.N + tk.S)
         s = ttk.Scrollbar(urls_window, orient=tk.VERTICAL,
                           command=urls_list_in_text.yview)
+        urls_list_in_text.configure(yscrollcommand=s.set)
         s.grid(row=0, column=1, sticky=tk.N + tk.S)
         for url in wrong_urls_list:
             urls_list_in_text.insert(tk.END, f"# {url}\n")

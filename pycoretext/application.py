@@ -182,7 +182,8 @@ class Application(tk.Tk):
         logger.info('TRY API connection')
         self.connexion = co.Connexion(
             env=self._login.var["environment"].get(),
-            key_user=self._login.var["key"].get()
+            key_user=self._login.var["key"].get(),
+            test_mode=self._login.var["test_mode"].get()
             )
         test_result = self.connexion.test_connexion()
         if isinstance(test_result, bool):
@@ -190,6 +191,8 @@ class Application(tk.Tk):
             # si le test est correct alors c'est parti !
             self.__connexion_exists.set(True)
             self._build_homepage()
+            if self._login.var["test_mode"].get():
+                self.title("PYCORETEXT - !! TEST MODE !!")
         else:
             logger.error(f'FAIL API connection : {test_result}')
             # On envoie le message de l'exception à la page login
@@ -228,7 +231,7 @@ class Application(tk.Tk):
             del self._notebook
         else:
             self._notebook.add(self._homepage, text="Accueil")
-            # Lie l'événement <<info_request>> généré par la hompage à notre app
+            # Lie l'événement <<info_request>> généré par la hompage
             self._homepage.bind('<<info_request>>', self._update_count)
             # on bind la fonction de recherche
             self._homepage.search.bind("<<OnSearch>>", self._on_search)
