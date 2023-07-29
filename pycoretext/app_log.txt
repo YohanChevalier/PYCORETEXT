@@ -1,0 +1,2 @@
+[07-29-2023 16:26:17] INFO // flux.app // START init of the application
+[07-29-2023 16:26:17] INFO // flux.app // END init of the application
