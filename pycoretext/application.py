@@ -18,19 +18,22 @@
 Module contenant la classe principale de l'application, l'objet Tk
 """
 
-import tkinter as tk
-from tkinter import BooleanVar
-from tkinter import ttk
-from .api_controller import api_connexion as co, api_url
-from .views import login_page as l_pg, homepage as h, result_page
-from .widgets import CustomNotebook, place_windows, CustomMessageBox
-from . import exceptions as exc
-from pathlib import Path
 import sys
 import threading
 import datetime
 import os
 import logging
+from pathlib import Path
+import tkinter as tk
+from tkinter import BooleanVar
+from tkinter import ttk
+from .api_controller import api_connexion as co, api_url
+from .views import login_page as l_pg
+from .views import homepage as h, result_page
+from .widgets import CustomNotebook
+from .widgets import place_windows
+from .widgets import CustomMessageBox
+from . import exceptions as exc
 
 # Définie le chemin vers le fichier log
 # il change selon si nous sommes dans un fichier frozen (exécutable)

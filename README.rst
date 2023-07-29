@@ -35,11 +35,17 @@ https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techn
  Version de l'application
 ..........................
 
-Numéro de version = 2.0.0
+Numéro de version = 2.5.0
 
-Date de publication = 2023-05
+Date de publication = 2023-07
 
 Liste des améliorations :
+    * Meilleure gestion des requêtes API (ratelimit et backoff)
+    * Affichage dans la page d'acceuil du nombre de requêtes réalisées
+    * Affichage dans les pages de résultats du nombre de décisions attendues et obtenues
+    * Affichage de la liste des requêtes ayant rencontré une erreur
+    * Mise à disposition du fichier "app_log.txt" qui offre un accès complet aux requêtes effectuées durant la session
+    * Ajout d'un mode test qui génère des erreurs HTML aléatoire et permet d'observer les réactions de l'application
     * Utilisation du threading pour les messages d'attente
     * Lorsque la fenêtre principale est déplacée, les fenêtres supérieures suivront désormais
     * Renforcement des validations de données dans le formulaire

@@ -316,7 +316,6 @@ Validation de données à prévoir dans un second temps de développement
 ======================================================================
 
   * login_page -> key format
-  * vérification du formate de date dans le formulaire
   * vérification du format d'ID JUDILIBRE dans le formulaire
 
 ==================================================================
@@ -377,11 +376,6 @@ Améliorations possibles
       * Cependant Pandas serait encore mieux sans doute.
 
   * Meilleure gestion des images (voir p.278 Adam's book)
-
-  * Améliorer les barres de progression et les icônes animés d'attente
-      * Cf. les explications d'Adam Moore sur le multi-threading
-      * cf. doc tkinter https://tkdocs.com/tutorial/eventloop.html#asyncio
-      * La version 1.0 ne propose qu'un affichage simple de fenêtre.
 
 =====================================
 Sécurité des données utilisateurs
