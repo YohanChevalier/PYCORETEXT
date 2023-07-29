@@ -52,7 +52,7 @@ DATE_FORMAT = '%m-%d-%Y %H:%M:%S'
 
 # Définir un logger root pour le suivi des événements
 logger_root = logging.getLogger('flux')
-logger_root.setLevel(logging.INFO)
+logger_root.setLevel(logging.DEBUG)
 
 # Définir le streamhandler et le formatter du root
 sh_r = logging.StreamHandler()
@@ -61,7 +61,7 @@ sh_r.setFormatter(formatter)
 logger_root.addHandler(sh_r)
 
 # Définir le filehandler et le formatter du root
-fh_r = logging.FileHandler(LOGFILE, mode="a")
+fh_r = logging.FileHandler(LOGFILE, mode="a", encoding='utf-8')
 formatter = logging.Formatter(FORMAT1, datefmt=DATE_FORMAT)
 fh_r.setFormatter(formatter)
 logger_root.addHandler(fh_r)
@@ -71,7 +71,7 @@ logger = logging.getLogger('flux.app')
 
 # Définir un logger pour les appels API
 logger_api = logging.getLogger('api')
-logger_api.setLevel(logging.INFO)
+logger_api.setLevel(logging.DEBUG)
 
 # Définir le streamhandler et le formatter du logger_api
 sh_api = logging.StreamHandler()
@@ -80,7 +80,7 @@ sh_api.setFormatter(formatter)
 logger_api.addHandler(sh_api)
 
 # Définir le filehandler et le formatter du logger_api
-fh_api = logging.FileHandler(LOGFILE, mode="a")
+fh_api = logging.FileHandler(LOGFILE, mode="a", encoding='utf-8')
 formatter = logging.Formatter(FORMAT2, datefmt=DATE_FORMAT)
 fh_api.setFormatter(formatter)
 logger_api.addHandler(fh_api)

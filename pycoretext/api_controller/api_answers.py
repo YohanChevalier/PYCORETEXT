@@ -21,7 +21,9 @@ obtenues par une requête dans l'API
 from math import ceil
 from concurrent.futures import ThreadPoolExecutor
 from pycoretext import exceptions as exc
+import logging
 
+logger_api = logging.getLogger('api.api_answer')
 
 class Answer:
     """
@@ -69,7 +71,6 @@ class AnswerExport(Answer):
         # récupération des informations de connexion
         # !! important de commencer par cette étape
         self.first_url = first_url
-        print('1ere URL = ', self.first_url)
         # appelle le constructeur parent
         super().__init__(dict_from_response, id_answer, dict_criterias,
                          connexion)
@@ -81,7 +82,6 @@ class AnswerExport(Answer):
         self.wrong_urls = []
         # dictionnaire qui contiendra l'ensemble des objets Decision
         self.dict_decisions = {}
-        print('total decisions = ', self.total_decisions)
         # construction de la liste d'urls
         if 'next_page' in dict_from_response:
             # attribut présent dans les réponses Search
@@ -97,10 +97,8 @@ class AnswerExport(Answer):
         # obtenir le nombre d'URLs à traiter
         self.number_of_urls = ceil(
                     self.total_decisions / default_nb_decisions_in_dict)
-        print('number of URLs = ', self.number_of_urls)
         # création de la liste des Url à partir du résulat de la 1ere page
         urls_list = self._start_create_urls_list()
-        print('first url : ', self.first_url)
         # Liste qui contiendra les mauvaises réponses (429 ou 416)
         self._wrong_response_list = {}
         # Threading = requête pour chaque url et création de Decision
@@ -109,14 +107,15 @@ class AnswerExport(Answer):
         # self._thread_local = threading.local()
         self._generate_decisions(urls_list)
         # --------------------
-        # Vérification console du résultat
+        # Vérification des résultats
         # --------------------
-        # On vérifie le nombre de décisions créées au final
-        print('nb_decision = ', self.nb_decision)
-        # ainsi que le nombre de mauvaises réponses obtenues
-        if self._wrong_response_list:
-            for code, nb in self._wrong_response_list.items():
-                print(code, " = ", nb)
+        logger_api.debug(f'Nb of URLs : {self.number_of_urls}')
+        logger_api.debug('Nb décisions annoncées par API :'
+                         + f' {self.total_decisions}')
+        logger_api.debug('Nb décisions obtenues par Pycoretext :'
+                         + f' {self.nb_decision}')
+        logger_api.debug('Nb requêtes erronées :'
+                         + f' {len(self._wrong_response_list)}')
 
     def _start_simple_api_request(self, url):
         """
