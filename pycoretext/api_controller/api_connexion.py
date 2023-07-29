@@ -44,7 +44,8 @@ class Connexion:
     # Compte les requêtes qui ont échoué (peu importe la raison)
     abandoned_requests_number = 0
 
-    # constructeur avec 2 paramètres facultatifs : la clé d'auth. et l'env.
+    # constructeur avec 3 paramètres facultatifs : la clé d'auth.,
+    # l'env et le mode
     def __init__(self, key_user: str, env='sandbox', test_mode=False):
         self.key_user = key_user
         # le endpoint est différent selon l'env. sélectionné en paramètre
