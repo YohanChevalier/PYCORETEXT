@@ -20,6 +20,10 @@ Ce module contient les créations de classes de widgets pour pycoretext
 
 import tkinter as tk
 from tkinter import ttk, VERTICAL, WORD
+import psutil
+import logging
+
+logger = logging.getLogger('flux.widgets')
 
 
 class DoubleLabel(ttk.Frame):
@@ -500,7 +504,6 @@ class ButtonWholeText(ttk.Button):
 
     def __init__(self, parent, decision_text, id_decision,
                  number_decision, *args, **kwargs):
-        
         """Méthode constructrice"""
         self.parent = parent
         self.decision_text = decision_text
@@ -740,7 +743,7 @@ class CustomMessageBox(tk.Toplevel):
                                   justify=tk.LEFT)
         message_label.bind('<Configure>',
                            lambda e: message_label.config(
-                                wraplength=message_label.winfo_width())) 
+                                wraplength=message_label.winfo_width()))
         message_label.grid(row=0, column=1, columnspan=2,
                            pady=(7, 4), sticky=tk.W)
         # Partie dédiée à la fermeture des fenêtre
@@ -750,12 +753,12 @@ class CustomMessageBox(tk.Toplevel):
                                columnspan=2)
             buttons_frame.columnconfigure(0, weight=1)
             ttk.Button(buttons_frame, text="Oui",
-                       command=self.master.destroy).grid(
+                       command=self._quit_app).grid(
                                                         row=1,
                                                         column=0,
                                                         sticky=tk.W + tk.E)
             ttk.Button(buttons_frame, text="Annuler",
-                       command=self._destroy_window).grid(
+                       command=self.destroy).grid(
                                                      row=1,
                                                      column=1,
                                                      padx=(7, 7),
@@ -773,8 +776,11 @@ class CustomMessageBox(tk.Toplevel):
             self._ok_button.focus_set()
             self._ok_button.bind('<Return>', func=self._destroy_window)
 
-    def _destroy_window(self, event=None):
-        self.destroy()
+    def _quit_app(self, event=None):
+        self.master.destroy()
+        # Tentative d'interruption du processus au cas où il ne ce soit
+        # pas arrêté correctement
+        close_app("pycoretext")
 
 
 def place_windows(win_to_place: tk.Tk, width, height, root="screen"):
@@ -798,6 +804,36 @@ def place_windows(win_to_place: tk.Tk, width, height, root="screen"):
         win_to_place.geometry(
             f'{width}x{height}' +
             f'+{position_x}+{position_y}')
+
+
+def close_app(app_name):
+    """
+    Interrompt le processus donné en paramètre
+    # https://stackoverflow.com/questions/5625524/how-to-close-a-program-using-python
+    """
+    logger.info("TRY stop pycoretext.exe processus")
+    # returns names of running processes
+    running_apps = psutil.process_iter(['pid', 'name'])
+    found = False
+    for app in running_apps:
+        sys_app = app.info.get('name').split('.')[0].lower()
+        if sys_app in app_name.split() or app_name in sys_app:
+            # returns PID of the given app if found running
+            pid = app.info.get('pid')
+            # deleting the app if asked app is running.
+            # (It raises error for some windows apps)
+            try:
+                app_pid = psutil.Process(pid)
+                app_pid.terminate()
+                found = True
+            except Exception:
+                pass
+        else:
+            pass
+    if not found:
+        logger.info(f"FAIL stop {app_name} processus => already closed")
+    else:
+        logger.info(f"SUCCESS stop {app_name} processus => already closed")
 
 
 # ===========================

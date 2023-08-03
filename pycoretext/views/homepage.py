@@ -91,12 +91,14 @@ class Homepage(ttk.Frame):
                 e,
                 type='error',
                 root=self.nametowidget("."))
-            # Génère un événement pour que l'app actualise le compte des requêtes
+            # Génère un événement pour que l'app actualise
+            # le compte des requêtes
             self.event_generate(('<<info_request>>'))
         else:
             self._var_display_info.set(True)
             logger.info('SUCCESS display InfoPopup')
-            # Génère un événement pour que l'app actualise le compte des requêtes
+            # Génère un événement pour que l'app actualise
+            # le compte des requêtes
             self.event_generate(('<<info_request>>'))
 
     def _on_click_info(self, *_):
