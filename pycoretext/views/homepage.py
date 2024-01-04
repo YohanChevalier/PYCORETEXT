@@ -195,7 +195,7 @@ class InfoPopup(tk.Toplevel):
         self.resizable(False, False)
         # Placement de la fenêtre
         self._width = 250
-        self._height = 400
+        self._height = 500
         place_windows(self, self._width, self._height,
                       root=self.nametowidget('.'))
 
@@ -313,11 +313,12 @@ class StatsBloc(tk.LabelFrame):
         # liste des labels à utiliser pour le widget double_labels
         self._data = data
         # liste des labels d'entête pour les sous-frames
-        titles_frames = ["Général", "Cour de cassation", "Cours d'appel"]
+        titles_frames = ["Général", "Cour de cassation", "Cours d'appel",
+                         "Tribunaux judiciaires"]
         # liste des LabelFrame widget
         labels_list = list()
         # création des sous-frames et des labels à l'intérieur
-        for i in range(3):
+        for i in range(4):
             labels_list.append(ttk.LabelFrame(
                                self, text=titles_frames[i]))
             labels_list[i].grid(row=i, sticky=tk.W + tk.E,
@@ -346,12 +347,13 @@ class StatsBlocData:
         self._all_list = list()
         self._cc_list = list()
         self._ca_list = list()
+        self._tj_list = list()
         # compléter les listes
         self._build_lists()
 
     def _build_lists(self):
         """
-        Complète les listes _all, _cc, et _ca puis les retourne
+        Complète les listes _all, _cc, _ca et _tj puis les retourne
         """
         # 1/ collecter les infos en provenance de la commande STATS (interne)
         try:
@@ -371,6 +373,9 @@ class StatsBlocData:
             self._ca_list.append(("Nb textes",
                                   "{:,}".format(stats_dict_meta[
                                     "indexedByJurisdiction"][1]["value"])))
+            self._tj_list.append(("Nb textes",
+                                  "{:,}".format(stats_dict_meta[
+                                    "indexedByJurisdiction"][2]["value"])))
             # 2/ autres requêtes personnalisées avec la commande EXPORT
             # (interne) constantes pour les requêtes :
             today = d.today()
@@ -383,20 +388,20 @@ class StatsBlocData:
                                             days=last_day_of_prev_month.day)
             previous_month = last_day_of_prev_month.month
             # requêtes pour chaque organisme
-            for orga in ["cc", "ca"]:
+            for orga in ["cc", "ca", "tj"]:
                 self._date_request(
-                    "créés hier",
+                    "Créés hier",
                     yesterday,
                     yesterday,
                     orga
                 )
-            for orga in ["cc", "ca"]:
+            for orga in ["cc", "ca", "tj"]:
                 self._date_request(
                     f"Créés mois en cours ({str(month)})",
                     first_day_month,
                     today, orga
                 )
-            for orga in ["cc", "ca"]:
+            for orga in ["cc", "ca", "tj"]:
                 self._date_request(
                     f"Créés mois passé ({str(previous_month)})",
                     start_day_of_prev_month,
@@ -419,20 +424,27 @@ class StatsBlocData:
         except exc.NoResult:
             if jurisdiction == "cc":
                 self._cc_list.append((label, "0"))
-            else:
+            elif jurisdiction == "ca":
                 self._ca_list.append((label, "0"))
+            else:
+                self._tj_list.append((label, "0"))
         else:
             if jurisdiction == "cc":
                 self._cc_list.append((
                     label,
                     "{:,}".format(self.connexion.
                                   dict_answers["internal"].total_decisions)))
-            else:
+            elif jurisdiction == "ca":
                 self._ca_list.append((
+                    label,
+                    "{:,}".format(self.connexion.
+                                  dict_answers["internal"].total_decisions)))
+            else:
+                self._tj_list.append((
                     label,
                     "{:,}".format(self.connexion.
                                   dict_answers["internal"].total_decisions)))
 
     def _get_data(self):
-        "retourne les trois listes pour construction des labels"
-        return (self._all_list, self._cc_list, self._ca_list)
+        "retourne les quatre listes pour construction des labels"
+        return (self._all_list, self._cc_list, self._ca_list, self._tj_list)
