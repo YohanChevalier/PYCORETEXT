@@ -765,7 +765,7 @@ class CustomMessageBox(tk.Toplevel):
                                                      sticky=tk.W + tk.E)
         else:
             self._ok_button = tk.Button(self, text="OK",
-                                        command=self._destroy_window)
+                                        command=self.destroy)
             self._ok_button.grid(
                                 row=1,
                                 column=0,
@@ -774,7 +774,7 @@ class CustomMessageBox(tk.Toplevel):
                                 padx=120,
                                 pady=(0, 2))
             self._ok_button.focus_set()
-            self._ok_button.bind('<Return>', func=self._destroy_window)
+            self._ok_button.bind('<Return>', func=self.destroy)
 
     def _quit_app(self, event=None):
         self.master.destroy()

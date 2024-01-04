@@ -146,8 +146,8 @@ class SearchBloc(ttk.Frame):
         w.LabelInput(
             self._taxo_frame, "Contexte", var=self._vars["context_value"],
             input_args={
-                "items_list": ["cc", "ca"],
-                "heigh": 2,
+                "items_list": ["cc", "ca", "tj"],
+                "heigh": 3,
                 "selectmode": tk.SINGLE},
             disable_vars=(decision + export_and_search +
                           export_date_type + search_query)
@@ -398,6 +398,7 @@ class SearchData:
             to_return = self.connexion.dict_answers["internal"].list_results
             to_return.remove("cc")
             to_return.remove("ca")
+            to_return.remove("tj")
             to_return.remove("all")
             return to_return
 
