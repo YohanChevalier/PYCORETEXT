@@ -173,6 +173,9 @@ class ResultPage(tk.Frame):
             else:
                 # grid le frame des critères sans column span
                 criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
+        else:
+            # grid le frame des critères sans column span
+            criteria_frame.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N)
 
     def add_treeview(self):
         """
@@ -325,8 +328,15 @@ class ResultPage(tk.Frame):
         else:
             for key, value in self.result_taxo.items():
                 self._text.insert(tk.END, f'=== {key} ===\n')
-                self._text.insert(tk.END, f'{value}')
-                self._text.insert(tk.END, '\n\n')
+                # Si value est une liste, il faut aussi la parcourir
+                if isinstance(value, list):
+                    for item in value:
+                        # self._text.insert(tk.END, f'{value}')
+                        self._text.insert(tk.END, item)
+                        self._text.insert(tk.END, '\n\n')
+                else:
+                    self._text.insert(tk.END, f'{value}')
+                    self._text.insert(tk.END, '\n\n')
 
     def _build_access_text_button(self, decision_text,
                                   id_decision, number_decision):

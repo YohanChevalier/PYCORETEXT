@@ -279,10 +279,10 @@ class AnswerTaxonomy(Answer):
         # traitement particulier de la recherche des thèmes (matières)
         elif dict_criterias["id="][0] == "theme":
             if "context_value=" in dict_criterias:
-                # ca: listes dans liste à convertir en tableau
+                # ca ou tj: listes dans liste à convertir en tableau
                 # key = str: value = list(str)
                 # 1er élément de chaque liste est la clé
-                if dict_criterias["context_value="][0] == "ca":
+                if dict_criterias["context_value="][0] in ["ca", "tj"]:
                     dict_theme_ca = dict()
                     result = dict_from_response["result"]
                     for el1 in result:
