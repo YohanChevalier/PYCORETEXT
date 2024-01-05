@@ -35,8 +35,18 @@ https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techn
  Version de l'application
 ..........................
 
-Numéro de version = 2.5.0
+Numéro de version actuel = 2.8.0
+Date de publication = 2024-01
 
+Liste des améliorations :
+    * Ajout des statistiques propres aux textes des TJ
+    * Ajout du contexte 'tj' pour les recherches de taxonomy
+    * Ajout du 'Siège tj' et gestion des validations de données
+    * Correction d'un bug d'affichage sur la page de résultats en taxonomy (disparition de la liste de critères)
+    * Correction d'un bug lors de l'affichage des messages d'erreur
+
+
+Version précédente = 2.5.0
 Date de publication = 2023-07
 
 Liste des améliorations :
