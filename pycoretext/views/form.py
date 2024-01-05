@@ -64,6 +64,7 @@ class SearchBloc(ttk.Frame):
             "value": tk.StringVar(),
             "context_value": tk.StringVar(),
             "location ca": tk.StringVar(),
+            "location tj": tk.StringVar(),
             "withFileOfType": tk.StringVar()
         }
         # récupérer les données dynamiquement pour les inputs
@@ -88,7 +89,7 @@ class SearchBloc(ttk.Frame):
                    "chamber", "formation", "theme", "theme ca",
                    "type", "publication", "solution", "jurisdiction",
                    "date_start", "date_end", "date_type", "location ca",
-                   "withFileOfType"
+                   "location tj", "withFileOfType"
                    ])
         export_date_type = self._group_var(["date_type"])
         taxo = self._group_var(["idT", "key", "value", "context_value"])
@@ -144,7 +145,8 @@ class SearchBloc(ttk.Frame):
                           export_date_type + search_query + taxo_key)
         ).grid(row=2, column=0)
         w.LabelInput(
-            self._taxo_frame, "Contexte", var=self._vars["context_value"],
+            self._taxo_frame, "Contexte (df='cc')",
+            var=self._vars["context_value"],
             input_args={
                 "items_list": ["cc", "ca", "tj"],
                 "heigh": 3,
@@ -163,7 +165,7 @@ class SearchBloc(ttk.Frame):
             self._combine, "Mot(s) clé(s)", var=self._vars["query"],
             input_class=ttk.Entry,
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=0, column=0, rowspan=3)
+        ).grid(row=0, column=0)
         w.LabelInput(
             self._combine, "Opérateur (df='or')",
             var=self._vars["operator"],
@@ -172,35 +174,41 @@ class SearchBloc(ttk.Frame):
                 "heigh": 3,
                 "selectmode": tk.SINGLE},
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=0, column=1, rowspan=3)
+        ).grid(row=1, column=0)
         w.LabelInput(
             self._combine, "Du (AAAA-MM-JJ)", var=self._vars["date_start"],
             input_class=ttk.Entry,
             disable_vars=decision+taxo
-        ).grid(row=0, column=2, pady=2.5)
+        ).grid(row=0, column=1, pady=2.5)
         w.LabelInput(
             self._combine, "Au (AAAA-MM-JJ)", var=self._vars["date_end"],
             input_class=ttk.Entry,
             disable_vars=decision+taxo
-        ).grid(row=1, column=2, pady=(0, 2.5))
+        ).grid(row=1, column=1, pady=(0, 2.5))
         w.LabelInput(
             self._combine, "Type de date", var=self._vars["date_type"],
             input_args={"items_list": ["creation", "update"],
                         "heigh": 2},
             disable_vars=decision+taxo+search_query
-        ).grid(row=0, column=3, rowspan=3)
+        ).grid(row=0, column=2, rowspan=2)
         w.LabelInput(
             self._combine, "Juridiction (df='cc')",
             var=self._vars["jurisdiction"],
-            input_args={"items_list": self._data["jurisdiction"], "heigh": 2},
+            input_args={"items_list": self._data["jurisdiction"], "heigh": 3},
             disable_vars=decision+taxo
-        ).grid(row=0, column=4, rowspan=3)
+        ).grid(row=0, column=3, rowspan=2)
         w.LabelInput(
             self._combine, "Avec PDF", var=self._vars["withFileOfType"],
             input_args={"items_list": self._data["filetype"],
-                        "heigh": 4},
+                        "heigh": 5},
             disable_vars=decision+taxo
-        ).grid(row=0, column=5, rowspan=3)
+        ).grid(row=0, column=4, rowspan=2)
+        w.LabelInput(
+            self._combine, "Siège tj", var=self._vars["location tj"],
+            input_args={"items_list": self._data["location tj"],
+                        "heigh": 6},
+            disable_vars=decision+taxo
+        ).grid(row=0, column=5, rowspan=2)
         w.LabelInput(
             self._combine,
             label="Chambre", var=self._vars["chamber"],
@@ -254,7 +262,8 @@ class SearchBloc(ttk.Frame):
         self._select1.grid(row=0, column=0, sticky=tk.E + tk.W)
         # thèmes CA
         self._select2 = w.LabelInput(
-            selections_frame, "Matière ca", var=self._vars["theme ca"],
+            selections_frame, "Matière /tj (!!Critère mal géré par API!!)",
+            var=self._vars["theme ca"],
             input_class=w.ButtonSelect,
             input_args={"items_list": self._data["theme ca"]},
             disable_vars=decision+taxo)
@@ -377,6 +386,7 @@ class SearchData:
             "operator": self._create_sub_list("operator"),
             "idT": main_list,
             "location ca": self._create_sub_list("location ca"),
+            "location tj": self._create_sub_list("location tj"),
             "filetype": self._create_sub_list("filetype")
         }
         # vider le dictionnaire
@@ -442,4 +452,6 @@ class SearchData:
                 data = list(
                     self.connexion.dict_answers["internal"].dict_results.keys()
                            )
+                # Tri ascendant de la liste
+                data = sorted(data)
             return data

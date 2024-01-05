@@ -114,7 +114,7 @@ class Application(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self._on_closing)
         # placer la fenêtre principale au centre de l'écran
         self._width = 1100
-        self._height = 550
+        self._height = 580
         place_windows(self, self._width, self._height)
         # création de la login page
         self._login = l_pg.LoginPage(self)
@@ -438,7 +438,7 @@ class Application(tk.Tk):
             elif key == "theme ca":
                 old_key = key
                 key = "theme"
-            elif key == "location ca":
+            elif key == "location ca" or key == "location tj":
                 old_key = key
                 key = "location"
             for value in values_list:
@@ -475,7 +475,16 @@ class Application(tk.Tk):
             state = 0
         elif "location ca" in data or "theme ca" in data:
             juris = data.get("jurisdiction", None)
-            if juris is None or juris == "cc":
+            if juris is None or juris == "cc" or juris == "tj":
+                title = "Conflit de juridictions"
+                message = ("Certains critères ne sont pas compatibles "
+                           + "avec la juridiction choisie." + '\n'
+                           + "Rappel, la juridiction par défaut est"
+                           + "'cc'.")
+                state = 0
+        elif "location tj" in data:
+            juris = data.get("jurisdiction", None)
+            if juris is None or juris == "cc" or juris == "ca":
                 title = "Conflit de juridictions"
                 message = ("Certains critères ne sont pas compatibles "
                            + "avec la juridiction choisie." + '\n'
