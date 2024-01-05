@@ -262,7 +262,7 @@ class SearchBloc(ttk.Frame):
         self._select1.grid(row=0, column=0, sticky=tk.E + tk.W)
         # thèmes CA
         self._select2 = w.LabelInput(
-            selections_frame, "Matière /tj (!!Critère mal géré par API!!)",
+            selections_frame, "Matière ca/tj (!!Critère mal géré par API!!)",
             var=self._vars["theme ca"],
             input_class=w.ButtonSelect,
             input_args={"items_list": self._data["theme ca"]},
