@@ -65,6 +65,7 @@ class SearchBloc(ttk.Frame):
             "context_value": tk.StringVar(),
             "location ca": tk.StringVar(),
             "location tj": tk.StringVar(),
+            "location tcom": tk.StringVar(),
             "withFileOfType": tk.StringVar()
         }
         # récupérer les données dynamiquement pour les inputs
@@ -89,7 +90,7 @@ class SearchBloc(ttk.Frame):
                    "chamber", "formation", "theme", "theme ca",
                    "type", "publication", "solution", "jurisdiction",
                    "date_start", "date_end", "date_type", "location ca",
-                   "location tj", "withFileOfType"
+                   "location tj", "location tcom", "withFileOfType"
                    ])
         export_date_type = self._group_var(["date_type"])
         taxo = self._group_var(["idT", "key", "value", "context_value"])
@@ -148,7 +149,7 @@ class SearchBloc(ttk.Frame):
             self._taxo_frame, "Contexte (df='cc')",
             var=self._vars["context_value"],
             input_args={
-                "items_list": ["cc", "ca", "tj"],
+                "items_list": ["cc", "ca", "tcom", "tj"],
                 "heigh": 3,
                 "selectmode": tk.SINGLE},
             disable_vars=(decision + export_and_search +
@@ -165,7 +166,7 @@ class SearchBloc(ttk.Frame):
             self._combine, "Mot(s) clé(s)", var=self._vars["query"],
             input_class=ttk.Entry,
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=0, column=0)
+        ).grid(row=0, column=0, rowspan=2)
         w.LabelInput(
             self._combine, "Opérateur (df='or')",
             var=self._vars["operator"],
@@ -174,7 +175,7 @@ class SearchBloc(ttk.Frame):
                 "heigh": 3,
                 "selectmode": tk.SINGLE},
             disable_vars=decision+export_date_type+taxo
-        ).grid(row=1, column=0)
+        ).grid(row=1, column=0, rowspan=3)
         w.LabelInput(
             self._combine, "Du (AAAA-MM-JJ)", var=self._vars["date_start"],
             input_class=ttk.Entry,
@@ -184,28 +185,34 @@ class SearchBloc(ttk.Frame):
             self._combine, "Au (AAAA-MM-JJ)", var=self._vars["date_end"],
             input_class=ttk.Entry,
             disable_vars=decision+taxo
-        ).grid(row=1, column=1, pady=(0, 2.5))
-        w.LabelInput(
-            self._combine, "Type de date", var=self._vars["date_type"],
-            input_args={"items_list": ["creation", "update"],
-                        "heigh": 2},
-            disable_vars=decision+taxo+search_query
-        ).grid(row=0, column=2, rowspan=2)
+        ).grid(row=1, column=1, pady=(0, 2.5), rowspan=2)
         w.LabelInput(
             self._combine, "Juridiction (df='cc')",
             var=self._vars["jurisdiction"],
             input_args={"items_list": self._data["jurisdiction"], "heigh": 3},
             disable_vars=decision+taxo
-        ).grid(row=0, column=3, rowspan=2)
+        ).grid(row=0, column=2)
+        w.LabelInput(
+            self._combine, "Type de date", var=self._vars["date_type"],
+            input_args={"items_list": ["creation", "update"],
+                        "heigh": 2},
+            disable_vars=decision+taxo+search_query
+        ).grid(row=1, column=2)
         w.LabelInput(
             self._combine, "Avec PDF", var=self._vars["withFileOfType"],
             input_args={"items_list": self._data["filetype"],
                         "heigh": 5},
             disable_vars=decision+taxo
-        ).grid(row=0, column=4, rowspan=2)
+        ).grid(row=0, column=3, rowspan=2)
         w.LabelInput(
             self._combine, "Siège tj", var=self._vars["location tj"],
             input_args={"items_list": self._data["location tj"],
+                        "heigh": 6},
+            disable_vars=decision+taxo
+        ).grid(row=0, column=4, rowspan=2)
+        w.LabelInput(
+            self._combine, "Siège tcom", var=self._vars["location tcom"],
+            input_args={"items_list": self._data["location tcom"],
                         "heigh": 6},
             disable_vars=decision+taxo
         ).grid(row=0, column=5, rowspan=2)
@@ -387,6 +394,7 @@ class SearchData:
             "idT": main_list,
             "location ca": self._create_sub_list("location ca"),
             "location tj": self._create_sub_list("location tj"),
+            "location tcom": self._create_sub_list("location tcom"),
             "filetype": self._create_sub_list("filetype")
         }
         # vider le dictionnaire
@@ -409,6 +417,7 @@ class SearchData:
             to_return.remove("cc")
             to_return.remove("ca")
             to_return.remove("tj")
+            to_return.remove("tcom")
             to_return.remove("all")
             return to_return
 
