@@ -314,7 +314,7 @@ class StatsBloc(tk.LabelFrame):
         self._data = data
         # liste des labels d'entête pour les sous-frames
         titles_frames = ["Général", "Cour de cassation", "Cours d'appel",
-                         "Tribunaux judiciaires"]
+                         "Tribunaux judiciaires", "Tribunaux de commerce"]
         # liste des LabelFrame widget
         labels_list = list()
         # création des sous-frames et des labels à l'intérieur
@@ -348,6 +348,7 @@ class StatsBlocData:
         self._cc_list = list()
         self._ca_list = list()
         self._tj_list = list()
+        self._tcom_list = list()
         # compléter les listes
         self._build_lists()
 
@@ -376,6 +377,9 @@ class StatsBlocData:
             self._tj_list.append(("Nb textes",
                                   "{:,}".format(stats_dict_meta[
                                     "indexedByJurisdiction"][2]["value"])))
+            self._tcom_list.append(("Nb textes",
+                                    "{:,}".format(stats_dict_meta[
+                                        "indexedByJurisdiction"][3]["value"])))
             # 2/ autres requêtes personnalisées avec la commande EXPORT
             # (interne) constantes pour les requêtes :
             today = d.today()
@@ -388,20 +392,20 @@ class StatsBlocData:
                                             days=last_day_of_prev_month.day)
             previous_month = last_day_of_prev_month.month
             # requêtes pour chaque organisme
-            for orga in ["cc", "ca", "tj"]:
+            for orga in ["cc", "ca", "tj", "tcom"]:
                 self._date_request(
                     "Créés hier",
                     yesterday,
                     yesterday,
                     orga
                 )
-            for orga in ["cc", "ca", "tj"]:
+            for orga in ["cc", "ca", "tj", "tcom"]:
                 self._date_request(
                     f"Créés mois en cours ({str(month)})",
                     first_day_month,
                     today, orga
                 )
-            for orga in ["cc", "ca", "tj"]:
+            for orga in ["cc", "ca", "tj", "tcom"]:
                 self._date_request(
                     f"Créés mois passé ({str(previous_month)})",
                     start_day_of_prev_month,
@@ -439,12 +443,18 @@ class StatsBlocData:
                     label,
                     "{:,}".format(self.connexion.
                                   dict_answers["internal"].total_decisions)))
-            else:
+            elif jurisdiction == "tj":
                 self._tj_list.append((
+                    label,
+                    "{:,}".format(self.connexion.
+                                  dict_answers["internal"].total_decisions)))
+            else:
+                self._tcom_list.append((
                     label,
                     "{:,}".format(self.connexion.
                                   dict_answers["internal"].total_decisions)))
 
     def _get_data(self):
         "retourne les quatre listes pour construction des labels"
-        return (self._all_list, self._cc_list, self._ca_list, self._tj_list)
+        return (self._all_list, self._cc_list, self._ca_list, self._tj_list,
+                self._tcom_list)
