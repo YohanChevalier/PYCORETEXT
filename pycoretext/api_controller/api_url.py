@@ -269,7 +269,7 @@ class UrlStats(UrlBase):
     Elle retournera des statistiques sur la base Judilibre.
     """
     # commande obligatoire pour Export
-    _export_base = "/stats"
+    _export_base = "/stats?"
 
     def __init__(self, integral=True):
         """
@@ -280,12 +280,3 @@ class UrlStats(UrlBase):
         self.url_type = "stats"
         # ajout de la base
         self.final_url += self._export_base
-
-    def _check_final_url(self):
-        """
-        Spécifique à la méthode stats
-        Il ne faut aucun critère
-        """
-        if self.nb_criterias:
-            raise exc.WrongCriteria(
-                        message="UrlStats n'accepte pas de paramètre")
