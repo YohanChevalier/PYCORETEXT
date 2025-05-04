@@ -35,6 +35,15 @@ https://github.com/YohanChevalier/PYCORETEXT/blob/main/docs/specifications_techn
  Version de l'application
 ..........................
 
+Numéro de version actuel = 2.9.0
+Date de publication = 2025-05
+
+Liste des améliorations :
+    * Adaptation à l'API pour les requêtes STATS
+    * Ajout des statistiques propres aux textes des TCOM
+    * Ajout du contexte 'tcom' pour les recherches de taxonomy
+    * Ajout du 'Siège tcom' et gestion des validations de données
+
 Numéro de version actuel = 2.8.0
 Date de publication = 2024-01
 
