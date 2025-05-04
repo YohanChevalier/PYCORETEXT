@@ -195,7 +195,7 @@ class InfoPopup(tk.Toplevel):
         self.resizable(False, False)
         # Placement de la fenêtre
         self._width = 250
-        self._height = 500
+        self._height = 600
         place_windows(self, self._width, self._height,
                       root=self.nametowidget('.'))
 
@@ -303,7 +303,7 @@ class StatsBloc(tk.LabelFrame):
     """
     Un cadre contenant des Labels de stats
     """
-    def __init__(self, master, text: str, data: tuple, *args, **kwargs):
+    def __init__(self, master, text: str, data: list, *args, **kwargs):
         """
         fonction d'initialisation
         """
@@ -318,7 +318,7 @@ class StatsBloc(tk.LabelFrame):
         # liste des LabelFrame widget
         labels_list = list()
         # création des sous-frames et des labels à l'intérieur
-        for i in range(4):
+        for i in range(5):
             labels_list.append(ttk.LabelFrame(
                                self, text=titles_frames[i]))
             labels_list[i].grid(row=i, sticky=tk.W + tk.E,
@@ -344,11 +344,13 @@ class StatsBlocData:
         """
         self.connexion = connexion
         # variables des listes
-        self._all_list = list()
-        self._cc_list = list()
-        self._ca_list = list()
-        self._tj_list = list()
-        self._tcom_list = list()
+        self._dict_lists = {
+            "all": [],
+            "cc": [],
+            "ca": [],
+            "tj": [],
+            "tcom": []
+        }
         # compléter les listes
         self._build_lists()
 
@@ -356,41 +358,47 @@ class StatsBlocData:
         """
         Complète les listes _all, _cc, _ca et _tj puis les retourne
         """
-        # 1/ collecter les infos en provenance de la commande STATS (interne)
+        # Information de date utile pour les futures requêtes
+        today = d.today()
+        diff1 = td(days=1)
+        yesterday = today - diff1
+        month = str(today.month)
+        first_day_month = today.replace(day=1)
+        last_day_of_prev_month = today.replace(day=1) - td(days=1)
+        start_day_of_prev_month = today.replace(day=1) - td(
+                                        days=last_day_of_prev_month.day)
+        previous_month = last_day_of_prev_month.month
+        # 1/ collecter les infos générales
         try:
             self.connexion.send_request(api_url.UrlStats(), internal=True)
         except exc.ERRORS as e:
             raise e
         else:
-            stats_dict_meta = self.connexion.dict_answers["internal"].dict_meta
-            self._all_list.append(("Nb total des textes",
-                                  "{:,}".format(
-                                            stats_dict_meta["indexedTotal"])))
-            self._all_list.append(("Date créa. la plus récente",
-                                  stats_dict_meta["newestDecision"]))
-            self._cc_list.append(("Nb textes",
-                                  "{:,}".format(stats_dict_meta[
-                                    "indexedByJurisdiction"][0]["value"])))
-            self._ca_list.append(("Nb textes",
-                                  "{:,}".format(stats_dict_meta[
-                                    "indexedByJurisdiction"][1]["value"])))
-            self._tj_list.append(("Nb textes",
-                                  "{:,}".format(stats_dict_meta[
-                                    "indexedByJurisdiction"][2]["value"])))
-            self._tcom_list.append(("Nb textes",
-                                    "{:,}".format(stats_dict_meta[
-                                        "indexedByJurisdiction"][3]["value"])))
-            # 2/ autres requêtes personnalisées avec la commande EXPORT
+            dict_answer = self.connexion.dict_answers["internal"]
+            results = dict_answer.dict_from_response["results"]
+            self._dict_lists["all"].append(
+                            ("Nb total des textes",
+                             "{:,}".format(results["total_decisions"])))
+            self._dict_lists["all"].append(
+                            ("Date créa. la plus récente",
+                             results["max_decision_date"]))
+        # 2/ collecte de statistiques par juridiction
+        # 2.1/ nb de textes par juridiction
+            for juris in ["cc", "ca", "tj", "tcom"]:
+                try:
+                    url = api_url.UrlStats()
+                    url.set_criteria("jurisdiction=", juris)
+                    self.connexion.send_request(url, internal=True)
+                except exc.ERRORS as e:
+                    raise e
+                else:
+                    dict_answer = self.connexion.dict_answers["internal"]
+                    results = dict_answer.dict_from_response["results"]
+                    self._dict_lists[juris].append(
+                                ("Nb textes", "{:,}".format(
+                                    results["total_decisions"])))
+            # 2.2/ Requêtes sur des périodes spécifiques
             # (interne) constantes pour les requêtes :
-            today = d.today()
-            diff1 = td(days=1)
-            yesterday = today - diff1
-            month = str(today.month)
-            first_day_month = today.replace(day=1)
-            last_day_of_prev_month = today.replace(day=1) - td(days=1)
-            start_day_of_prev_month = today.replace(day=1) - td(
-                                            days=last_day_of_prev_month.day)
-            previous_month = last_day_of_prev_month.month
             # requêtes pour chaque organisme
             for orga in ["cc", "ca", "tj", "tcom"]:
                 self._date_request(
@@ -417,7 +425,7 @@ class StatsBlocData:
         # transformation en string
         date_start, date_end = str(date_start), str(date_end)
         # création de l'URL EXPORT
-        url = api_url.UrlExport(integral=False)
+        url = api_url.UrlStats(integral=False)
         url.set_criteria('date_start=', date_start)
         url.set_criteria('date_end=', date_end)
         url.set_criteria('jurisdiction=', jurisdiction)
@@ -426,35 +434,17 @@ class StatsBlocData:
         except exc.ERRORS as e:
             raise e
         except exc.NoResult:
-            if jurisdiction == "cc":
-                self._cc_list.append((label, "0"))
-            elif jurisdiction == "ca":
-                self._ca_list.append((label, "0"))
-            else:
-                self._tj_list.append((label, "0"))
+            self._dict_lists[jurisdiction].append((label, "0"))
         else:
-            if jurisdiction == "cc":
-                self._cc_list.append((
-                    label,
-                    "{:,}".format(self.connexion.
-                                  dict_answers["internal"].total_decisions)))
-            elif jurisdiction == "ca":
-                self._ca_list.append((
-                    label,
-                    "{:,}".format(self.connexion.
-                                  dict_answers["internal"].total_decisions)))
-            elif jurisdiction == "tj":
-                self._tj_list.append((
-                    label,
-                    "{:,}".format(self.connexion.
-                                  dict_answers["internal"].total_decisions)))
-            else:
-                self._tcom_list.append((
-                    label,
-                    "{:,}".format(self.connexion.
-                                  dict_answers["internal"].total_decisions)))
+            dict_answer = self.connexion.dict_answers["internal"]
+            results = dict_answer.dict_from_response["results"]
+            self._dict_lists[jurisdiction].append(
+                            (label,
+                             "{:,}".format(results["total_decisions"])))
 
     def _get_data(self):
         "retourne les quatre listes pour construction des labels"
-        return (self._all_list, self._cc_list, self._ca_list, self._tj_list,
-                self._tcom_list)
+        final_list = list()
+        for item in ["all", "cc", "ca", "tj", "tcom"]:
+            final_list.append(self._dict_lists[item])
+        return final_list
