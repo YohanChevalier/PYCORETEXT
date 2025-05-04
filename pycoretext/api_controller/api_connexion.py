@@ -84,7 +84,7 @@ class Connexion:
          Si ratelimit.RateLimitException:
           Ne compte pas la requête puisqu'elle n'est pas arrivée à l'API
         """
-        if type(e) == requests.exceptions.HTTPError:
+        if isinstance(e, requests.exceptions.HTTPError):
             if e.response.status_code >= 500:
                 Connexion.requests_number += 1
                 return False
@@ -93,7 +93,7 @@ class Connexion:
                 return False
             else:
                 return True
-        elif type(e) == ratelimit.RateLimitException:
+        elif isinstance(e, ratelimit.RateLimitException):
             return False
         Connexion.requests_number += 1
         return False
@@ -292,9 +292,9 @@ class Connexion:
                                            dict_criterias)
         elif url_type == "stats":
             id_answer = self._create_id_answer(internal)
-            answer = ans.AnswerStats(dict_from_response,
-                                     id_answer,
-                                     dict_criterias)
+            answer = ans.Answer(dict_from_response,
+                                id_answer,
+                                dict_criterias)
         if is_answer_created:
             # si un objet Answer a été créé, on l'ajoute dans le dict_answers
             # avec son id
