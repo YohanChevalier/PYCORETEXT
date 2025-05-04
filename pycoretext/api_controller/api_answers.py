@@ -322,31 +322,6 @@ class AnswerHealthCheck(Answer):
         self.status = self.dict_from_response["status"]
 
 
-class AnswerStats(Answer):
-    """
-    Classe dérivée qui va analyser la réponse d'une requête réalisée selon le
-    mode "stats"
-    """
-
-    def __init__(self, dict_from_response, id, dict_criterias):
-        """
-        Fonction d'initialisation
-        """
-        super().__init__(dict_from_response, id, dict_criterias)
-        # liste des métadonnées à conserver (toutes):
-        self.meta_list = [
-            "requestPerDay", "requestPerWeek", "requestPerMonth",
-            "oldestDecision", "newestDecision", "indexedTotal",
-            "indexedByJurisdiction", "indexedByYear"
-                         ]
-        # dictionnaire des métas
-        self.dict_meta = dict()
-        for meta in self.meta_list:
-            self.dict_meta[meta] = dict_from_response.get(
-                                                meta,
-                                                None)
-
-
 class DecisionShort:
     """
     Classe qui instancie un objet DecisionShort.
